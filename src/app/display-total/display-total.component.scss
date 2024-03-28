@@ -1,0 +1,47 @@
+#total {
+    background-image: url(https://upkeeplabs.blob.core.windows.net/doc-public/cdn/images/three-triangles.png);
+    background-repeat: no-repeat;
+    min-height: 80px;
+    min-width: 220px;
+    padding-left: 40px;
+    overflow: hidden;
+}
+
+#total.hide-triangle {
+    background-image: none;
+    min-width: unset;
+    padding-left: unset;
+}
+
+#total>div:first-child {
+    padding-top: 20px;
+}
+
+#cents {
+    font-size: 18px;
+    vertical-align: super;
+    display: inline-block;
+    border-bottom: 1px solid rgba(0, 0, 0, .4);
+    margin-left: 5px;
+    line-height: 18px;
+}
+
+
+#over-autho-warning-box {
+    text-align: center;
+    color: #F6BB42;
+    display: inline-block;
+}
+
+#over-autho-warning-box mat-icon {
+    color: #F6BB42;
+}
+.suffix {
+    font-size: 27px;
+}
+
+.big-data {
+    font-size: 36px;
+    color: rgba(0, 0, 0, .4) !important;
+    font-family: 'Roboto', 'Open Sans', 'Arial';
+}
