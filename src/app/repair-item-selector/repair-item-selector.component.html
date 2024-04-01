@@ -1,16 +1,14 @@
 <form>
-    <mat-form-field appearance="outline" style="display: block;width: 100%;"  class="condensed-form-field">
+    <mat-form-field appearance="outline" style="display: block;width: 100%;" class="condensed-form-field">
         <mat-label>Item</mat-label>
-      <input type="text"
-             matInput
-             [id]="id"
-             [formControl]="myControl"
-             [matAutocomplete]="auto">
-      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="optionSelected($event)">
-        @for (option of filteredOptions | async; track option) {
-          <mat-option [id]="option.id" [value]="option.name">{{option.name}}</mat-option>
-        }
-      </mat-autocomplete>
+        <input type="text" matInput [id]="id" #inputAutoComplete [formControl]="myControl" [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="optionSelected($event)">
+            @for (option of filteredOptions | async; track option) {
+            <mat-option [id]="option.id" [value]="option.name">{{option.name}}</mat-option>
+            }
+        </mat-autocomplete>
+        <button matSuffix mat-button (click)="openPanel()">
+            <mat-icon>expand_more</mat-icon>
+        </button>
     </mat-form-field>
-  </form>
-
+</form>

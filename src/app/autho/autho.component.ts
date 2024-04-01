@@ -1,4 +1,4 @@
-import { Component, ViewChild, viewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild, viewChild } from '@angular/core';
 import { CostLine, WorkOrderLineAuthorizationRepairItem } from './db';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
@@ -53,8 +53,9 @@ export class AuthoComponent {
 
   items = WorkOrderLineAuthorizationRepairItem.getItems();
   costLines: CostLine[] = [];
-  sideBarOpen = false;
-  hasIncompatibilityCoverage = false;
+  @Input() sideBarOpen = false;
+  @Output() sideBarOpenChange: EventEmitter<boolean> = new EventEmitter();
+  @Input() hasIncompatibilityCoverage = false;
 
   @ViewChild('repairItemSelectorComponent') repairItemSelectorComponent: RepairItemSelectorComponent;
 
@@ -69,6 +70,7 @@ export class AuthoComponent {
     this.selectedCostLine = new CostLine();
     this.selectedCostLine.id = UtilitiesService.newid();
     this.sideBarOpen = !this.sideBarOpen;
+    this.sideBarOpenChange.emit(this.sideBarOpen);
     this.selectedCostLine.companyProvidedAvailable = true;
     this.selectedCostLine.companyProvidesPart = true;
   }
@@ -79,6 +81,7 @@ export class AuthoComponent {
     this.selectedCostLine = copy;
     copy.defaultItem = true;
     this.sideBarOpen = true;
+    this.sideBarOpenChange.emit(this.sideBarOpen);
   }
 
   repairItemNameChange(name: string) {
@@ -137,6 +140,7 @@ export class AuthoComponent {
     }
     delete this.selectedCostLine;
     this.sideBarOpen = false;
+    this.sideBarOpenChange.emit(this.sideBarOpen);
   }
 
 
@@ -171,7 +175,7 @@ export class AuthoComponent {
       }).reduce((a, b) => a + b, 0);
 
 
-    const groupLimits = GroupedLimits.fromCostLines(this.costLines);
+    const groupLimits = GroupedLimits.fromCostLines(this.costLines.filter(i => !i.companyProvidesPart));
 
     for (const item of groupLimits) {
       amt -= item.outOfPocket;

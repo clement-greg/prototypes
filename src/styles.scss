@@ -23,6 +23,10 @@ body {
 
 }
 
+.hide-tabs mat-tab-header {
+    display: none;
+}
+
 .data-label {
     font-size: 12px;
     text-transform: uppercase;
@@ -49,4 +53,100 @@ div[aflex]>*[nogrow],
 mat-radio-grou[flex]>*[nogrow],
 div.flex>*[nogrow] {
     flex: none !important;
+}
+
+
+.toggle-button::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    left: 5px;
+    background-color: #89AAE6;
+    visibility: hidden;
+    transform: scaleX(0) scaleY(0);
+    transition: all .3s ease-in-out 0s;
+    height: 100%;
+    border-radius: 7px;
+    z-index: -1;
+    top: 0;
+    left: 0;
+}
+
+.toggle-button.selected {
+    color: #fff !important;
+    z-index: 1;
+}
+
+.toggle-button.selected::before {
+    transform: scaleX(1) scaleY(1);
+    visibility: visible;
+}
+
+.block {
+    display: block;
+    width: 100%;
+}
+
+.mat-mdc-tab-body-content {
+    overflow: hidden !important;
+}
+
+.center {
+    text-align: center;
+}
+
+.padding {
+    padding: 30px;
+}
+.mat-icon-container {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    color: #fff;
+    background-color: #a1adbf;
+    border-radius: 50%;
+    text-align: center;
+
+}
+.mat-icon-container mat-icon {
+    margin-top: 12px;
+}
+
+@keyframes roll-in {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+.call-out {
+    animation: roll-in .6s ease;
+    transform-origin: 0% 0%;
+    position: relative;
+    background: #477f95;
+    border-radius: 10px;
+    padding: 20px;
+    color: #fff;
+    line-height: 20px;
+    display: inline-block;
+    max-width: 200px;
+}
+
+.call-out:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 0;
+    height: 0;
+    border: 20px solid transparent;
+    border-right-color: #477f95;
+    border-left: 0;
+    border-top: 0;
+    margin-top: -10px;
+    margin-left: -20px;
 }
