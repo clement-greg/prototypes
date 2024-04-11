@@ -4,25 +4,38 @@ import { Component, NgZone } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 declare var MediaRecorder: any;
 
 @Component({
   selector: 'app-record',
   standalone: true,
-  imports: [CommonModule, MatIconModule, MatButtonModule, HttpClientModule],
+  imports: [CommonModule, MatIconModule, MatButtonModule, HttpClientModule, MatSelectModule, MatFormFieldModule, MatInputModule, FormsModule, ReactiveFormsModule],
   templateUrl: './record.component.html',
   styleUrl: './record.component.scss'
 })
 export class RecordComponent {
   mediaRecorder: typeof MediaRecorder;
   recording: boolean = false;
+  voices: SpeechSynthesisVoice[];
+  seletedVoice: SpeechSynthesisVoice;
 
   recordings: any[] = [];
   constructor(private santizer: DomSanitizer,
     private http: HttpClient,
     private zone: NgZone) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+
+    const synth = window.speechSynthesis;
+    this.voices = synth.getVoices().filter(i=>i.lang === 'en-US' || i.lang === 'en-GB');
+
+    this.seletedVoice = this.voices.find(i => i.default);
+    console.log(this.voices);
+  }
 
   stop(evt: MouseEvent | TouchEvent) {
     if ((evt as any).button === 0 || evt.type === 'touchend') {
@@ -35,6 +48,13 @@ export class RecordComponent {
 
   removeRecording(recording) {
     this.recordings.splice(this.recordings.indexOf(recording), 1);
+  }
+
+  testSyth() {
+    const synt = window.speechSynthesis;
+    const utter = new SpeechSynthesisUtterance('Hello, how are you doing?  I hope your day is going aweful!!!!');
+    utter.voice = this.seletedVoice;
+    synt.speak(utter);
   }
 
   doRecord(evt: MouseEvent | TouchEvent) {

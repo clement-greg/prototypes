@@ -18,4 +18,13 @@
     </div>
   </div>
   
+  <div>
+  <mat-form-field style="display: block;width: 100%;" appearance="outline">
+    <mat-label>Voice</mat-label>
+    <mat-select [(ngModel)]="seletedVoice">
+      <mat-option *ngFor="let voice of voices" [value]="voice">{{voice.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+  <button mat-button (click)="testSyth()">Speak!!!</button>
   

@@ -1,0 +1,32 @@
+#splashScreen {
+    background: linear-gradient(to bottom, #637283 0%, #697e8e 100%);
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    z-index: 2000000;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: "Open Sans";
+}
+
+
+
+#splashScreen svg:not(.spinner-container) {
+    min-height: 100vh;
+    min-width: 100vw;
+
+}
+
+#splashScreen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
