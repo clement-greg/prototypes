@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
-import { Component, NgZone } from '@angular/core';
+import { AfterViewInit, Component, NgZone } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -17,29 +17,42 @@ declare var MediaRecorder: any;
   templateUrl: './record.component.html',
   styleUrl: './record.component.scss'
 })
-export class RecordComponent {
+export class RecordComponent implements AfterViewInit {
   mediaRecorder: typeof MediaRecorder;
   recording: boolean = false;
   voices: SpeechSynthesisVoice[];
   seletedVoice: SpeechSynthesisVoice;
 
   recordings: any[] = [];
+  message = 'Hello, how are you doing?  I hope your day is going aweful!!!!';
   constructor(private santizer: DomSanitizer,
     private http: HttpClient,
     private zone: NgZone) { }
 
   ngOnInit(): void {
 
+    this.loadVoices();
+
+  }
+
+  loadVoices() {
     const synth = window.speechSynthesis;
-    this.voices = synth.getVoices().filter(i=>i.lang === 'en-US' || i.lang === 'en-GB');
+    this.voices = synth.getVoices().filter(i => i.lang === 'en-US' || i.lang === 'en-GB'  || i.lang === 'es-MX');
 
     this.seletedVoice = this.voices.find(i => i.default);
     console.log(this.voices);
+    if (!this.voices?.length) {
+      setTimeout(() => this.loadVoices(), 500);
+    }
+  }
+
+  ngAfterViewInit(): void {
+
   }
 
   stop(evt: MouseEvent | TouchEvent) {
     if ((evt as any).button === 0 || evt.type === 'touchend') {
-      if (this.mediaRecorder.state === 'recording') {
+      if (this.mediaRecorder?.state === 'recording') {
         this.mediaRecorder.stop();
         this.recording = false;
       }
@@ -52,7 +65,7 @@ export class RecordComponent {
 
   testSyth() {
     const synt = window.speechSynthesis;
-    const utter = new SpeechSynthesisUtterance('Hello, how are you doing?  I hope your day is going aweful!!!!');
+    const utter = new SpeechSynthesisUtterance(this.message);
     utter.voice = this.seletedVoice;
     synt.speak(utter);
   }

@@ -26,5 +26,8 @@
     </mat-select>
   </mat-form-field>
 </div>
-  <button mat-button (click)="testSyth()">Speak!!!</button>
-  
+<mat-form-field style="display: block; width: 100%;" appearance="outline">
+  <mat-label>Message</mat-label>
+  <textarea matInput [(ngModel)]="message"></textarea>
+</mat-form-field>
+<button mat-button (click)="testSyth()">Speak!!!</button>

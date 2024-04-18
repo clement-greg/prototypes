@@ -26,6 +26,22 @@ export const routes: Routes = [
         loadComponent: () => import('./cogent-load-pulse/cogent-load-pulse.component').then(r => r.CogentLoadPulseComponent)
     },
     {
+        path: 'cogent-load-radial',
+        loadComponent: () => import('./cogent-load-radial/cogent-load-radial.component').then(r => r.CogentLoadRadialComponent)
+    },
+    {
+        path: 'cogent-load-bubbles',
+        loadComponent: () => import('./cogent-load-bubbles/cogent-load-bubbles.component').then(r => r.CogentLoadBubblesComponent),
+    },
+    {
+        path: 'cogent-load-pong',
+        loadComponent: () => import('./cogent-load-pong/cogent-load-pong.component').then(r => r.CogentLoadPongComponent),
+    },
+    {
+        path: 'cogent-load-halloween',
+        loadComponent: () => import('./cogent-load-halloween/cogent-load-halloween.component').then(r => r.CogentLoadHalloweenComponent),
+    },
+    {
         path: '',
         loadComponent: () => import('./menu/menu.component').then(r => r.MenuComponent)
     }
