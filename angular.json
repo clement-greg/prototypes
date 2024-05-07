@@ -20,6 +20,7 @@
             "outputPath": "dist/prototypes",
             "index": "src/index.html",
             "browser": "src/main.ts",
+            
             "polyfills": [
               "zone.js"
             ],
@@ -70,6 +71,9 @@
             "development": {
               "buildTarget": "prototypes:build:development"
             }
+          },
+          "options": {
+            "port": 61336
           },
           "defaultConfiguration": "development"
         },

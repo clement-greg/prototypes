@@ -42,6 +42,26 @@ export const routes: Routes = [
         loadComponent: () => import('./cogent-load-halloween/cogent-load-halloween.component').then(r => r.CogentLoadHalloweenComponent),
     },
     {
+        path: 'cogent-load-summer',
+        loadComponent: () => import('./cogent-load-summer/cogent-load-summer.component').then(r => r.CogentLoadSummerComponent),
+    },
+    {
+        path: 'cogent-load-independence',
+        loadComponent: () => import('./cogent-load-independence/cogent-load-independence.component').then(r => r.CogentLoadIndependenceComponent),
+    },
+    {
+        path: 'cogent-load-birthday',
+        loadComponent: () => import('./cogent-load-birthday/cogent-load-birthday.component').then(r => r.CogentLoadBirthdayComponent),
+    },
+    {
+        path: 'clip-path-test',
+        loadComponent: () => import('./clip-path-test/clip-path-test.component').then(r => r.ClipPathTestComponent),
+    },
+    {
+        path: 'image-resize',
+        loadComponent: () => import('./image-resize/image-resize.component').then(r => r.ImageResizeComponent),
+    },
+    {
         path: '',
         loadComponent: () => import('./menu/menu.component').then(r => r.MenuComponent)
     }
