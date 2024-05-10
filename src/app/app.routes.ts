@@ -62,6 +62,14 @@ export const routes: Routes = [
         loadComponent: () => import('./image-resize/image-resize.component').then(r => r.ImageResizeComponent),
     },
     {
+        path: 'game',
+        loadComponent: () => import('./game/game.component').then(r => r.GameComponent),
+    },
+    {
+        path: 'cogent-load-christmas',
+        loadComponent: () => import('./cogent-load-christmas/cogent-load-christmas.component').then(r => r.CogentLoadChristmasComponent),
+    },
+    {
         path: '',
         loadComponent: () => import('./menu/menu.component').then(r => r.MenuComponent)
     }

@@ -4,7 +4,8 @@
     width: 100%;
     top: 0;
     z-index: 2000000;
-    background: linear-gradient(45deg, rgba(22,12,50,1) 0%, rgba(45,11,110,1) 100%);
+    background: #EBFFFF;
+    background: linear-gradient(45deg, #c2dcf2 0%, #a9d2ee 17%, #7fc2e7 31%, #46abdd 46%, #1e9cd7 57%, #0075be 87%, #005b97 100%);
 }
 
 h1,
@@ -17,7 +18,7 @@ h4 {
 
 
 #splashScreen svg#cogent {
-    max-height: 200px;
+    max-height: 400px;
     height: 100vh; 
     width: 100vw;
     max-width: 600px;
@@ -25,9 +26,6 @@ h4 {
 
 }
 
-svg#progress {
-    height: 70px;
-}
 
 #splashScreen {
     display: flex;
