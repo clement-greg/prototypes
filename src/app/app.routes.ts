@@ -74,6 +74,10 @@ export const routes: Routes = [
         loadComponent: () => import('./cogent-load-thanksgiving/cogent-load-thanksgiving.component').then(r => r.CogentLoadThanksgivingComponent),
     },
     {
+        path: 'box-test',
+        loadComponent: () => import('./box-test/box-test.component').then(r => r.BoxTestComponent),
+    },
+    {
         path: '',
         loadComponent: () => import('./menu/menu.component').then(r => r.MenuComponent)
     }
