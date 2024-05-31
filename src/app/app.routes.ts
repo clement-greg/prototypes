@@ -79,11 +79,15 @@ export const routes: Routes = [
     },
     {
         path: 'cogent-load-valentines-day',
-        loadComponent: ()=> import('./cogent-load-valentines-day/cogent-load-valentines-day.component').then(r=>r.CogentLoadValentinesDayComponent)
+        loadComponent: () => import('./cogent-load-valentines-day/cogent-load-valentines-day.component').then(r => r.CogentLoadValentinesDayComponent)
     },
     {
         path: 'box-test',
         loadComponent: () => import('./box-test/box-test.component').then(r => r.BoxTestComponent),
+    },
+    {
+        path: 'wig-visual',
+        loadComponent: () => import('./wig-visual/wig-visual.component').then(r => r.WigVisualComponent),
     },
     {
         path: '',
