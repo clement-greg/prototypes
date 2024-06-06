@@ -1,0 +1,213 @@
+<div id="splashScreen">
+
+    <!-- <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        viewBox="0 0 1920 1080">
+        <defs>
+            <style>
+                .drop-shadow {
+                    filter: url(#shadow3)
+                }
+
+                .cls-2 {
+                    fill: url(#linear-gradient);
+                }
+
+                .cls-2 {
+                    stroke-width: 0px;
+                }
+            </style>
+            <filter id="AI_Shadow_2" x="-15%" y="-15%" width="140%" height="130%">
+                <feGaussianBlur in="SourceAlpha" result="blur" stdDeviation="6" />
+                <feOffset dx="8" dy="8" in="blur" result="offsetBlurredAlpha" />
+                <feMerge>
+                    <feMergeNode in="offsetBlurredAlpha" />
+                    <feMergeNode in="SourceGraphic" />
+                </feMerge>
+            </filter>
+
+            <filter id="shadow3">
+
+                <feDropShadow dx="0" flood-opacity="0.4" dy="0" stdDeviation="20" />
+            </filter>
+
+            <linearGradient id="linear-gradient" x1="139.26" y1="-136.91" x2="953.09" y2="676.91"
+                gradientUnits="userSpaceOnUse">
+                <stop offset="0" stop-color="#de8648" />
+                <stop offset="1" stop-color="#f5b645" />
+            </linearGradient>
+
+        </defs>
+
+        <polyline class="cls-2" points="0 245.38 0 0 253.95 0" />
+        <polyline class="cls-2" points="0 327.67 334.71 0 407.86 0 0 396.24" />
+
+
+    </svg> -->
+</div>
+
+<div>
+    <div class="menu" [class.scrolled]="isScrolled">
+        <div class="container">
+            <div aflex>
+                <div>
+                    <img style="height: 60px;" src="https://dev-api.upkeeplabs.com/api/entity/company/logo">
+                </div>
+                <div nogrow>
+                    <div class="menus">
+                        <mat-icon>notifications_none</mat-icon>
+                        <a href="#">Overview</a>
+                        <a href="#">Jobs Board</a>
+                        <a href="#">Billing</a>
+                        <a href="#">Statistics</a>
+                        <a href="#">Calendar</a>
+                        <a href="#">Settings</a>
+                        <a href="#">Log Out</a>
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container" id="main-container" style="z-index: 10;">
+
+        <div class="center">
+            <img style="border-radius: 50%;"
+                src="https://dev-api.upkeeplabs.com/api/entity/thumbnail/b7f4e0c9-daa7-46ea-8d51-0634d4e3b23b">
+            <h1 style="margin-bottom: 10;font-size: 64px;">Welcome</h1>
+            <h2>Bills Trade Services</h2>
+        </div>
+    
+        <div class="card-view">
+            <mat-card>
+                <div class="card-container">
+                    <div>
+                        <h2 class="sub-heading">Upcomming Appointments</h2>
+                        <div class="upcomming-job">
+                            <div>
+                                <h2>6</h2>
+                                <div>Jun</div>
+                            </div>
+                            <div>
+                                <div>12253 W Ashby Dr</div>
+                                <div>Pool Maintenance</div>
+                            </div>
+                        </div>
+    
+                    </div>
+                    <div>
+                        <button mat-button>
+                            <div>
+                                See More <mat-icon>chevron_right</mat-icon>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+    
+            </mat-card>
+    
+            <mat-card>
+                <div class="card-container">
+                    <div class="center v-center">
+                        <h1 class="big-data">1</h1>
+                        <div class="data-label">Calls Today</div>
+                    </div>
+                    <div>
+                        <button mat-button>
+                            <div>
+                                See More <mat-icon>chevron_right</mat-icon>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </mat-card>
+            <mat-card>
+    
+                <div class="card-container">
+                    <div class="center v-center">
+                        <h1 class="big-data">3</h1>
+                        <div class="data-label">Pending Offers</div>
+                    </div>
+                    <div>
+                        <button mat-button>
+                            <div>
+                                See More <mat-icon>chevron_right</mat-icon>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </mat-card>
+            <mat-card>
+    
+                <div class="card-container">
+                    <div class="center v-center">
+                        <h1 class="big-data">4</h1>
+                        <div class="data-label">Recurring Maintenance Customers</div>
+                    </div>
+                    <div>
+                        <button mat-button>
+                            <div>
+                                See More <mat-icon>chevron_right</mat-icon>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </mat-card>
+    
+            <mat-card>
+                <div class="card-container">
+                    <div class="center v-center">
+                        <h1 class="big-data">4</h1>
+                        <div class="data-label">Uncompleted Past Appointments</div>
+                    </div>
+                    <div>
+                        <button mat-button>
+                            <div>
+                                See More <mat-icon>chevron_right</mat-icon>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+    
+        <h2 style="margin-top: 40px;">Other Options</h2>
+        <div class="min-card-view">
+            <button mat-button>
+                <div>
+                    <mat-icon>paid</mat-icon>
+                    <br>
+                    Billing
+                </div>
+            </button>
+            <button mat-button>
+                <div>
+                    <mat-icon>find_in_page</mat-icon>
+                    <br>
+                    Reports
+                </div>
+            </button>
+            <button mat-button>
+                <div>
+                    <mat-icon>event_busy</mat-icon>
+                    <br>
+                    Recent Cancellations
+                </div>
+            </button>
+            <button mat-button>
+                <div>
+                    <mat-icon>calendar_month</mat-icon>
+                    <br>
+                    Calendar
+                </div>
+            </button>
+            <button mat-button>
+                <div>
+                    <mat-icon>settings</mat-icon>
+                    <br>
+                    Settings
+                </div>
+            </button>
+        </div>
+    </div>
+</div>
+

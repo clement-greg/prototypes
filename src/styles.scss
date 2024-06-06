@@ -136,6 +136,10 @@ div.flex>*[nogrow] {
     max-width: 200px;
 }
 
+.pest-control {
+    background:  radial-gradient(circle, rgba(255,85,216,1) 0%, rgba(224,48,85,1) 47%);
+}
+
 .call-out:after {
     content: "";
     position: absolute;

@@ -90,6 +90,10 @@ export const routes: Routes = [
         loadComponent: () => import('./wig-visual/wig-visual.component').then(r => r.WigVisualComponent),
     },
     {
+        path: 'contractor-home',
+        loadComponent: () => import('./contractor-home-re-design/contractor-home-re-design.component').then(r => r.ContractorHomeReDesignComponent),
+    },
+    {
         path: '',
         loadComponent: () => import('./menu/menu.component').then(r => r.MenuComponent)
     }

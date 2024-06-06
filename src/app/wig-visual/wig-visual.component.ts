@@ -70,7 +70,7 @@ export class WigVisualComponent implements OnInit {
   doSetup() {
     var engine = Matter.Engine.create();
     this.engine = engine;
-    this.engine.gravity = { x: 0, y: .3 };
+    this.engine.gravity = { x: 0, y: 0.2 };
 
     // create a renderer
     // var render = Matter.Render.create({
@@ -109,24 +109,26 @@ export class WigVisualComponent implements OnInit {
     //Matter.Composite.add(engine.world, [boxA, boxB])
     ground.restitution = .9;
 
+    const barFriction = 0;
+
     var div1 = Matter.Bodies.rectangle(330, 310, 524, 58, { isStatic: true });
-    div1.friction = 0;
+    div1.friction = barFriction;
     Matter.Body.rotate(div1, 0.15)
     Matter.Composite.add(engine.world, div1);
 
 
     const div2 = Matter.Bodies.rectangle(900, 210, 424, 58, { isStatic: true, friction: 0, staticFriction: 0 });
-    div2.friction = 0;
+    div2.friction = barFriction;
     Matter.Body.rotate(div2, -0.06)
     Matter.Composite.add(engine.world, div2);
 
     const div3 = Matter.Bodies.rectangle(1500, 410, 400, 58, { isStatic: true, friction: 0, staticFriction: 0 });
-    div3.friction = 0;
+    div3.friction = barFriction;
     Matter.Body.rotate(div3, 0.06)
     Matter.Composite.add(engine.world, div3);
 
     const div4 = Matter.Bodies.rectangle(1200, 610, 350, 58, { isStatic: true, friction: 0, staticFriction: 0 });
-    div4.friction = 0;
+    div4.friction = barFriction;
     Matter.Body.rotate(div4, 0.11)
     Matter.Composite.add(engine.world, div4);
 
@@ -171,7 +173,7 @@ export class WigVisualComponent implements OnInit {
     const circle = Matter.Bodies.circle(this.random(0, 1900), 0, 30, { restitution: 1, frictionStatic: 0, airFriction: 0 });
     circle.restitution = 1;
     circle.frictionStatic = 1;
-    circle.friction = 0.1;
+    circle.friction = 0.02;
     circle.airFriction = 0;
     Matter.Composite.add(engine.world, [circle]);
 
@@ -202,22 +204,26 @@ export class WigVisualComponent implements OnInit {
       case 'Landscape Maintenance':
         domObject.innerHTML = '<span class="material-icons" style="font-size: 32px; color: #fff">grass</span>';
         domObject.style.backgroundColor = 'green';
+        domObject.style.backgroundImage = 'radial-gradient(circle, rgba(201,255,170,1) 0%, rgba(57,200,39,1) 100%)';
         this.lawnCount++;
         //Matter.Body.setMass(circle, 3);
         break;
       case 'Pest Control':
         domObject.innerHTML = '<span class="material-icons" style="font-size: 32px; color: #fff">bug_report</span>';
-        domObject.style.backgroundColor = 'orange';
+        //domObject.style.backgroundColor = 'red';
+        domObject.style.backgroundImage = 'radial-gradient(circle, rgba(238,81,36,1) 0%, rgba(164,36,9,1) 100%)'
         this.pestControlCount++;
         break;
       case 'House Cleaning':
         domObject.innerHTML = '<span class="material-icons" style="font-size: 32px; color: #fff">cleaning_services</span>';
         this.houseCleaningCount ++;
+        domObject.style.backgroundImage  = 'radial-gradient(circle, rgba(36,238,234,1) 0%, rgba(9,164,159,1) 100%)';
         //Matter.Body.setMass(circle, 4);
         break;
       case 'Pool Maintenance':
         domObject.innerHTML = '<span class="material-icons" style="font-size: 32px; color: #fff">pool</span>';
         domObject.style.backgroundColor = 'blue';
+        domObject.style.backgroundImage = 'radial-gradient(circle, rgba(170,178,255,1) 0%, rgba(46,39,200,1) 100%)';
         this.poolCount++;
         //Matter.Body.setMass(circle, 2);
         break;
