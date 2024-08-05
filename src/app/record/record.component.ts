@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HttpHeaders, provideHttpClient, withFetch } from '@angular/common/http';
 import { AfterViewInit, Component, NgZone } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -13,7 +13,8 @@ declare var MediaRecorder: any;
 @Component({
   selector: 'app-record',
   standalone: true,
-  imports: [CommonModule, MatIconModule, MatButtonModule, HttpClientModule, MatSelectModule, MatFormFieldModule, MatInputModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, MatIconModule, MatButtonModule,
+    HttpClientModule, MatSelectModule, MatFormFieldModule, MatInputModule, FormsModule, ReactiveFormsModule],
   templateUrl: './record.component.html',
   styleUrl: './record.component.scss'
 })
@@ -37,7 +38,7 @@ export class RecordComponent implements AfterViewInit {
 
   loadVoices() {
     const synth = window.speechSynthesis;
-    this.voices = synth.getVoices().filter(i => i.lang === 'en-US' || i.lang === 'en-GB'  || i.lang === 'es-MX');
+    this.voices = synth.getVoices().filter(i => i.lang === 'en-US' || i.lang === 'en-GB' || i.lang === 'es-MX');
 
     this.seletedVoice = this.voices.find(i => i.default);
     console.log(this.voices);

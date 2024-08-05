@@ -94,6 +94,14 @@ export const routes: Routes = [
         loadComponent: () => import('./contractor-home-re-design/contractor-home-re-design.component').then(r => r.ContractorHomeReDesignComponent),
     },
     {
+        path: 'edge',
+        loadComponent: () => import('./edge-glow/edge-glow.component').then(r => r.EdgeGlowComponent),
+    },
+    {
+        path: 'back-to-school',
+        loadComponent: () => import('./back-to-school/back-to-school.component').then(r => r.BackToSchoolComponent),
+    },
+    {
         path: '',
         loadComponent: () => import('./menu/menu.component').then(r => r.MenuComponent)
     }
