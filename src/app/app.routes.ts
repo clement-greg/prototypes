@@ -94,12 +94,32 @@ export const routes: Routes = [
         loadComponent: () => import('./contractor-home-re-design/contractor-home-re-design.component').then(r => r.ContractorHomeReDesignComponent),
     },
     {
+        path: 'gears',
+        loadComponent: () => import('./gears-test/gears-test.component').then(r => r.GearsTestComponent),
+    },
+    {
         path: 'edge',
         loadComponent: () => import('./edge-glow/edge-glow.component').then(r => r.EdgeGlowComponent),
     },
     {
         path: 'back-to-school',
         loadComponent: () => import('./back-to-school/back-to-school.component').then(r => r.BackToSchoolComponent),
+    },
+    {
+        path: 'wallpaper',
+        loadComponent: () => import('./wallpaper/wallpaper.component').then(r => r.WallpaperComponent),
+    },
+    {
+        path: 'appliance-autho',
+        loadComponent: () => import('./appliance-autho/appliance-autho.component').then(r => r.ApplianceAuthoComponent),
+    },
+    {
+        path: 'dashboard',
+        loadComponent: () => import('./dashboard/dashboard.component').then(r => r.DashboardComponent),
+    },
+    {
+        path: 'throb',
+        loadComponent: ()=> import('./throb-test/throb-test.component').then(r=>r.ThrobTestComponent),
     },
     {
         path: '',
