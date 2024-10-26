@@ -1,0 +1,4 @@
+        <?xml version="1.0" encoding="UTF-8"?><svg class="masker-svg" [style.left]="maskerLeft" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144 61">
+            <path class="masker"
+                d="M133,0H0s9,1,12,11v-.09c5.13,28.48,30.04,50.09,60,50.09s54.87-21.61,60.01-50.09v.09c2.99-10,11.99-11,11.99-11h-11Z" />
+        </svg>

@@ -119,7 +119,23 @@ export const routes: Routes = [
     },
     {
         path: 'throb',
-        loadComponent: ()=> import('./throb-test/throb-test.component').then(r=>r.ThrobTestComponent),
+        loadComponent: () => import('./throb-test/throb-test.component').then(r => r.ThrobTestComponent),
+    },
+    {
+        path: 'communication-hub',
+        loadComponent: () => import('./communication-hub/communication-hub.component').then(r => r.CommunicationHubComponent),
+    },
+    {
+        path: 'reactive-forms-test',
+        loadComponent: () => import('./reactive-forms-test/reactive-forms-test.component').then(r => r.ReactiveFormsTestComponent),
+    },
+    {
+        path: 'diagram-editor',
+        loadComponent: () => import('./diagram-editor/diagram-editor.component').then(r => r.DiagramEditorComponent),
+    },
+    {
+        path: 'bottom-menu',
+        loadComponent: ()=>import('./bottom-menu/bottom-menu.component').then(r=>r.BottomMenuComponent),
     },
     {
         path: '',

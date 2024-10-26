@@ -1,0 +1,16 @@
+<img src="/assets/images/parts-diagram.png">
+
+<div id="svgContainer" (mousedown)="mouseDown($event)" (mouseup)="mouseUp($event)" (mousemove)="mouseMove($event)">
+    <svg version="1.2" baseProfile="tiny" id="mySvg">
+
+        <circle (click)="selectCircle(hotSpot, $event)" style="cursor: pointer;" stroke="red" stroke-width="2" [attr.fill]="getFill(hotSpot)" *ngFor="let hotSpot of circles" [attr.cx]="hotSpot.x" [attr.cy]="hotSpot.y" [attr.r]="hotSpot.radius"></circle>
+        <polygon (click)="selectPolygon(polygon, $event)" style="cursor: pointer;" stroke="red" stroke-width="2" [attr.fill]="getPolygonFill(polygon)" *ngFor="let polygon of polygons" [attr.points]="getPolygonPoints(polygon)"></polygon>
+    </svg>
+</div>
+
+<h1>{{selectedMode}}</h1>
+
+<button mat-button (click)="selectedMode = 'Circle'">Circle</button>
+<button mat-button (click)="selectedMode = 'Shape'">Shape</button>
+
+<button mat-button (click)="save()">Save</button>

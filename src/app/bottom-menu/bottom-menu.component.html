@@ -1,0 +1,79 @@
+<div class="app">
+    <div>
+        <div id="background-image-container"></div>
+        <!-- <div style="padding: 20px">
+            <mat-tab-group [(selectedIndex)]="selectedIndex" class="hide-tabs">
+                <mat-tab>
+                    <h1>Contact Stuff</h1>
+                </mat-tab>
+                <mat-tab>
+                    <h1>Request Service</h1>
+                </mat-tab>
+
+                <mat-tab>
+                    <h1>Home</h1>
+                </mat-tab>
+                <mat-tab>
+                    <h1>Payments</h1>
+                </mat-tab>
+                <mat-tab>
+                    <h1>Settings</h1>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+        <div>
+
+        </div> -->
+    </div>
+</div>
+<div class="menu-bar">
+    <div class="menu-dot" [style.left]="dotLeft" [class.moving]="isMoving">
+        <mat-icon *ngIf="selectedMenuItem && showDotIcon">
+            {{selectedMenuItem.cssClass}}
+        </mat-icon>
+
+    </div>
+    <div [style.mask-position]="maskPosition">
+
+
+
+
+        <div>
+            <div>
+                <button [class.selected]="menuItem === selectedMenuItem" [id]="menuItem.id"
+                    *ngFor="let menuItem of menuItems" (click)="selectMenuItem(menuItem)">
+                    <mat-icon>{{menuItem.cssClass}}</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- <?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650 142">
+    <defs>
+        <style>
+            .cls-1 {
+                fill: #fff;
+            }
+
+            .cls-2 {
+                fill: #666;
+            }
+
+            .cls-3 {
+                fill: #999;
+            }
+        </style>
+    </defs>
+    <g id="bg">
+        <rect class="cls-2" y="52" width="650" height="90" />
+    </g>
+    <g id="mask">
+        <path class="cls-1"
+            d="M228,51.5H95s9,1,12,11v-.09c5.13,28.48,30.04,50.09,60,50.09s54.87-21.61,60.01-50.09v.09c2.99-10,11.99-11,11.99-11h-11Z" />
+    </g>
+    <g id="circle">
+        <circle class="cls-3" cx="167" cy="51" r="51" />
+    </g>
+</svg> -->
