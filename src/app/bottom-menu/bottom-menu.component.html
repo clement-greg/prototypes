@@ -1,17 +1,151 @@
 <div class="app">
     <div>
-        <div id="background-image-container"></div>
-        <!-- <div style="padding: 20px">
+        <div id="background-image-container" [style.background-position-x]="aPosistionX"></div>
+        <div style="padding: 20px">
             <mat-tab-group [(selectedIndex)]="selectedIndex" class="hide-tabs">
                 <mat-tab>
                     <h1>Contact Stuff</h1>
+
+
                 </mat-tab>
                 <mat-tab>
                     <h1>Request Service</h1>
                 </mat-tab>
 
                 <mat-tab>
-                    <h1>Home</h1>
+                    <div class="center">
+                        <img style="border-radius: 50%;"
+                            src="https://dev-api.upkeeplabs.com/api/entity/thumbnail/b7f4e0c9-daa7-46ea-8d51-0634d4e3b23b">
+                        <h1 style="margin-bottom: 10;font-size: 64px;">Welcome</h1>
+                        <h2>Bills Trade Services</h2>
+                    </div>
+                
+
+                    <div class="card-view">
+                        <mat-card>
+                            <div class="card-container">
+                                <div>
+                                    <h2 class="sub-heading hide-sm">Upcomming Appointments</h2>
+                                    <div class="upcomming-job hide-sm" >
+                                        <div>
+                                            <h2>6</h2>
+                                            <div>Jun</div>
+                                        </div>
+                                        <div>
+                                            <div>12253 W Ashby Dr</div>
+                                            <div>Pool Maintenance</div>
+                                        </div>
+                                    </div>
+                                    <div class="center v-center show-sm" style="margin-top: 30px;">
+                                        <h1 class="big-data">1</h1>
+                                        <div class="data-label">Appointments</div>
+                                    </div>
+                
+                                </div>
+                                <div>
+                                    <button mat-button>
+                                        See More <mat-icon iconPositionEnd>chevron_right</mat-icon>
+                                    </button>
+                                </div>
+                            </div>
+                
+                        </mat-card>
+                
+                        <mat-card>
+                            <div class="card-container">
+                                <div class="center v-center">
+                                    <h1 class="big-data">1</h1>
+                                    <div class="data-label">Calls Today</div>
+                                </div>
+                                <div>
+                                    <button mat-button>
+                                        See More <mat-icon iconPositionEnd>chevron_right</mat-icon>
+                                    </button>
+                                </div>
+                            </div>
+                        </mat-card>
+                        <mat-card>
+                
+                            <div class="card-container">
+                                <div class="center v-center">
+                                    <h1 class="big-data">3</h1>
+                                    <div class="data-label">Pending Offers</div>
+                                </div>
+                                <div>
+                                    <button mat-button>
+                                        See More <mat-icon iconPositionEnd>chevron_right</mat-icon>
+                                    </button>
+                                </div>
+                            </div>
+                        </mat-card>
+                        <mat-card>
+                
+                            <div class="card-container">
+                                <div class="center v-center">
+                                    <h1 class="big-data">4</h1>
+                                    <div class="data-label">Recurring Maintenance Customers</div>
+                                </div>
+                                <div>
+                                    <button mat-button>
+                                        See More <mat-icon iconPositionEnd>chevron_right</mat-icon>
+                                    </button>
+                                </div>
+                            </div>
+                        </mat-card>
+                
+                        <mat-card>
+                            <div class="card-container">
+                                <div class="center v-center">
+                                    <h1 class="big-data">4</h1>
+                                    <div class="data-label">Uncompleted Past Appointments</div>
+                                </div>
+                                <div>
+                                    <button mat-button>
+                                        See More <mat-icon iconPositionEnd>chevron_right</mat-icon>
+                                    </button>
+                                </div>
+                            </div>
+                        </mat-card>
+                    </div>
+                
+                    <h2 style="margin-top: 40px;">Other Options</h2>
+                    <div class="min-card-view" style="padding-bottom: 80px;">
+                        <button mat-button>
+                            <div>
+                                <mat-icon>paid</mat-icon>
+                                <br>
+                                Billing
+                            </div>
+                        </button>
+                        <button mat-button>
+                            <div>
+                                <mat-icon>find_in_page</mat-icon>
+                                <br>
+                                Reports
+                            </div>
+                        </button>
+                        <button mat-button>
+                            <div>
+                                <mat-icon>event_busy</mat-icon>
+                                <br>
+                                Recent Cancellations
+                            </div>
+                        </button>
+                        <button mat-button>
+                            <div>
+                                <mat-icon>calendar_month</mat-icon>
+                                <br>
+                                Calendar
+                            </div>
+                        </button>
+                        <button mat-button>
+                            <div>
+                                <mat-icon>settings</mat-icon>
+                                <br>
+                                Settings
+                            </div>
+                        </button>
+                    </div>
                 </mat-tab>
                 <mat-tab>
                     <h1>Payments</h1>
@@ -23,7 +157,7 @@
         </div>
         <div>
 
-        </div> -->
+        </div>
     </div>
 </div>
 <div class="menu-bar">

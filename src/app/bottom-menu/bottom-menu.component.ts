@@ -3,11 +3,13 @@ import { AfterViewInit, Component, HostListener } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { UtilitiesService } from '../utilities';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-bottom-menu',
   standalone: true,
-  imports: [CommonModule, MatIconModule, MatTabsModule],
+  imports: [CommonModule, MatIconModule, MatTabsModule,  MatCardModule, MatButtonModule],
   templateUrl: './bottom-menu.component.html',
   styleUrl: './bottom-menu.component.scss'
 })
@@ -44,6 +46,10 @@ export class BottomMenuComponent implements AfterViewInit {
     return `${(this.left - 2000)}px 0px`;
   }
 
+  get aPosistionX() {
+    return `calc(5% + ${this.selectedIndex * 30}px)`;
+  }
+
   get dotLeft() {
     return (this.left + 16) + 'px';
   }
@@ -73,7 +79,6 @@ export class BottomMenuComponent implements AfterViewInit {
     this.showDotIcon = false;
     setTimeout(() => this.showDotIcon = true);
     const target = document.getElementById(this.selectedMenuItem.id);
-    console.log(target.offsetLeft);
 
     this.left = (target.offsetLeft - 7);
     setTimeout(() => {

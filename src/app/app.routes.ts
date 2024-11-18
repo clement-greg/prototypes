@@ -138,6 +138,10 @@ export const routes: Routes = [
         loadComponent: ()=>import('./bottom-menu/bottom-menu.component').then(r=>r.BottomMenuComponent),
     },
     {
+        path: 'lottie',
+        loadComponent: ()=>import('./dot-lottie/dot-lottie.component').then(r=>r.DotLottieComponent),
+    },
+    {
         path: '',
         loadComponent: () => import('./menu/menu.component').then(r => r.MenuComponent)
     }
