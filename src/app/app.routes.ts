@@ -135,11 +135,19 @@ export const routes: Routes = [
     },
     {
         path: 'bottom-menu',
-        loadComponent: ()=>import('./bottom-menu/bottom-menu.component').then(r=>r.BottomMenuComponent),
+        loadComponent: () => import('./bottom-menu/bottom-menu.component').then(r => r.BottomMenuComponent),
     },
     {
         path: 'lottie',
-        loadComponent: ()=>import('./dot-lottie/dot-lottie.component').then(r=>r.DotLottieComponent),
+        loadComponent: () => import('./dot-lottie/dot-lottie.component').then(r => r.DotLottieComponent),
+    },
+    {
+        path: 'native-dialog',
+        loadComponent: () => import('./native-dialog-test/native-dialog-test.component').then(r => r.NativeDialogTestComponent),
+    },
+    {
+        path: 'native-popover',
+        loadComponent: ()=> import('./native-popover-test/native-popover-test.component').then(r=>r.NativePopoverTestComponent),
     },
     {
         path: '',

@@ -1,0 +1,151 @@
+dialog {
+    --border-color: #6300ff;
+    --backdrop-color: #6300ff33; /* Could also use relative color syntax here :) */
+  }
+  
+  ::backdrop {
+    background-color: var(--backdrop-color); /* This works as of Chrome 122 */
+  }
+
+  button {
+    background-color: var(--some-color);
+  }
+  
+  @layer reset {
+    *,
+    *:after,
+    *:before {
+      box-sizing: border-box;
+    }
+  
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      background: white;
+    }
+  
+    ul[class] {
+      list-style: none;
+    }
+  
+    label {
+      cursor: pointer;
+      max-width: max-content;
+      user-select: none;
+    }
+  }
+  
+  @layer baselayout {
+    html {
+      margin: auto;
+      line-height: 1.5;
+      font-size: 24px;
+      font-family: "Syne", sans-serif;
+      min-height: 100%;
+      background: white;
+    }
+  
+    body {
+      width: 100%;
+      max-width: 120ch;
+      margin: 0 auto;
+      min-height: 100dvh;
+      padding: 2em;
+      display: grid;
+      place-content: center;
+    }
+  
+    footer {
+      text-align: center;
+      font-style: italic;
+      margin-top: 2rem;
+    }
+  
+    h1,
+    h2,
+    summary {
+      font-family: "Anybody", sans-serif;
+  
+      text-decoration: underline;
+      text-decoration-color: hsl(156deg 100% 50% / 50%);
+      text-decoration-thickness: 0.2rem;
+      text-decoration-style: wavy;
+      text-decoration-skip-ink: none;
+    }
+  
+    h2 {
+      margin: 2em 0 0.5em 0;
+      text-wrap: balance;
+    }
+  
+    a {
+      color: inherit;
+    }
+  
+    button,
+    input,
+    textarea {
+      font-family: inherit;
+      font-size: inherit;
+    }
+  }
+  
+  @layer components {
+    @layer dialog {
+      dialog {
+        --timing: 0.25s;
+        border: 0.25em solid var(--border-color);
+        transition: all var(--timing) ease,
+          display var(--timing) ease allow-discrete;
+        opacity: 0;
+        max-width: 80ch;
+        width: 90%;
+        border-radius: 0.25em;
+  
+        &[open] {
+          opacity: 1;
+  
+          @starting-style {
+            opacity: 0;
+          }
+        }
+      }
+    }
+  
+    @layer button {
+      button {
+        padding: 0.2em 0.4em;
+        border-width: 2px;
+        border-radius: 0.25em;
+        text-transform: uppercase;
+      }
+    }
+  }
+  
+  @layer utilities {
+    .float-right {
+      float: right;
+      margin-left: 0.5em;
+    }
+    .float-left {
+      float: left;
+      margin-right: 0.5em;
+    }
+    *:has(> .float-right, > .float-left) {
+      display: flow-root;
+    }
+  
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
+    }
+  }
+  
