@@ -1,0 +1,46 @@
+#needle {
+    transform-box: fill-box;
+    transform-origin: 50% 100%;
+    transition: transform .05s ease;
+}
+
+.target-needle {
+    
+    transform-box: fill-box;
+    transform-origin: 50% 50%;
+    transition: transform .1s ease;
+}
+
+#my-mask {
+    fill: orange;
+}
+
+.dial-gradient {
+    transition: mask .1s ease;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+#t1, #t2, #t3 {
+    opacity: 0;
+    animation: fade-in 1s ease;
+    animation-fill-mode: forwards;
+}
+#t1 {
+    
+    animation-delay: 2s;
+}
+#t2 {
+    
+    animation-delay: 3s;
+}
+#t3 {
+    
+    animation-delay: 4s;
+}

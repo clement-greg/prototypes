@@ -147,7 +147,19 @@ export const routes: Routes = [
     },
     {
         path: 'native-popover',
-        loadComponent: ()=> import('./native-popover-test/native-popover-test.component').then(r=>r.NativePopoverTestComponent),
+        loadComponent: () => import('./native-popover-test/native-popover-test.component').then(r => r.NativePopoverTestComponent),
+    },
+    {
+        path: 'info-call-out',
+        loadComponent: () => import('./info-call-out/info-call-out.component').then(r => r.InfoCallOutComponent),
+    },
+    {
+        path: 'count-wig',
+        loadComponent: () => import('./customer-count-wig-visual/customer-count-wig-visual.component').then(r => r.CustomerCountWigVisualComponent),
+    },
+    {
+        path: 'pie',
+        loadComponent: () => import('./pie/pie.component').then(r => r.PieComponent),
     },
     {
         path: '',

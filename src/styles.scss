@@ -35,7 +35,8 @@ body {
 
 div[flex],
 div[aflex],
-mat-radio-group[flex], .flex-container,
+mat-radio-group[flex],
+.flex-container,
 div.flex {
     display: flex;
 }
@@ -100,6 +101,7 @@ div.flex>*[nogrow] {
 .padding {
     padding: 30px;
 }
+
 .mat-icon-container {
     display: inline-block;
     width: 50px;
@@ -110,6 +112,7 @@ div.flex>*[nogrow] {
     text-align: center;
 
 }
+
 .mat-icon-container mat-icon {
     margin-top: 12px;
 }
@@ -118,6 +121,7 @@ div.flex>*[nogrow] {
     from {
         transform: scale(0);
     }
+
     to {
         transform: scale(1);
     }
@@ -137,7 +141,7 @@ div.flex>*[nogrow] {
 }
 
 .pest-control {
-    background:  radial-gradient(circle, rgba(255,85,216,1) 0%, rgba(224,48,85,1) 47%);
+    background: radial-gradient(circle, rgba(255, 85, 216, 1) 0%, rgba(224, 48, 85, 1) 47%);
 }
 
 .call-out:after {
@@ -153,4 +157,167 @@ div.flex>*[nogrow] {
     border-top: 0;
     margin-top: -10px;
     margin-left: -20px;
+}
+
+
+@keyframes info-call-out-animate {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+.info-call-out {
+    position: absolute;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 0px;
+    transform-origin: 0% 0%;
+    animation: info-call-out-animate 0.5s ease;
+    transition: transform 0.5s ease;
+    /* color: #fff; */
+    border: 1px solid #eee;
+    box-shadow: 6px 6px 11px 0px rgba(0, 0, 0, 0.15);
+
+    &.removing {
+        transform: scale(0);
+    }
+
+    span.call-out-text {
+        
+    }
+
+    h2 {
+        margin-bottom: 5px;
+        color: #444;
+        font-size: 19px;
+        line-height: normal;
+    }
+
+
+
+    &.bottom {
+        &::before {
+            content: '';
+            position: absolute;
+            display: block;
+            width: 0;
+            z-index: 1;
+            border-style: solid;
+            border-color: #555 transparent;
+            border-width: 0 13px 13px;
+            top: -13px;
+            left: 35px;
+            margin-left: -20px;
+
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            display: block;
+            width: 0;
+            z-index: 1;
+            border-style: solid;
+            border-color: #fff transparent;
+            border-width: 0 13px 13px;
+            top: -13px;
+            left: 35px;
+            margin-left: -20px;
+        }
+    }
+
+    &.top {
+        &::before {
+            content: '';
+            position: absolute;
+            display: block;
+            width: 0;
+            z-index: 1;
+            border-style: solid;
+            border-color: #555 transparent;
+            border-width: 13px 13px 0;
+            bottom: -13px;
+            left: 35px;
+            margin-left: -20px;
+
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            display: block;
+            width: 0;
+            z-index: 1;
+            border-style: solid;
+            border-color: #fff transparent;
+            border-width: 13px 13px 0;
+            bottom: -13px;
+            left: 35px;
+            margin-left: -20px;
+        }
+    }
+
+    &.left {
+        &::before {
+            content: '';
+            position: absolute;
+            display: block;
+            width: 0;
+            z-index: 1;
+            border-style: solid;
+            border-color: transparent #555;
+            border-width: 13px 0 13px 13px;
+            top: 25px;
+            right: -13px;
+            margin-top: -13px;
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            display: block;
+            width: 0;
+            z-index: 1;
+            border-style: solid;
+            border-color: transparent #fff;
+            border-width: 13px 0 13px 13px;
+            top: 25px;
+            right: -13px;
+            margin-top: -13px;
+        }
+    }
+
+    &.right {
+        &::before {
+            content: '';
+            position: absolute;
+            display: block;
+            width: 0;
+            z-index: 1;
+            border-style: solid;
+            border-color: transparent #555;
+            border-width: 13px 13px 13px 0;
+            top: 25px;
+            left: -13px;
+            margin-top: -13px;
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            display: block;
+            width: 0;
+            z-index: 1;
+            border-style: solid;
+            border-color: transparent #fff;
+            border-width: 13px 13px 13px 0;
+            top: 25px;
+            left: -13px;
+            margin-top: -13px;
+        }
+    }
 }
