@@ -17,11 +17,11 @@ export class CustomerCountWigVisualComponent {
 
   number = 14000;
   displayNumber = this.number;
-  totalSubscriptions = 14750;
+  totalSubscriptions = 15750;
   displayD2C = 0;
   displayRealEstate = 0;
   actualD2C = 321;
-  actualRealEstate = 1500;
+  actualRealEstate = 4617;
   realEstateTarget = 7975;
   d2ctarget = 742;
 
@@ -73,6 +73,20 @@ export class CustomerCountWigVisualComponent {
     return `translateY(${-157 * pct}px)`;
   }
 
+  get isT1() {
+    const dt = new Date();
+    return dt.getMonth() <= 3;
+  }
+
+  get isT2() {
+    const dt = new Date();
+    return dt.getMonth() > 3 && dt.getMonth() <= 7;
+  }
+
+  get isT3() {
+    const dt = new Date();
+    return dt.getMonth() > 7;
+  }
 
 
   get d2CTransform() {
@@ -82,7 +96,7 @@ export class CustomerCountWigVisualComponent {
   }
 
   doRealEstate() {
-    this.displayRealEstate += 10;
+    this.displayRealEstate += 50;
     if (this.displayRealEstate > this.actualRealEstate) {
       this.displayRealEstate = this.actualRealEstate;
     }
