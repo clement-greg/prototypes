@@ -162,6 +162,10 @@ export const routes: Routes = [
         loadComponent: () => import('./pie/pie.component').then(r => r.PieComponent),
     },
     {
+        path: 'cogent-load-dark-and-shiny',
+        loadComponent: ()=> import('./cogent-load-dark-and-shiney/cogent-load-dark-and-shiney.component').then(r => r.CogentLoadDarkAndShineyComponent),
+    },
+    {
         path: '',
         loadComponent: () => import('./menu/menu.component').then(r => r.MenuComponent)
     }
