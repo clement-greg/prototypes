@@ -82,6 +82,14 @@ export const routes: Routes = [
         loadComponent: () => import('./cogent-load-valentines-day/cogent-load-valentines-day.component').then(r => r.CogentLoadValentinesDayComponent)
     },
     {
+        path: 'cogent-load-waves',
+        loadComponent: ()=> import('./cogent-load-waves/cogent-load-waves.component').then(r => r.CogentLoadWavesComponent),
+    },
+    {
+        path: 'cogent-load-ball',
+        loadComponent: () => import('./cogent-ball-load/cogent-ball-load.component').then(r => r.CogentBallLoadComponent),
+    },
+    {
         path: 'box-test',
         loadComponent: () => import('./box-test/box-test.component').then(r => r.BoxTestComponent),
     },
@@ -164,6 +172,14 @@ export const routes: Routes = [
     {
         path: 'cogent-load-dark-and-shiny',
         loadComponent: ()=> import('./cogent-load-dark-and-shiney/cogent-load-dark-and-shiney.component').then(r => r.CogentLoadDarkAndShineyComponent),
+    },
+    {
+        path: 'weather-slide',
+        loadComponent: ()=> import('./weather-slide/weather-slide.component').then(r => r.WeatherSlideComponent),
+    },
+    {
+        path: 'neumorphism-load',
+        loadComponent: () => import('./neumorphism-load/neumorphism-load.component').then(r => r.NeumorphismLoadComponent),
     },
     {
         path: '',

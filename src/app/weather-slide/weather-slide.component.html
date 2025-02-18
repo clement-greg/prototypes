@@ -1,0 +1,28 @@
+<div class="slide-bg">
+
+    <video [autoplay]="'autoplay'" [muted]="'muted'" loop id="myVideo">
+        <source src="https://elevateh.blob.core.windows.net/cdn/video/scenery/az-landscape.mp4" *ngIf="location === 'AZ'" type="video/mp4">
+        <source src="https://elevateh.blob.core.windows.net/cdn/video/scenery/vegas-night-2.mov" *ngIf="location === 'NV'" type="video/mp4">
+        <source src="https://elevateh.blob.core.windows.net/cdn/video/scenery/utah-skiing.mov" *ngIf="location === 'UT'" type="video/mp4">
+    </video>
+</div>
+
+<div class="city">
+    <h2>{{stateName}}</h2>
+    <!-- <h3>{{stateName}}</h3> -->
+</div>
+
+<div class="time">
+    <h1>
+        {{time}}</h1>
+</div>
+
+<div class="bottom-banner">
+
+    <div *ngFor="let item of displayForcast">
+        {{item.dayName}}<br>
+        <app-lottie-player [src]="item.lottieUrl" height="150px" [intermission]="0"></app-lottie-player><br>
+        {{item.high}}° / {{item.low}}°
+
+    </div>
+</div>

@@ -1,0 +1,87 @@
+.slide-bg {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    video {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@keyframes scale-in {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.bottom-banner {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    width: 100vw;
+    height: 300px;
+    bottom: 0;
+    left: 0;
+    padding-top: 80px;
+    
+    backdrop-filter: blur(5px);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    column-gap: 20px;
+    >div {
+        text-align: center;
+        color: #fff;
+        font-size: 36px;
+        transform-origin: 50% 50%;
+        animation: scale-in .5s ease;
+    }
+}
+
+.city {
+    position: absolute;
+    top: 150px;
+    left: 100px
+}
+
+.time {
+    position: absolute;
+    top: 400px;
+    right: 100px;
+}
+
+h1 {
+    font-family: "fenwick", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #fff;
+    font-size: 150px;
+    line-height: 110px;
+}
+
+h2 {
+    font-family: "fenwick", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #fff;
+    font-size: 100px;
+    line-height: 160px;
+}
+h3 {
+    font-family: "fenwick", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #fff;
+    font-size: 50px;
+    line-height: 60px;
+  
+}
+
+h1, h2, h3 {
+    text-shadow: 0px 0px 19px #14486e;
+}

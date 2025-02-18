@@ -1,0 +1,77 @@
+<div class="bg">
+
+    <div class="outer-loop"></div>
+    <div class="inner-loop"></div>
+
+    <div class="ball-outer-container">
+        <svg id="ball" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            viewBox="0 0 240 240">
+            <defs>
+                <style>
+                    .cls-1 {
+                        fill: #fff;
+                    }
+
+                    .cls-2 {
+                        filter: url(#AI_GaussianBlur_4-2);
+                    }
+
+                    .cls-2,
+                    .cls-3 {
+                        opacity: .6;
+                    }
+
+                    .cls-4 {
+                        filter: url(#AI_GaussianBlur_4-3);
+                        opacity: .36;
+                    }
+
+                    .cls-5 {
+                        fill: url(#radial-gradient);
+                        filter: url(#drop-shadow-1);
+                    }
+
+                    .cls-3 {
+                        filter: url(#AI_GaussianBlur_4);
+                    }
+                </style>
+                <radialGradient id="radial-gradient" cx="74.79" cy="51.15" fx="74.79" fy="51.15" r="142.47"
+                    gradientUnits="userSpaceOnUse">
+                    <stop offset=".39" stop-color="#e0ae27" />
+                    <stop offset="1" stop-color="#b54c09" />
+                </radialGradient>
+                <filter id="drop-shadow-1" x="0" y="0" width="240" height="240" filterUnits="userSpaceOnUse">
+                    <feOffset dx="-14" dy="14" />
+                    <feGaussianBlur result="blur" stdDeviation="10" />
+                    <feFlood flood-color="#000" flood-opacity=".43" />
+                    <feComposite in2="blur" operator="in" />
+                    <feComposite in="SourceGraphic" />
+                </filter>
+                <filter id="AI_GaussianBlur_4">
+                    <feGaussianBlur stdDeviation="4" />
+                </filter>
+                <filter id="AI_GaussianBlur_4-2">
+                    <feGaussianBlur stdDeviation="4" />
+                </filter>
+                <filter id="AI_GaussianBlur_4-3">
+                    <feGaussianBlur stdDeviation="4" />
+                </filter>
+            </defs>
+            <g id="full-ball">
+            <circle class="cls-5" cx="106" cy="106" r="75" />
+            <g class="cls-3">
+                <path class="cls-1"
+                    d="M92.89,69.59c19.66-17.48,35.32,1.82,35.32,1.82,0,0-.73-8.74-9.83-18.71-8.74-8.6-24.76,5.24-24.76,5.24,0,0-12.38,5.1-.73,11.65Z" />
+            </g>
+            <g class="cls-2">
+                <path class="cls-1"
+                    d="M67.41,95.81s-2.18-4.37-1.46-11.65c7.28-10.19,15.29-8.01,15.29-8.01,0,0-4.73-7.56-8.74-10.92-8.01,9.47-10.19,10.92-5.1,30.58Z" />
+            </g>
+            <g class="cls-4">
+                <path class="cls-1"
+                    d="M143.14,127.12s7.28.73,12.38,9.47c5.1,8.74-30.58,26.21-30.58,26.21,20.39-23.3,18.2-35.68,18.2-35.68Z" />
+            </g>
+        </g>
+        </svg>
+    </div>
+</div>

@@ -1,0 +1,87 @@
+$primary-color: #DD6804;
+$size: 600px;
+$diff: 300px;
+
+.bg {
+    height: 100vh;
+    width: 100vw;
+    background-color: $primary-color;
+}
+
+.outer-loop {
+    border-radius: 50%;
+    background: #DD6804;
+    box-shadow: inset -14px 14px 28px #904403,
+        inset 14px -14px 28px #ff8c05;
+    display: inline-block;
+    width: $size;
+    height: $size;
+}
+
+.inner-loop {
+    border-radius: 50%;
+    background: #DD6804;
+    box-shadow: -14px 14px 28px #904403,
+        14px -14px 28px #ff8c05;
+    display: inline-block;
+    width: calc($size - $diff);
+    height: calc($size - $diff);
+    position: absolute;
+    left: $diff / 2;
+    top: $diff / 2;
+
+}
+
+$span: 225px;
+$startX: 201px;
+$endX: $startX + $span;
+$startY: -23px;
+
+// animation to rotate the ball at a fixed radius around a sphere
+@keyframes ball-roll {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.ball-outer-container {
+    position: absolute;
+    text-align: right;
+    left: 298px;
+    top: 186px;
+    width: 346px;
+    transform: rotate(-40deg);
+    transform-origin: 0% 50%;
+    animation: ball-roll 5s infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes ball-rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(-360deg);
+    }
+}
+
+svg#ball {
+
+    height: 220px;
+}
+
+svg#ball #full-ball {
+    // position: absolute;
+    // animation: ball-roll 5s infinite;
+    // animation-timing-function: linear;
+    // transform-origin: 0 325px;
+    animation: ball-rotate 5s infinite;
+    animation-timing-function: linear;
+    transform-origin: 49% 50%;
+    transform-box: fill-box;
+    // transform-origin for svg element
+
+}

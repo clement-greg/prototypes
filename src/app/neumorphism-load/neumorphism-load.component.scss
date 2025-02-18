@@ -1,0 +1,84 @@
+// declare variable
+$item-height: 35px;
+$min-width: 30px;
+
+.container {
+    height: 100vh;
+    width: 100vw;
+    background-color: #e0e0e0;
+    display: flex;
+    flex-direction: column;
+
+    >div:first-child,
+    >div:last-child {
+        flex: 1;
+    }
+
+    >div:not(:first-child):not(:last-child) {
+        flex: none;
+        display: flex;
+        flex-direction: row;
+
+        >div:first-child,
+        >div:last-child {
+            flex: 1;
+        }
+
+        >div:not(:first-child):not(:last-child) {
+            flex: none;
+            width: 400px;
+            max-width: 90%;
+        }
+    }
+}
+
+.gutter {
+    height: $item-height;
+    border-radius: $item-height;
+    background: #e0e0e0;
+    box-shadow: inset -5px 5px 10px #d0d0d0,
+        inset 5px -5px 10px #f0f0f0;
+    max-width: 100%;
+    width: 400px;
+    position: absolute
+}
+
+@keyframes progress {
+    from {
+        width: $min-width;
+        transform: translateX(0px);
+    }
+    50% {
+        width: 200px;
+        transform: translateX(0px);
+    }
+    75% {
+        transform: translateX(200px);
+        width: 200px;
+    }
+    100% {
+        transform: translateX(calc(400px - #{$min-width}));
+        width: $min-width;
+    }
+}
+
+.progress {
+    height: $item-height;
+    border-radius: $item-height;
+    display: inline-block;
+    width: $min-width;
+    background: linear-gradient(0deg, #f59842 0%, #ffe9d4 100%);
+    box-shadow: 0px 0px 12px 0px #f59842;
+    position: absolute;
+    z-index: 1;
+    animation: progress 1.5s infinite;
+    animation-direction: alternate;
+    animation-timing-function: linear;
+}
+
+
+
+.cogent-shape {
+    fill: url(#grad1);
+    transform: translateX(30px);
+}
