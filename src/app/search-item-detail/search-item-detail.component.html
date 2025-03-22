@@ -1,0 +1,159 @@
+<div aflex *ngIf="productResults">
+    <div flex3>
+        <mat-card>
+
+            <h1>{{productResults?.brand?.name}}</h1>
+            <p>{{productResults.title}}</p>
+            <app-star-rating-viewer [stars]="productResults.rating"></app-star-rating-viewer>
+
+            <div aflex style="margin-top: 30px">
+                <div nogrow style="width: 100px;">
+                    <button mat-button class="toggle-button image-selector"
+                        [class.selected]="imageGroup === selectedImageGroup"
+                        *ngFor="let imageGroup of productResults.images" (click)="selectImageGroup(imageGroup)">
+                        <img [src]="imageGroup[0]" class="thumb" />
+                    </button>
+                </div>
+
+                <div>
+                    <img [src]="selectedImage" class="main-image" />
+                </div>
+            </div>
+        </mat-card>
+    </div>
+    <div flex2>
+        <mat-card>
+            <div class="center">
+                <img src="https://elevateh.blob.core.windows.net/cdn/images/elevate-a-icon-2025.svg"
+                    style="height: 60px;">
+            </div>
+            <div aflex>
+                <div flex2>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>Unit Price</td>
+                                <td class="right">{{productResults.price | currency}}</td>
+                            </tr>
+                            <tr>
+                                <td>Cash In Lieu Credit</td>
+                                <td class="right">-{{cashOutAmount | currency}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div flex1>
+                    <div class="info">Your Price</div>
+                    <h1>{{net | currency}}</h1>
+                </div>
+            </div>
+
+
+
+        </mat-card>
+        <mat-card>
+            <ul>
+                <li *ngFor="let highlight of productResults.highlights">{{highlight}}</li>
+            </ul>
+        </mat-card>
+
+        <mat-card>
+            <button mat-button mat-raised-button color="primary">
+                <mat-icon>shopping</mat-icon> Add To Card
+            </button>
+        </mat-card>
+
+        <mat-card *ngIf="reviews">
+            <div class="center" style="margin-bottom: 30px;">
+                <h1 class="big-data" style="margin-bottom: 0;">{{reviews.overall_rating}}</h1>
+                <div class="info">Stars</div>
+                Out of {{reviews.total_review}} reviews
+            </div>
+            <div *ngFor="let rating of reviews.ratings" aflex style="margin-bottom: 15px">
+                <div nogrow style="width: 60px;">
+                    {{rating.stars}} Stars
+                </div>
+
+                <div class="bar" flex1>
+                    <div [style.width]="getRatingWidth(rating)"></div>
+                </div>
+            </div>
+
+            <mat-accordion>
+                <mat-expansion-panel hideToggle>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title> Reviews </mat-panel-title>
+
+                    </mat-expansion-panel-header>
+                    <div *ngFor="let review of reviews.reviews" class="review-container">
+                        <div aflex>
+                            <div><app-star-rating-viewer [stars]="review.rating"></app-star-rating-viewer></div>
+                            <div>
+                                {{review.time | date:'shortDate'}}
+                            </div>
+
+                        </div>
+                        <div>
+                            <div *ngFor="let badge of review.badges">
+                                <mat-icon>check</mat-icon>
+                                {{badge}}
+                            </div>
+                        </div>
+
+                        <p>{{review.text}}<br>by {{review.reviewer?.name}}</p>
+
+
+                        <div *ngIf="review.original_source" class="center" topmargin30>
+
+                            <img [src]="review.original_source.logo"><br>
+                            Customer review from {{review.original_source.name}}
+                        </div>
+
+                    </div>
+                </mat-expansion-panel>
+
+
+            </mat-accordion>
+        </mat-card>
+    </div>
+</div>
+
+<mat-card *ngIf="productResults">
+    <h1>Product Overview</h1>
+    <div class="product-overview-container">
+        <div flex1>
+            <p>{{productResults.description}}</p>
+            <ul>
+                <li *ngFor="let bullet of productResults.bullets" [innerHTML]="bullet"></li>
+
+            </ul>
+        </div>
+        <div flex1>
+            <h2>Info &amp; Guides</h2>
+            <ul>
+                <li *ngFor="let guide of productResults.info_and_guides">
+                    <a [href]="guide.link" target="_blank">{{guide.title}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</mat-card>
+
+<mat-card *ngIf="productResults">
+    <h1>Specifications</h1>
+    <ng-container *ngFor="let spec of productResults.specifications">
+        <h2>{{spec.key}}</h2>
+        <div class="specs-table">
+
+            <div *ngFor="let value of spec.value">
+                <div>{{value.name}}</div>
+                <div>{{value.value}}</div>
+            </div>
+
+        </div>
+    </ng-container>
+
+</mat-card>
+
+<app-search-loading *ngIf="loading"></app-search-loading>

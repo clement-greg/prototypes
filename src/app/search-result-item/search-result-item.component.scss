@@ -1,0 +1,11 @@
+.variants {
+    >a {
+        margin-right: 5px;
+        img {
+            height: 24px;
+        }
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}

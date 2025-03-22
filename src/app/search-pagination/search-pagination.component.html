@@ -1,0 +1,1 @@
+<button mat-button *ngFor="let page of allPages" class="toggle-button" [class.selected]="currentPage === page" (click)="setPage(page)">{{page}}</button>

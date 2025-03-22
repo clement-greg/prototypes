@@ -1,0 +1,4 @@
+
+<div *ngFor="let value of filter.value">
+    <mat-checkbox (ngModelChange)="raiseChange()" [(ngModel)]="value.selected">{{value.name}}</mat-checkbox>
+</div>

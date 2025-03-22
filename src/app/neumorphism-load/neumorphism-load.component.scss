@@ -5,7 +5,7 @@ $min-width: 30px;
 .container {
     height: 100vh;
     width: 100vw;
-    background-color: #e0e0e0;
+    background-color: #f5ba53;
     display: flex;
     flex-direction: column;
 
@@ -35,9 +35,9 @@ $min-width: 30px;
 .gutter {
     height: $item-height;
     border-radius: $item-height;
-    background: #e0e0e0;
-    box-shadow: inset -5px 5px 10px #d0d0d0,
-        inset 5px -5px 10px #f0f0f0;
+    background: #f5ba53;
+    box-shadow: inset -5px 5px 10px #d09e47,
+        inset 5px -5px 10px #ffd65f;
     max-width: 100%;
     width: 400px;
     position: absolute
@@ -81,4 +81,6 @@ $min-width: 30px;
 .cogent-shape {
     fill: url(#grad1);
     transform: translateX(30px);
+    stroke: #d49217;
+    stroke-width: 1px;
 }

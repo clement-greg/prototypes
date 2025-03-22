@@ -321,3 +321,10 @@ div.flex>*[nogrow] {
         }
     }
 }
+
+mat-tab-group.max-height {
+    height: 100%;   
+    >.mat-mdc-tab-body-wrapper {
+        min-height: 100%;
+    }
+}

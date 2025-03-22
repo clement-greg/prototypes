@@ -1,0 +1,59 @@
+
+<img *ngIf="searchResults" src="https://elevateh.blob.core.windows.net/cdn/images/elevate-logo-2025.svg" style="max-height: 50px;position: absolute;z-index: -1;top: 10px;left: 10px">
+<div class="full-container" [class.hide-overflow]="selectedItemId">
+    <div class="center">
+        <div class="search-container">
+            <form>
+                <mat-form-field appearance="outline">
+                    <mat-label>Search</mat-label>
+                    <input name="searchFor" matInput [(ngModel)]="searchFor">
+
+                    <button matSuffix mat-icon-button [disabled]="!searchFor" (click)="search(true)">
+                        <mat-icon *ngIf="!searching">search</mat-icon>
+                        <mat-spinner *ngIf="searching" diameter="16"></mat-spinner>
+                    </button>
+                </mat-form-field>
+            </form>
+        </div>
+
+    </div>
+
+    <div *ngIf="!searchResults" class="center">
+        <h1>Elevate Store</h1>
+        <img src="https://elevateh.blob.core.windows.net/cdn/images/elevate-logo-2025.svg" style="max-height: 100px;">
+    </div>
+
+
+    <div aflex>
+        <div nogrow style="width: 300px">
+            <app-search-filter-container (filtersChange)="search(false)"
+                [filters]="filters"></app-search-filter-container>
+        </div>
+        <div style="padding-left: 30px;padding-right: 30px;">
+            <div class="search-results">
+                <div *ngFor="let item of searchResults">
+                    <app-search-result-item (itemSelected)="showItemDetail($event)"
+                        [item]="item"></app-search-result-item>
+                </div>
+            </div>
+            <div class="center" style="padding-top: 30px">
+                <app-search-pagination [currentPage]="page" [allPages]="allPages"
+                    (pageChange)="setPage($event)"></app-search-pagination>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<app-search-loading *ngIf="searching"></app-search-loading>
+
+<div *ngIf="selectedItemId" class="item-detail-panel">
+    <button mat-button (click)="selectedItemId = null" class="close-detail-button">
+        <mat-icon>close</mat-icon>
+    </button>
+    <div class="detail-inner">
+        <app-search-item-detail [itemId]="selectedItemId"></app-search-item-detail>
+    </div>
+</div>

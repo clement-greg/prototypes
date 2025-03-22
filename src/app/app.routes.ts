@@ -90,6 +90,18 @@ export const routes: Routes = [
         loadComponent: () => import('./cogent-ball-load/cogent-ball-load.component').then(r => r.CogentBallLoadComponent),
     },
     {
+        path: 'cogent-load-edge-glow',
+        loadComponent: () => import('./cogent-load-edge-glow/cogent-load-edge-glow.component').then(r => r.CogentLoadEdgeGlowComponent),
+    },
+    {
+        path: 'shopping',
+        loadComponent: ()=> import('./shopping/shopping.component').then(r => r.ShoppingComponent),
+    },
+    {
+        path: 'cogent-load-spring',
+        loadComponent: ()=> import('./cogent-load-spring/cogent-load-spring.component').then(r => r.CogentLoadSpringComponent),
+    },
+    {
         path: 'box-test',
         loadComponent: () => import('./box-test/box-test.component').then(r => r.BoxTestComponent),
     },
