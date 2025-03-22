@@ -1,13 +1,11 @@
 .search-results {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    column-gap: 10px;
-    row-gap: 10px;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 20px;
+    row-gap: 20px;
     // max-width: 1000px;
-    background-color: #eee;
     >div {
         background-color: #fff;
-        min-height: 400px;
         padding: 20px;
         border: 1px solid #ddd;
     }

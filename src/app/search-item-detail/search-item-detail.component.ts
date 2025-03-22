@@ -23,6 +23,7 @@ export class SearchItemDetailComponent implements OnChanges {
   loading = false;
   @Input() cashOutAmount = 675;
   reviews: any;
+  static favorites = [];
 
   constructor(private serpapi: SerpapiService) {
 
@@ -44,6 +45,18 @@ export class SearchItemDetailComponent implements OnChanges {
         console.log(results)
       });
     }
+  }
+
+  addToFavorites() {
+    if(!SearchItemDetailComponent.favorites.includes(this.itemId)) {
+      SearchItemDetailComponent.favorites.push(this.itemId);
+    } else {
+      SearchItemDetailComponent.favorites = SearchItemDetailComponent.favorites.filter(fav => fav !== this.itemId);
+    }
+  }
+
+  get isFavorite() {
+    return SearchItemDetailComponent.favorites.includes(this.itemId);
   }
 
   get net() {

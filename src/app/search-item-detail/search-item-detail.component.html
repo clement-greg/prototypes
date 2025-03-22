@@ -23,6 +23,10 @@
     </div>
     <div flex2>
         <mat-card>
+            <button class="favorite" mat-icon-button (click)="addToFavorites()">
+                <mat-icon *ngIf="isFavorite">favorite</mat-icon>
+                <mat-icon *ngIf="!isFavorite">favorite_border</mat-icon>
+            </button>
             <div class="center">
                 <img src="https://elevateh.blob.core.windows.net/cdn/images/elevate-a-icon-2025.svg"
                     style="height: 60px;">

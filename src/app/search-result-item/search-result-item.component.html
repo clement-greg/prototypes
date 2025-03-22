@@ -1,16 +1,29 @@
-<div class="center">
-    <img [src]="item.thumbnails[0][3]">
 
-    <div class="variants">
-        <a style="cursor: pointer;" *ngFor="let variant of item.variants" (click)="showVariant(variant)">
-            <img [src]="variant.thumbnail">
-        </a>
+
+
+
+
+<div class="item-result-container" style="">
+    <div style="flex: 1;">
+        <div class="center">
+            <img *ngIf="!selectedVariant" [src]="item.thumbnails[item.currentThumnail ?? 0][3]" (mouseover)="item.currentThumnail = 1" (mouseout)="item.currentThumnail = 0">
+        
+            <img style="height: 300px;" *ngIf="selectedVariant" [src]="selectedVariant.thumbnail">
+            <div class="variants">
+                <a style="cursor: pointer;" *ngFor="let variant of item.variants"   (click)="showVariant(variant)">
+                    <img [src]="variant.thumbnail">
+                </a>
+            </div>
+        </div>
+        <p>{{item.title}}</p>
+        <p>{{item.price | currency}}</p>
+        <app-star-rating-viewer [stars]="item.rating"></app-star-rating-viewer>
     </div>
-</div>
-<p>{{item.title}}</p>
-<p>{{item.price | currency}}</p>
-<app-star-rating-viewer [stars]="item.rating"></app-star-rating-viewer>
-
-<div class="center">
-    <button mat-button (click)="view()">View</button>
+    <div style="flex: none">
+        <div class="center" style="margin-top: 20px">
+            <button mat-button style="display: block;width: 100%" (click)="view()">
+                <mat-icon>search</mat-icon>
+                View</button>
+        </div>
+    </div>
 </div>
