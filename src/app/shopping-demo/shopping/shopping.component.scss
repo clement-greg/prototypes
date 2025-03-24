@@ -71,7 +71,39 @@
     }
 }
 
+@keyframes slide-down {
+    from {
+        transform: translateY(-100%) translateX(-50%);
+    }
+    to {
+        transform: translateY(0) translateX(-50%);
+    }
+}
+
+.shopping-cart-panel {
+    position: fixed;
+    padding: 20px;
+    box-shadow: -5px 0 19px 0 rgba(0, 0, 0, 0.15);
+    top: 0;
+    background-color: #fff;
+    width: 100%;
+    max-width: 800px;
+    border-radius: 0 0 20px 20px;
+    animation-name: slide-down;
+    animation-duration: .5s;
+    z-index: 1;
+    //center horizontally
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 .hide-overflow {
     max-height: 100vh;
     overflow-y: hidden;
+}
+
+.shopping-cart {
+    position: absolute;
+    right: 10px;
+    top: 10px;
 }

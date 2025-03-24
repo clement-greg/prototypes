@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { StarRatingViewerComponent } from '../star-rating-viewer/star-rating-viewer.component';
+import { StarRatingViewerComponent } from '../../star-rating-viewer/star-rating-viewer.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -17,7 +17,8 @@ export class SearchResultItemComponent {
   @Output() itemSelected: EventEmitter<string> = new EventEmitter();
   selectedVariant;
 
-  showVariant(variant) {
+  showVariant(variant, evt: MouseEvent) {
+    evt.stopPropagation();
     const link = variant.link;
     // get everything after the last slash
     const variantId = link.substring(link.lastIndexOf('/') + 1);

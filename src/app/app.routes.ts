@@ -95,7 +95,7 @@ export const routes: Routes = [
     },
     {
         path: 'shopping',
-        loadComponent: ()=> import('./shopping/shopping.component').then(r => r.ShoppingComponent),
+        loadComponent: ()=> import('./shopping-demo/shopping/shopping.component').then(r => r.ShoppingComponent),
     },
     {
         path: 'cogent-load-spring',

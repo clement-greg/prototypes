@@ -2,6 +2,7 @@
     <div flex3>
         <mat-card>
 
+            <p class="info">{{productResults.product_id}}</p>
             <h1>{{productResults?.brand?.name}}</h1>
             <p>{{productResults.title}}</p>
             <app-star-rating-viewer [stars]="productResults.rating"></app-star-rating-viewer>
@@ -41,7 +42,7 @@
                             </tr>
                             <tr>
                                 <td>Cash In Lieu Credit</td>
-                                <td class="right">-{{cashOutAmount | currency}}</td>
+                                <td class="right">-{{cart.cashOutAmount | currency}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -62,7 +63,10 @@
         </mat-card>
 
         <mat-card>
-            <button mat-button mat-raised-button color="primary">
+            <div *ngIf="earliestDelivery">
+                Earliest Delivery: {{earliestDelivery}}
+            </div>
+            <button mat-button mat-raised-button color="primary" (click)="addToCart()">
                 <mat-icon>shopping</mat-icon> Add To Card
             </button>
         </mat-card>

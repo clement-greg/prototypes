@@ -13,7 +13,8 @@ import { SearchPaginationComponent } from '../search-pagination/search-paginatio
 import { SearchLoadingComponent } from '../search-loading/search-loading.component';
 import { SearchFilterContainerComponent } from '../search-filter-container/search-filter-container.component';
 import { SearchItemDetailComponent } from '../search-item-detail/search-item-detail.component';
-import { SerpapiService } from '../serpapi.service';
+import { SerpapiService } from '../../serpapi.service';
+import { CartComponent } from '../cart/cart.component';
 
 @Component({
   selector: 'app-shopping',
@@ -23,6 +24,7 @@ import { SerpapiService } from '../serpapi.service';
     SearchLoadingComponent,
     SearchItemDetailComponent,
     SearchFilterContainerComponent,
+    CartComponent,
     SearchFilterComponent, MatInputModule, MatIconModule, MatProgressSpinnerModule, SearchResultItemComponent],
   templateUrl: './shopping.component.html',
   styleUrl: './shopping.component.scss'
@@ -36,6 +38,7 @@ export class ShoppingComponent {
   page = 1;
   allPages: number[];
   selectedItemId: string;
+  showCart = false;
 
 
   constructor(private serpapi: SerpapiService) {
@@ -63,8 +66,14 @@ export class ShoppingComponent {
     this.search();
   }
 
+  orderComplete() {
+    this.showCart = false;
+    delete this.searchResults;
+    delete this.filters;
+  }
+
   buildSearchUrl(newSearch = false) {
-    let url = `https://serpapi.com/search.json?engine=home_depot&q=${this.searchFor}&country=us&page=${this.page}`;
+    let url = `https://serpapi.com/search.json?store_id=4416&delivery_zip=84653&engine=home_depot&q=${this.searchFor}&country=us&page=${this.page}`;
     if (!newSearch && this.filters) {
       let filterString = '';
       for (const filter of this.filters) {
@@ -87,8 +96,12 @@ export class ShoppingComponent {
   }
 
   showItemDetail(itemId: string) {
-    console.log('Show item detail for ' + itemId);
     this.selectedItemId = itemId;
+  }
+
+  addedToCart() {
+    this.selectedItemId = null;
+    this.showCart = true;
   }
 
   setResults(results, newSearch = false) {
