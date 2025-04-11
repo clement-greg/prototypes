@@ -1,0 +1,143 @@
+$primary-color: #DD6804;
+$size: 600px;
+$diff: 300px;
+
+.bg-container {
+    background-color: $primary-color;
+    min-height: 100vh;
+    min-width: 100vw;
+    position: fixed;
+
+}
+
+.bg {
+    background-color: $primary-color;
+    display: table;
+    margin: 0 auto;
+    transform: scale(.5);
+}
+
+.outer-loop {
+    border-radius: 50%;
+    background: #DD6804;
+    box-shadow: inset -14px 14px 28px #904403, inset 14px -14px 28px #ff8c05;
+    display: inline-block;
+    width: $size;
+    height: $size;
+}
+
+.inner-loop {
+    border-radius: 50%;
+    background: #DD6804;
+    box-shadow: -14px 14px 28px #904403, 14px -14px 28px #ff8c05;
+    display: inline-block;
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    left: calc(50% - $diff/ 2);
+    top: $diff / 2;
+}
+
+$span: 225px;
+$startX: 201px;
+$endX: $startX + $span;
+$startY: -23px;
+
+// animation to rotate the ball at a fixed radius around a sphere
+@keyframes ball-roll {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.ball-outer-container {
+    position: absolute;
+    text-align: right;
+    left: 50%;
+    top: 186px;
+    width: 346px;
+    transform: rotate(-40deg);
+    transform-origin: 0% 50%;
+    animation: ball-roll 5s infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes ball-rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(-360deg);
+    }
+}
+
+svg#ball {
+
+    height: 220px;
+}
+
+svg#ball #full-ball {
+    // position: absolute;
+    // animation: ball-roll 5s infinite;
+    // animation-timing-function: linear;
+    // transform-origin: 0 325px;
+    animation: ball-rotate 5s infinite;
+    animation-timing-function: linear;
+    transform-origin: 49% 50%;
+    transform-box: fill-box;
+    // transform-origin for svg element
+
+}
+
+$item-height: 35px;
+$min-width: 30px;
+
+
+
+.gutter {
+    height: $item-height;
+    border-radius: $item-height;
+    background: #DD6804;
+    box-shadow: inset 6px 6px 12px #bc5803,
+    inset -6px -6px 12px #fe7805;
+    max-width: 100%;
+    width: 400px;
+    position: absolute
+}
+
+@keyframes progress {
+    from {
+        width: $min-width;
+        transform: translateX(0px);
+    }
+    50% {
+        width: 200px;
+        transform: translateX(0px);
+    }
+    75% {
+        transform: translateX(200px);
+        width: 200px;
+    }
+    100% {
+        transform: translateX(calc(400px - #{$min-width}));
+        width: $min-width;
+    }
+}
+
+.progress {
+    height: $item-height;
+    border-radius: $item-height;
+    display: inline-block;
+    width: $min-width;
+    background: linear-gradient(0deg, #DD6804 0%, #f5a558 100%);
+    box-shadow: 0px 0px 12px 0px #DD6804;
+    position: absolute;
+    z-index: 1;
+    animation: progress 1.5s infinite;
+    animation-direction: alternate;
+    animation-timing-function: linear;
+}
+

@@ -1,0 +1,231 @@
+#open-coms {
+    z-index: 1;
+
+}
+
+#bg-image {
+    position: absolute;
+    height: 100%;
+}
+
+.avatar {
+    height: 30px !important;
+    border-radius: 100%;
+    margin-right: 10px;
+}
+
+.from-box {
+    width: 60px;
+}
+
+.small {
+    font-size: 11px;
+}
+
+.badge {
+    background-color: red;
+    color: #fff;
+    border-radius: 50%;
+    padding: 0 5px;
+    font-size: 10px;
+    position: absolute;
+    right: 0;
+}
+
+.communication-text {
+    width: 340px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-top: 5px;
+    padding-right: 10px;
+    max-height: 70px;
+}
+
+.new-communication-button {
+    border-radius: 50%;
+    height: 44px;
+    margin-left: 10px;
+    margin-top: 10px;
+    width: 44px;
+    min-width: 0;
+    padding-left: 10px;
+}
+
+.communication-type-container {
+    height: 20px;
+    width: 20px;
+    background-color: #aaa;
+    border-radius: 50%;
+    margin-left: -18px;
+    display: inline-block;
+    text-align: center;
+    padding-top: 2px;
+}
+
+.communication-type-container.no-avatar {
+    height: 30px;
+    width: 30px;
+    margin-left: 0;
+}
+
+
+.communication-type {
+    font-size: 16px;
+    height: 16px;
+    width: 16px;
+    color: #fff;
+}
+
+.communication-type.no-avatar {
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+}
+
+.communication-item {
+    text-align: left;
+    text-transform: none;
+    border-bottom: 1px dotted rgb(200, 200, 200);
+    display: block;
+    width: 100%;
+    line-height: 17px;
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+    border-radius: 0;
+}
+
+.communication-item.bold {
+    font-weight: bold;
+}
+
+.communication-item.toggle-button::before {
+    border-radius: 0;
+}
+
+.date {
+    width: 65px;
+    font-size: 11px;
+    text-align: center;
+}
+
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: scaleX(0);
+    }
+
+    to {
+        opacity: 1;
+        transform: scaleX(1);
+    }
+}
+
+#communication-panel {
+    animation: fade-in .5s ease-in-out;
+    position: fixed;
+    top: 60px;
+    width: 450px;
+    background-color: #fff;
+    height: calc(100vh - 60px);
+    right: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-shadow: 0px 0px 15px 19px rgba(0, 0, 0, .15);
+    transform-origin: 100% 0%;
+    z-index: 1;
+}
+
+
+.bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../../../assets/images/cogent-home-screen.PNG');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.mention-outer-container {
+    position: relative;
+    padding-left: 10px;
+    padding-right: 10px;
+
+    .incoming-grid-container {
+        display: grid;
+        grid-template-columns: auto auto 1fr;
+        grid-template-rows: 1fr;
+        gap: 0px 22px;
+    }
+
+    .outgoing-grid-container  {
+        display: grid;
+        grid-template-columns: 1fr auto auto;
+        grid-template-rows: 1fr;
+        gap: 0px 22px;
+    }
+
+    .incoming-detail  {
+        cursor: pointer;
+        text-align: center;
+    }
+
+    .message-date  {
+        text-align: center;
+        font-style: italic;
+        font-size: 12px;
+    }
+
+    .incoming.conversation-bubble {
+        color: #000;
+    }
+    .incoming {
+        background: #f1f3f4;
+        &:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 0;
+            height: 0;
+            border: 20px solid transparent;
+            border-right-color: #f1f3f4;
+            border-left: 0;
+            border-top: 0;
+            margin-top: -10px;
+            margin-left: -20px;
+        }
+    }
+    .conversation-bubble {
+        position: relative;
+        padding: 15px;
+        margin: 1em 0 3em;
+        border-radius: 10px;
+        margin-bottom: 5px;
+    }
+    .mention-link {
+        max-height: 100px;
+        overflow: hidden;
+        display: block;
+        text-overflow: ellipsis;
+    }
+    .outgoing {
+        background: #d2e3fc;
+        &:after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            width: 0;
+            height: 0;
+            border: 20px solid transparent;
+            border-left-color: #d2e3fc;
+            border-right: 0;
+            border-top: 0;
+            margin-top: -10px;
+            margin-right: -20px;
+        }
+    }
+}
