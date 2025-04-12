@@ -1,0 +1,84 @@
+$primary-color: #DD6804;
+$size: 600px;
+$diff: 300px;
+
+.bg-container {
+    background-color: $primary-color;
+    min-height: 100vh;
+    min-width: 100vw;
+    position: fixed;
+
+    /*
+    horizontally and vertically center the children
+    */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.bg {
+    background-color: $primary-color;
+    display: table;
+    margin: 0 auto;
+    transform: scale(.5);
+}
+
+
+
+$item-height: 35px;
+$min-width: 30px;
+.gutter {
+    height: $item-height;
+    border-radius: $item-height;
+    background: #141414;
+    box-shadow: inset 20px 20px 60px #111111,
+                inset -20px -20px 60px #171717;
+    max-width: 100%;
+    width: 400px;
+    min-width: 400px;
+    position: absolute;
+    left: calc(50% - 200px);
+}
+
+@keyframes progress {
+    from {
+        width: $min-width;
+        transform: translateX(0px);
+    }
+    50% {
+        width: 200px;
+        transform: translateX(0px);
+    }
+    75% {
+        transform: translateX(200px);
+        width: 200px;
+    }
+    100% {
+        transform: translateX(calc(400px - #{$min-width}));
+        width: $min-width;
+    }
+}
+
+.progress {
+    height: $item-height;
+    border-radius: $item-height;
+    display: inline-block;
+    width: $min-width;
+    background: linear-gradient(0deg, #DD6804 0%, #f5a558 100%);
+    box-shadow: 0px 0px 12px 0px #DD6804;
+    position: absolute;
+    z-index: 1;
+    animation: progress 1.5s infinite;
+    animation-direction: alternate;
+    animation-timing-function: linear;
+    left: calc(50% - 200px);
+
+}
+
+.progress-viewer {
+    position: fixed;
+    left: calc(50vw);
+    bottom: 200px;
+    z-index: 20;
+}

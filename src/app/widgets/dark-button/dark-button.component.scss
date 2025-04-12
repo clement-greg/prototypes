@@ -1,0 +1,21 @@
+// horizontally and vertically center child in div .parent
+.parent {
+    background-color: #333;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dark-btn {
+    height: 150px;
+    cursor: pointer;
+}
+
+#button2 {
+    transform: translateY(5px);
+}

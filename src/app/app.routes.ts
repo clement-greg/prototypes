@@ -198,6 +198,14 @@ export const routes: Routes = [
         loadComponent: () => import('./load-screens/neumorphism-load/neumorphism-load.component').then(r => r.NeumorphismLoadComponent),
     },
     {
+        path: 'dark-button',
+        loadComponent: () => import('./widgets/dark-button/dark-button.component').then(r => r.DarkButtonComponent),
+    },
+    {
+        path: 'cogent-load-halloween-2',
+        loadComponent: () => import('./load-screens/cogent-load-halloween-2/cogent-load-halloween-2.component').then(r => r.CogentLoadHalloween2Component),
+    },
+    {
         path: '',
         loadComponent: () => import('./menu/menu.component').then(r => r.MenuComponent)
     }
