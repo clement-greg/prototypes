@@ -31,9 +31,9 @@ $min-width: 30px;
 .gutter {
     height: $item-height;
     border-radius: $item-height;
-    background: #141414;
-    box-shadow: inset 20px 20px 60px #111111,
-                inset -20px -20px 60px #171717;
+    background: #333333;
+    box-shadow: inset 5px 5px 10px #1f1f1f,
+                inset -5px -5px 10px #474747;
     max-width: 100%;
     width: 400px;
     min-width: 400px;

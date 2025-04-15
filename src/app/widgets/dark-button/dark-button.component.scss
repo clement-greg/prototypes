@@ -17,5 +17,9 @@
 }
 
 #button2 {
-    transform: translateY(5px);
+    opacity: 0;
+    transition: opacity .5s ease;
+    &.show {
+        opacity: 1;
+    }
 }
