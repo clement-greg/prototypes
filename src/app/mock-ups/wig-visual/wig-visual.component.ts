@@ -72,31 +72,6 @@ export class WigVisualComponent implements OnInit {
     this.engine = engine;
     this.engine.gravity = { x: 0, y: 0.2 };
 
-    // create a renderer
-    // var render = Matter.Render.create({
-    //   element: document.getElementById('rendered'),
-    //   engine: engine,
-    //   options: {
-    //     height: 1080,
-    //     width: 1920
-    //   }
-
-    // });
-
-    // create two boxes and a ground
-    //var boxA = Matter.Bodies.circle(100, 0, 10, { restitution: 1, frictionStatic: 0, airFriction: 0 });
-
-    //Matter.Body.setInertia(boxA, 1)
-    //Matter.Body.setMass(boxA, 5)
-    //boxA.friction = 0;
-    //boxA.restitution = .9;
-    //var boxB = Matter.Bodies.circle(100, 50, 10, { restitution: 1, frictionStatic: 0, airFriction: 0, friction: 0 });
-    //boxB.restitution = 1;
-    // for(let i = 0; i< 100;i++) {
-    //   const circle = Matter.Bodies.circle(this.random(0,1920), 0, 10, {restitution: 1, frictionStatic: 0, airFriction: 0});
-    //   Matter.Composite.add(engine.world, [circle]);
-    // }
-
     this.doDrop(0, engine);
 
     var ground = Matter.Bodies.rectangle(960, 1070, 1920, 10, { isStatic: true, restitution: .9, friction: 0 });
@@ -171,7 +146,7 @@ export class WigVisualComponent implements OnInit {
 
   doDrop(index: number, engine) {
     const circle = Matter.Bodies.circle(this.random(0, 1900), 0, 30, { restitution: 1, frictionStatic: 0, airFriction: 0 });
-    circle.restitution = 1;
+    circle.restitution = 1.1;
     circle.frictionStatic = 1;
     circle.friction = 0.02;
     circle.airFriction = 0;
