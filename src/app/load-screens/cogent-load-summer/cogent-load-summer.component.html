@@ -213,6 +213,9 @@
                                     transform: translateX(80px);
                                 }
                             }
+                            #sun {
+                                filter: url(#AI_GaussianBlur_7-3);
+                            }
 
                             .cloud {
                                 animation-iteration-count: infinite;
@@ -222,14 +225,17 @@
 
                             #cloud1 {
                                 animation-name: cloud-move1;
+                                filter: url(#AI_GaussianBlur_4);
                             }
 
                             #cloud2 {
                                 animation-name: cloud-move2;
+                                filter: url(#AI_GaussianBlur_4);
                             }
 
                             #cloud3 {
                                 animation-name: cloud-move3;
+                                filter: url(#AI_GaussianBlur_4);
                             }
 
                             @keyframes unbrella {
@@ -246,6 +252,9 @@
                                 transform-box: fill-box;
                                 transform-origin: 30% 100%;
                                 animation: unbrella 5s ease 0s infinite alternate;
+                            }
+                            #palm {
+                                filter: url(#AI_GaussianBlur_4);
                             }
                         </style>
                         <linearGradient id="linear-gradient" x1="422.09" y1="699" x2="422.09" y2="0"
@@ -272,11 +281,19 @@
                             <stop offset="0" stop-color="#f7931e" />
                             <stop offset="1" stop-color="#fcee21" />
                         </linearGradient>
+
+                        <filter id="AI_GaussianBlur_7-3">
+                            <feGaussianBlur stdDeviation="10" />
+                        </filter>
+                        <filter id="AI_GaussianBlur_4">
+                            <feGaussianBlur stdDeviation="4" />
+                        </filter>
                     </defs>
                     <g id="bg">
                         <circle class="cls-2" cx="422.09" cy="349.5" r="349.5" />
                     </g>
-                    <circle id="sun" class="cls-6" cx="584.09" cy="146.5" r="103.5" />
+                    <circle id="sun" class="cls-6" cx="584.09" cy="146.5" r="120" />
+                    <circle id="sun2" class="cls-6" cx="584.09" cy="146.5" r="103.5" />
                     <ellipse id="cloud3" class="cls-7 cloud" cx="550.59" cy="193" rx="137" ry="7" />
                     <ellipse id="cloud2" class="cls-8 cloud" cx="721.59" cy="139" rx="137" ry="7" />
                     <ellipse id="cloud1" class="cls-4 cloud" cx="386.59" cy="90" rx="137" ry="7" />

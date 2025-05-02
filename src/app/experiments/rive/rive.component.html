@@ -1,0 +1,25 @@
+<section class="Hero_hero__L2Wxe is-inview" style="--lines: 3;">
+    <div class="Hero_riveWrapper__L2W0o">
+        <canvas id="canvas" width="1905" height="1799"></canvas>
+    </div>
+</section>
+
+<div style="position: fixed;
+top: 100px;
+left: 100px;
+z-index: 1000;
+background-color: #fff;
+padding: 30px;
+border-radius: 5px;">
+
+    <mat-form-field appearance="outline">
+        <mat-label>Animation</mat-label>
+        <mat-select [(ngModel)]="selectedInput" >
+            <mat-option *ngFor="let animation of inputs" [value]="animation">{{ animation.name }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <div style="margin-top: 30px">
+        <button mat-button mat-raised-button color="primary" (click)="playAnimation()">Play</button>
+    </div>
+</div>

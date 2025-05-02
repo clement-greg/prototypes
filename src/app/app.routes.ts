@@ -210,6 +210,10 @@ export const routes: Routes = [
         loadComponent: () => import('./load-screens/cogent-launch-plans/cogent-launch-plans.component').then(r => r.CogentLaunchPlansComponent),
     },
     {
+        path: 'rive',
+        loadComponent: ()=> import('./experiments/rive/rive.component').then(r => r.RiveComponent),
+    },
+    {
         path: '',
         loadComponent: () => import('./menu/menu.component').then(r => r.MenuComponent)
     }

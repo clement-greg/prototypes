@@ -5,7 +5,7 @@ top: 0;
 z-index: 20;
 background: #333;">
 
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 1080">
+    <svg xmlns="http://www.w3.org/2000/svg"  preserveAspectRatio="xMidYMid slice" style="width: 100vw;height: 100vh;" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 1080">
         <defs>
             <style>
                 .cls-1 {
@@ -14,7 +14,7 @@ background: #333;">
 
                 .cls-2 {
                     filter: url(#AI_GaussianBlur_7-2);
-                    opacity: .17;
+                    opacity: .5;
                 }
 
                 .cls-3 {
@@ -46,7 +46,7 @@ background: #333;">
 
                 .cls-7,
                 .cls-9 {
-                    stroke: #fff;
+                    stroke: none;
                 }
 
                 .cls-10 {
@@ -89,7 +89,7 @@ background: #333;">
 
                 .cls-17 {
                     filter: url(#AI_GaussianBlur_7);
-                    opacity: .1;
+                    opacity: .5;
                 }
 
                 .cls-18 {
@@ -98,12 +98,12 @@ background: #333;">
 
                 .cls-19 {
                     filter: url(#AI_GaussianBlur_7-3);
-                    opacity: .15;
+                    opacity: .5;
                 }
 
                 @keyframes cloud-3 {
                     to {
-                        transform: translateX(-100%) scaleY(.5);
+                        transform: translateX(-100%) scaleY(.5) rotate(10deg);
                     }
                 }
 
@@ -114,7 +114,7 @@ background: #333;">
 
                 @keyframes cloud-2 {
                     30% {
-                        transform: translateX(30%) scaleY(0.8);
+                        transform: translateX(30%) scaleY(0.8) rotate(-5deg);
                     }
 
                     to {
@@ -129,7 +129,7 @@ background: #333;">
 
                 @keyframes cloud-1 {
                     30% {
-                        transform: translateX(-30%) scaleY(0.8);
+                        transform: translateX(-30%) scaleY(0.8) rotate(8deg);
                     }
 
                     to {
@@ -211,13 +211,13 @@ background: #333;">
                 </feMerge>
             </filter>
             <filter id="AI_GaussianBlur_7">
-                <feGaussianBlur stdDeviation="7" />
+                <feGaussianBlur stdDeviation="20" />
             </filter>
             <filter id="AI_GaussianBlur_7-2">
-                <feGaussianBlur stdDeviation="7" />
+                <feGaussianBlur stdDeviation="20" />
             </filter>
             <filter id="AI_GaussianBlur_7-3">
-                <feGaussianBlur stdDeviation="7" />
+                <feGaussianBlur stdDeviation="20" />
             </filter>
         </defs>
         <g id="bg">
