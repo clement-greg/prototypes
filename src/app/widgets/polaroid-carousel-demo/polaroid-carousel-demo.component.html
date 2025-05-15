@@ -1,0 +1,10 @@
+
+<div>
+    <mat-form-field appearance="outline">
+        <mat-label>Size</mat-label>
+        <mat-select [(ngModel)]="size">
+            <mat-option *ngFor="let size of sizes" [value]="size">{{ size }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <app-polaroid-carousel [(size)]="size" [items]="items"></app-polaroid-carousel>
+</div>

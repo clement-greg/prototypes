@@ -79,7 +79,7 @@ export const routes: Routes = [
     },
     {
         path: 'cogent-load-waves',
-        loadComponent: ()=> import('./load-screens/cogent-load-waves/cogent-load-waves.component').then(r => r.CogentLoadWavesComponent),
+        loadComponent: () => import('./load-screens/cogent-load-waves/cogent-load-waves.component').then(r => r.CogentLoadWavesComponent),
     },
     {
         path: 'cogent-load-ball',
@@ -87,7 +87,7 @@ export const routes: Routes = [
     },
     {
         path: 'cogent-load-pixels',
-        loadComponent: ()=> import('./load-screens/cogent-load-pixels/cogent-load-pixels.component').then(r => r.CogentLoadPixelsComponent),
+        loadComponent: () => import('./load-screens/cogent-load-pixels/cogent-load-pixels.component').then(r => r.CogentLoadPixelsComponent),
     },
     {
         path: 'cogent-load-neumorphism',
@@ -99,11 +99,11 @@ export const routes: Routes = [
     },
     {
         path: 'shopping',
-        loadComponent: ()=> import('./mock-ups/shopping/shopping/shopping.component').then(r => r.ShoppingComponent),
+        loadComponent: () => import('./mock-ups/shopping/shopping/shopping.component').then(r => r.ShoppingComponent),
     },
     {
         path: 'cogent-load-spring',
-        loadComponent: ()=> import('./load-screens/cogent-load-spring/cogent-load-spring.component').then(r => r.CogentLoadSpringComponent),
+        loadComponent: () => import('./load-screens/cogent-load-spring/cogent-load-spring.component').then(r => r.CogentLoadSpringComponent),
     },
     {
         path: 'box-test',
@@ -187,11 +187,11 @@ export const routes: Routes = [
     },
     {
         path: 'cogent-load-dark-and-shiny',
-        loadComponent: ()=> import('./load-screens/cogent-load-dark-and-shiney/cogent-load-dark-and-shiney.component').then(r => r.CogentLoadDarkAndShineyComponent),
+        loadComponent: () => import('./load-screens/cogent-load-dark-and-shiney/cogent-load-dark-and-shiney.component').then(r => r.CogentLoadDarkAndShineyComponent),
     },
     {
         path: 'weather-slide',
-        loadComponent: ()=> import('./mock-ups/weather-slide/weather-slide.component').then(r => r.WeatherSlideComponent),
+        loadComponent: () => import('./mock-ups/weather-slide/weather-slide.component').then(r => r.WeatherSlideComponent),
     },
     {
         path: 'neumorphism-load',
@@ -210,8 +210,16 @@ export const routes: Routes = [
         loadComponent: () => import('./load-screens/cogent-launch-plans/cogent-launch-plans.component').then(r => r.CogentLaunchPlansComponent),
     },
     {
+        path: 'polaroid-carousel',
+        loadComponent: () => import('./widgets/polaroid-carousel-demo/polaroid-carousel-demo.component').then(r => r.PolaroidCarouselDemoComponent),
+    },
+    {
         path: 'rive',
-        loadComponent: ()=> import('./experiments/rive/rive.component').then(r => r.RiveComponent),
+        loadComponent: () => import('./experiments/rive/rive.component').then(r => r.RiveComponent),
+    },
+    {
+        path: '3-d',
+        loadComponent: () => import('./experiments/three-d-test/three-d-test.component').then(r => r.ThreeDTestComponent),
     },
     {
         path: '',

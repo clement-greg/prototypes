@@ -1,0 +1,21 @@
+<div [style.height]="outerContainerHeight" [style.padding-left]="paddingLeft" [style.padding-right]="paddingLeft" [style.padding-top]="paddingTop" style="overflow: hidden;">
+    <div [style.width]="width" [style.height]="height" style="display: table;margin: 0 auto">
+        <div class="carousel-container">
+            <div *ngFor="let item of items" [class.active]="items.indexOf(item) === activeIndex"
+                [style.z-index]="getZIndex(item)" [class.one]="isOne(item)" [class.two]="isTwo(item)" [style.padding]="padding"
+                [class.three]="isThree(item)">
+                <img [src]="item.url" >
+                <div [style.height]="whiteSpaceHeight" class="text">
+                    {{item.text}}
+                </div>
+            </div>
+        </div>
+        <div class="nav-btns">
+            <button mat-icon-button (click)="up()" [disabled]="!canGoUp">
+                <mat-icon>chevron_left</mat-icon>
+            </button><button mat-icon-button (click)="down()" [disabled]="!canGoDown">
+                <mat-icon>chevron_right</mat-icon>
+            </button>
+        </div>
+    </div>
+</div>
