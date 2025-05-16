@@ -1,7 +1,8 @@
 <div [style.height]="outerContainerHeight" [style.padding-left]="paddingLeft" [style.padding-right]="paddingLeft" [style.padding-top]="paddingTop" style="overflow: hidden;">
     <div [style.width]="width" [style.height]="height" style="display: table;margin: 0 auto">
         <div class="carousel-container">
-            <div *ngFor="let item of items" [class.active]="items.indexOf(item) === activeIndex"
+            <div *ngFor="let item of items" [class.active]="items.indexOf(item) === activeIndex" [class.next-active]="items.indexOf(item) === nextActiveIndex"
+            [class.prev-active]="items.indexOf(item) === prevActiveIndex"
                 [style.z-index]="getZIndex(item)" [class.one]="isOne(item)" [class.two]="isTwo(item)" [style.padding]="padding"
                 [class.three]="isThree(item)">
                 <img [src]="item.url" >

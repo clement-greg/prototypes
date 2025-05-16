@@ -21,6 +21,8 @@ export class PolaroidCarouselComponent implements OnChanges {
   @Output() sizeChange: EventEmitter<number> = new EventEmitter<number>();
   selectedIndex = 0;
   activeIndex = -1;
+  nextActiveIndex = -1;
+  prevActiveIndex = -1;
   @Input() items;
 
   isOne(item: any) {
@@ -94,10 +96,12 @@ export class PolaroidCarouselComponent implements OnChanges {
   }
 
   get canGoUp() {
+    return true;
     return this.selectedIndex < this.items.length - 1;
   }
 
   get canGoDown() {
+    return true;
     return this.selectedIndex > 0;
   }
 
@@ -120,8 +124,8 @@ export class PolaroidCarouselComponent implements OnChanges {
       this.moveDirection = 'UP';
       this.setActive();
     } else {
-      // this.selectedIndex = 0;
-      // this.moveDirection = 'DOWN';
+      this.selectedIndex = 0;
+      this.moveDirection = 'DOWN';
     }
   }
 
@@ -131,20 +135,25 @@ export class PolaroidCarouselComponent implements OnChanges {
       this.moveDirection = 'DOWN';
       this.setActive();
     } else {
-      // this.selectedIndex = this.items.length - 1;
-      // this.moveDirection = 'UP';
+      this.selectedIndex = this.items.length - 1;
+      this.moveDirection = 'UP';
     }
   }
 
   setActive() {
     if (this.moveDirection === 'UP') {
       this.activeIndex = this.selectedIndex - 1;
+      //this.nextActiveIndex = this.selectedIndex;
+      this.prevActiveIndex = this.selectedIndex;
     }
     if (this.moveDirection === 'DOWN') {
       this.activeIndex = this.selectedIndex + 1;
+      this.nextActiveIndex = this.selectedIndex;
     }
     setTimeout(() => {
       this.activeIndex = -1;
+      this.nextActiveIndex = -1;
+      this.prevActiveIndex = -1;
     }, 300);
   }
 }

@@ -38,6 +38,14 @@
     box-shadow: rgba(0, 0, 0, 0.2) 3px 3px 9px 2px;
     background-color: rgb(253, 251, 247);
     transform: translate(40px, 0px) rotate(6deg);
+    &.next-active {
+        transform: translate(-400px, 8px) rotate(-34deg) !important;
+
+    }
+    &.prev-active {
+        transform: translate(400px, 18px) rotate(24deg) !important;
+
+    }
 }
 
 .carousel-container>div.two {
@@ -47,11 +55,7 @@
     z-index: -2;
     box-shadow: rgba(0, 0, 0, 0) 3px 3px 9px 2px;
     transform: translate(-142px, 8px) rotate(-18deg);
-    &.active {
-        z-index: 1 !important;
-        transform: translate(-400px, 8px) rotate(-18deg) !important;
 
-    }
 }
 
 .carousel-container>div.three {

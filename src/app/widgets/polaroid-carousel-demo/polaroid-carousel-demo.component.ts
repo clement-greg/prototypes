@@ -27,10 +27,10 @@ export class PolaroidCarouselDemoComponent {
   ]
 
   items =  [
-    { id: 1, name: 'Item 1', image: 'https://via.placeholder.com/150', url: 'https://www.elevatehomescriptions.com/_next/image?url=%2Fassets%2Fimages%2Fhomeownership-01.jpg&w=1536&q=80&dpl=dpl_9cD42nJHbZ4w7hoAmfRXXRkEs8vE', text: 'Hello from California' },
-    { id: 2, name: 'Item 2', image: 'https://via.placeholder.com/150', url: 'https://www.elevatehomescriptions.com/_next/image?url=%2Fassets%2Fimages%2Fhomeownership-02.jpg&w=1536&q=80&dpl=dpl_9cD42nJHbZ4w7hoAmfRXXRkEs8vE', text: 'He is a lazy butt!!!' },
-    { id: 3, name: 'Item 3', image: 'https://via.placeholder.com/150', url: 'https://www.elevatehomescriptions.com/_next/image?url=%2Fassets%2Fimages%2Fhomeownership-03.jpg&w=1536&q=80&dpl=dpl_9cD42nJHbZ4w7hoAmfRXXRkEs8vE', text: 'Homeownership is the American dream' },
-    { id: 4, name: 'Item 4', image: 'https://via.placeholder.com/150', url: 'https://www.elevatehomescriptions.com/_next/image?url=%2Fassets%2Fimages%2Fhomeownership-04.jpg&w=1536&q=80&dpl=dpl_9cD42nJHbZ4w7hoAmfRXXRkEs8vE', text: 'On app to rule them all!!!!' },
-    { id: 5, name: 'Item 5', image: 'https://via.placeholder.com/150', url: 'https://www.elevatehomescriptions.com/_next/image?url=%2Fassets%2Fimages%2Fhomeownership-05.jpg&w=1536&q=80&dpl=dpl_9cD42nJHbZ4w7hoAmfRXXRkEs8vE', text: 'Homeownership can be bi-polar' },
+    { id: 1, name: 'Item 1', url: 'https://www.elevatehomescriptions.com/_next/image?url=%2Fassets%2Fimages%2Fhomeownership-01.jpg&w=1536&q=80&dpl=dpl_9cD42nJHbZ4w7hoAmfRXXRkEs8vE', text: 'Hello from California' },
+    { id: 2, name: 'Item 2', url: 'https://www.elevatehomescriptions.com/_next/image?url=%2Fassets%2Fimages%2Fhomeownership-02.jpg&w=1536&q=80&dpl=dpl_9cD42nJHbZ4w7hoAmfRXXRkEs8vE', text: 'This dudes a lazy butt!!!' },
+    { id: 3, name: 'Item 3', url: 'https://www.elevatehomescriptions.com/_next/image?url=%2Fassets%2Fimages%2Fhomeownership-03.jpg&w=1536&q=80&dpl=dpl_9cD42nJHbZ4w7hoAmfRXXRkEs8vE', text: 'Homeownership is the American dream' },
+    { id: 4, name: 'Item 4', url: 'https://www.elevatehomescriptions.com/_next/image?url=%2Fassets%2Fimages%2Fhomeownership-04.jpg&w=1536&q=80&dpl=dpl_9cD42nJHbZ4w7hoAmfRXXRkEs8vE', text: 'On app to rule them all!!!!' },
+    { id: 5, name: 'Item 5', url: 'https://www.elevatehomescriptions.com/_next/image?url=%2Fassets%2Fimages%2Fhomeownership-05.jpg&w=1536&q=80&dpl=dpl_9cD42nJHbZ4w7hoAmfRXXRkEs8vE', text: 'Homeownership can be bi-polar' },
   ]
 }
