@@ -12,8 +12,8 @@ export class SerpapiService {
     return new Promise((resolve, reject) => {
       url = encodeURIComponent(url);
       const fullUrl = `https://dev-api2.upkeeplabs.com/api/greg-test/serpapi?url=${url}`;
-      console.log(fullUrl);
-       this.http.get(fullUrl).subscribe((data)=> resolve(data));
+      //const fullUrl = `http://localhost:3000/api/greg-test/serpapi?url=${url}`;
+      this.http.get(fullUrl).subscribe((data) => resolve(data));
     });
 
   }

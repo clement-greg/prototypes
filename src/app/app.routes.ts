@@ -218,6 +218,10 @@ export const routes: Routes = [
         loadComponent: () => import('./experiments/rive/rive.component').then(r => r.RiveComponent),
     },
     {
+        path: 'find-ae',
+        loadComponent: ()=> import('./experiments/find-ae/find-ae.component').then(r => r.FindAeComponent),
+    },
+    {
         path: '3-d',
         loadComponent: () => import('./experiments/three-d-test/three-d-test.component').then(r => r.ThreeDTestComponent),
     },
