@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { InspectionFinding } from '../cpoh-homeowner-portal/cpoh-homeowner-portal';
 import { CpohQuoteDetail } from '../cpoh-quote-detail/cpoh-quote-detail';
@@ -13,7 +13,6 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-cpoh-view-quote',
   imports: [
-    CommonModule,
     MatButtonModule,
     MatIconModule,
     LottiePlayerComponent,
@@ -21,7 +20,8 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
-    CpohQuoteDetail],
+    CpohQuoteDetail
+],
   templateUrl: './cpoh-view-quote.html',
   styleUrl: './cpoh-view-quote.scss',
 })

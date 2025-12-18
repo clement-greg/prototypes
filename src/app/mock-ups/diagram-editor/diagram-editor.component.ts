@@ -1,10 +1,10 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, HostListener } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
     selector: 'app-diagram-editor',
-    imports: [CommonModule, MatButtonModule],
+    imports: [MatButtonModule],
     templateUrl: './diagram-editor.component.html',
     styleUrl: './diagram-editor.component.scss'
 })

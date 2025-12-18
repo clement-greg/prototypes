@@ -1,7 +1,7 @@
 <section class="Hero_hero__L2Wxe is-inview" style="--lines: 3;">
-    <div class="Hero_riveWrapper__L2W0o">
-        <canvas id="canvas" width="1905" height="1799"></canvas>
-    </div>
+  <div class="Hero_riveWrapper__L2W0o">
+    <canvas id="canvas" width="1905" height="1799"></canvas>
+  </div>
 </section>
 
 <div style="position: fixed;
@@ -12,14 +12,16 @@ background-color: #fff;
 padding: 30px;
 border-radius: 5px;">
 
-    <mat-form-field appearance="outline">
-        <mat-label>Animation</mat-label>
-        <mat-select [(ngModel)]="selectedInput" >
-            <mat-option *ngFor="let animation of inputs" [value]="animation">{{ animation.name }}</mat-option>
-        </mat-select>
-    </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Animation</mat-label>
+    <mat-select [(ngModel)]="selectedInput" >
+      @for (animation of inputs; track animation) {
+        <mat-option [value]="animation">{{ animation.name }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
 
-    <div style="margin-top: 30px">
-        <button mat-button mat-raised-button color="primary" (click)="playAnimation()">Play</button>
-    </div>
+  <div style="margin-top: 30px">
+    <button mat-button mat-raised-button color="primary" (click)="playAnimation()">Play</button>
+  </div>
 </div>

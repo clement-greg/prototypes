@@ -1,9 +1,9 @@
-import { CommonModule } from '@angular/common';
+
 import { Component } from '@angular/core';
 
 @Component({
     selector: 'app-clip-path-test',
-    imports: [CommonModule],
+    imports: [],
     templateUrl: './clip-path-test.component.html',
     styleUrl: './clip-path-test.component.scss'
 })

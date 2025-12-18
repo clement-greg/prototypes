@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, HostListener, NgZone } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -9,7 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 
 @Component({
     selector: 'app-contractor-home-re-design',
-    imports: [MatCardModule, MatIconModule, MatButtonModule, MatInputModule, MatFormFieldModule, CommonModule, ReactiveFormsModule, FormsModule],
+    imports: [MatCardModule, MatIconModule, MatButtonModule, MatInputModule, MatFormFieldModule, ReactiveFormsModule, FormsModule],
     templateUrl: './contractor-home-re-design.component.html',
     styleUrl: './contractor-home-re-design.component.scss'
 })

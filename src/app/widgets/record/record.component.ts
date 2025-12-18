@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { HttpClient, HttpClientModule, HttpHeaders, provideHttpClient, withFetch } from '@angular/common/http';
 import { AfterViewInit, Component, NgZone } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -12,8 +12,7 @@ declare var MediaRecorder: any;
 
 @Component({
     selector: 'app-record',
-    imports: [CommonModule, MatIconModule, MatButtonModule,
-        HttpClientModule, MatSelectModule, MatFormFieldModule, MatInputModule, FormsModule, ReactiveFormsModule],
+    imports: [MatIconModule, MatButtonModule, HttpClientModule, MatSelectModule, MatFormFieldModule, MatInputModule, FormsModule, ReactiveFormsModule],
     templateUrl: './record.component.html',
     styleUrl: './record.component.scss'
 })

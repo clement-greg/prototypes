@@ -1,39 +1,43 @@
 @if(quote){
-<div class="contractor-info">
+  <div class="contractor-info">
     <div>
-        <div><img src="https://api.elevatehw.com/api/entity/photo/459c4447-1a0a-44e1-b042-7e3395a11dde"></div>
-        <div>
-            <p class="info" style="margin: 0; padding: 0;">Service Pro</p>
-            <h2 style="margin: 0;">{{quote?.contractor?.name}}</h2>
-            <p style="margin: 0; padding: 0;">Phone:
-                {{quote?.contractor?.phoneNumber}}
-            </p>
-        </div>
+      <div><img src="https://api.elevatehw.com/api/entity/photo/459c4447-1a0a-44e1-b042-7e3395a11dde"></div>
+      <div>
+        <p class="info" style="margin: 0; padding: 0;">Service Pro</p>
+        <h2 style="margin: 0;">{{quote?.contractor?.name}}</h2>
+        <p style="margin: 0; padding: 0;">Phone:
+          {{quote?.contractor?.phoneNumber}}
+        </p>
+      </div>
     </div>
-</div>
+  </div>
 
 
 
-<table class="table">
+  <table class="table">
     <thead>
-        <tr>
-            <th>Description</th>
-            <th class="right">Cost</th>
-        </tr>
+      <tr>
+        <th>Description</th>
+        <th class="right">Cost</th>
+      </tr>
     </thead>
 
     <tbody>
-        <tr *ngFor="let item of quote?.items">
-            <td>{{item.name}}</td>
-            <td class="right">{{item.amount | currency}}</td>
+      @for (item of quote?.items; track item) {
+        <tr>
+          <td>{{item.name}}</td>
+          <td class="right">{{item.amount | currency}}</td>
         </tr>
+      }
     </tbody>
 
-</table>
+  </table>
 
-<app-display-total [total]="total" [hideTriangle]="true"></app-display-total>
+  <app-display-total [total]="total" [hideTriangle]="true"></app-display-total>
 
-<div *ngIf="quote.contractorNotes" style="margin-top: 30px;">
-    <p class="info">Service Pro Comments</p>
-    <p class="quote">{{quote.contractorNotes}}</p>
-</div>}
+  @if (quote.contractorNotes) {
+    <div style="margin-top: 30px;">
+      <p class="info">Service Pro Comments</p>
+      <p class="quote">{{quote.contractorNotes}}</p>
+    </div>
+    }}

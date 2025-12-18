@@ -1,167 +1,177 @@
-<div aflex *ngIf="productResults">
+@if (productResults) {
+  <div aflex>
     <div flex3>
-        <mat-card>
-
-            <p class="info">{{productResults.product_id}}</p>
-            <h1>{{productResults?.brand?.name}}</h1>
-            <p>{{productResults.title}}</p>
-            <app-star-rating-viewer [stars]="productResults.rating"></app-star-rating-viewer>
-
-            <div aflex style="margin-top: 30px">
-                <div nogrow style="width: 100px;">
-                    <button mat-button class="toggle-button image-selector"
-                        [class.selected]="imageGroup === selectedImageGroup"
-                        *ngFor="let imageGroup of productResults.images" (click)="selectImageGroup(imageGroup)">
-                        <img [src]="imageGroup[0]" class="thumb" />
-                    </button>
-                </div>
-
-                <div>
-                    <img [src]="selectedImage" class="main-image" />
-                </div>
-            </div>
-        </mat-card>
+      <mat-card>
+        <p class="info">{{productResults.product_id}}</p>
+        <h1>{{productResults?.brand?.name}}</h1>
+        <p>{{productResults.title}}</p>
+        <app-star-rating-viewer [stars]="productResults.rating"></app-star-rating-viewer>
+        <div aflex style="margin-top: 30px">
+          <div nogrow style="width: 100px;">
+            @for (imageGroup of productResults.images; track imageGroup) {
+              <button mat-button class="toggle-button image-selector"
+                [class.selected]="imageGroup === selectedImageGroup"
+                (click)="selectImageGroup(imageGroup)">
+                <img [src]="imageGroup[0]" class="thumb" />
+              </button>
+            }
+          </div>
+          <div>
+            <img [src]="selectedImage" class="main-image" />
+          </div>
+        </div>
+      </mat-card>
     </div>
     <div flex2>
-        <mat-card>
-            <button class="favorite" mat-icon-button (click)="addToFavorites()">
-                <mat-icon *ngIf="isFavorite">favorite</mat-icon>
-                <mat-icon *ngIf="!isFavorite">favorite_border</mat-icon>
-            </button>
-            <div class="center">
-                <img src="https://elevateh.blob.core.windows.net/cdn/images/elevate-a-icon-2025.svg"
-                    style="height: 60px;">
+      <mat-card>
+        <button class="favorite" mat-icon-button (click)="addToFavorites()">
+          @if (isFavorite) {
+            <mat-icon>favorite</mat-icon>
+          }
+          @if (!isFavorite) {
+            <mat-icon>favorite_border</mat-icon>
+          }
+        </button>
+        <div class="center">
+          <img src="https://elevateh.blob.core.windows.net/cdn/images/elevate-a-icon-2025.svg"
+            style="height: 60px;">
+          </div>
+          <div aflex>
+            <div flex2>
+              <table>
+                <tbody>
+                  <tr>
+                    <td>Unit Price</td>
+                    <td class="right">{{productResults.price | currency}}</td>
+                  </tr>
+                  <tr>
+                    <td>Cash In Lieu Credit</td>
+                    <td class="right">-{{cart.cashOutAmount | currency}}</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-            <div aflex>
-                <div flex2>
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td>Unit Price</td>
-                                <td class="right">{{productResults.price | currency}}</td>
-                            </tr>
-                            <tr>
-                                <td>Cash In Lieu Credit</td>
-                                <td class="right">-{{cart.cashOutAmount | currency}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div flex1>
-                    <div class="info">Your Price</div>
-                    <h1>{{net | currency}}</h1>
-                </div>
+            <div flex1>
+              <div class="info">Your Price</div>
+              <h1>{{net | currency}}</h1>
             </div>
-
-
-
+          </div>
         </mat-card>
         <mat-card>
-            <ul>
-                <li *ngFor="let highlight of productResults.highlights">{{highlight}}</li>
-            </ul>
+          <ul>
+            @for (highlight of productResults.highlights; track highlight) {
+              <li>{{highlight}}</li>
+            }
+          </ul>
         </mat-card>
-
         <mat-card>
-            <div *ngIf="earliestDelivery">
-                Earliest Delivery: {{earliestDelivery}}
+          @if (earliestDelivery) {
+            <div>
+              Earliest Delivery: {{earliestDelivery}}
             </div>
-            <button mat-button mat-raised-button color="primary" (click)="addToCart()">
-                <mat-icon>shopping</mat-icon> Add To Card
-            </button>
+          }
+          <button mat-button mat-raised-button color="primary" (click)="addToCart()">
+            <mat-icon>shopping</mat-icon> Add To Card
+          </button>
         </mat-card>
-
-        <mat-card *ngIf="reviews">
+        @if (reviews) {
+          <mat-card>
             <div class="center" style="margin-bottom: 30px;">
-                <h1 class="big-data" style="margin-bottom: 0;">{{reviews.overall_rating}}</h1>
-                <div class="info">Stars</div>
-                Out of {{reviews.total_review}} reviews
+              <h1 class="big-data" style="margin-bottom: 0;">{{reviews.overall_rating}}</h1>
+              <div class="info">Stars</div>
+              Out of {{reviews.total_review}} reviews
             </div>
-            <div *ngFor="let rating of reviews.ratings" aflex style="margin-bottom: 15px">
+            @for (rating of reviews.ratings; track rating) {
+              <div aflex style="margin-bottom: 15px">
                 <div nogrow style="width: 60px;">
-                    {{rating.stars}} Stars
+                  {{rating.stars}} Stars
                 </div>
-
                 <div class="bar" flex1>
-                    <div [style.width]="getRatingWidth(rating)"></div>
+                  <div [style.width]="getRatingWidth(rating)"></div>
                 </div>
-            </div>
-
+              </div>
+            }
             <mat-accordion>
-                <mat-expansion-panel hideToggle>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title> Reviews </mat-panel-title>
-
-                    </mat-expansion-panel-header>
-                    <div *ngFor="let review of reviews.reviews" class="review-container">
-                        <div aflex>
-                            <div><app-star-rating-viewer [stars]="review.rating"></app-star-rating-viewer></div>
-                            <div>
-                                {{review.time | date:'shortDate'}}
-                            </div>
-
-                        </div>
-                        <div>
-                            <div *ngFor="let badge of review.badges">
-                                <mat-icon>check</mat-icon>
-                                {{badge}}
-                            </div>
-                        </div>
-
-                        <p>{{review.text}}<br>by {{review.reviewer?.name}}</p>
-
-
-                        <div *ngIf="review.original_source" class="center" topmargin30>
-
-                            <img [src]="review.original_source.logo"><br>
-                            Customer review from {{review.original_source.name}}
-                        </div>
-
+              <mat-expansion-panel hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title> Reviews </mat-panel-title>
+                </mat-expansion-panel-header>
+                @for (review of reviews.reviews; track review) {
+                  <div class="review-container">
+                    <div aflex>
+                      <div><app-star-rating-viewer [stars]="review.rating"></app-star-rating-viewer></div>
+                      <div>
+                        {{review.time | date:'shortDate'}}
+                      </div>
                     </div>
-                </mat-expansion-panel>
-
-
+                    <div>
+                      @for (badge of review.badges; track badge) {
+                        <div>
+                          <mat-icon>check</mat-icon>
+                          {{badge}}
+                        </div>
+                      }
+                    </div>
+                    <p>{{review.text}}<br>by {{review.reviewer?.name}}</p>
+                    @if (review.original_source) {
+                      <div class="center" topmargin30>
+                        <img [src]="review.original_source.logo"><br>
+                        Customer review from {{review.original_source.name}}
+                      </div>
+                    }
+                  </div>
+                }
+              </mat-expansion-panel>
             </mat-accordion>
-        </mat-card>
+          </mat-card>
+        }
+      </div>
     </div>
-</div>
+  }
 
-<mat-card *ngIf="productResults">
-    <h1>Product Overview</h1>
-    <div class="product-overview-container">
+  @if (productResults) {
+    <mat-card>
+      <h1>Product Overview</h1>
+      <div class="product-overview-container">
         <div flex1>
-            <p>{{productResults.description}}</p>
-            <ul>
-                <li *ngFor="let bullet of productResults.bullets" [innerHTML]="bullet"></li>
-
-            </ul>
+          <p>{{productResults.description}}</p>
+          <ul>
+            @for (bullet of productResults.bullets; track bullet) {
+              <li [innerHTML]="bullet"></li>
+            }
+          </ul>
         </div>
         <div flex1>
-            <h2>Info &amp; Guides</h2>
-            <ul>
-                <li *ngFor="let guide of productResults.info_and_guides">
-                    <a [href]="guide.link" target="_blank">{{guide.title}}</a>
-                </li>
-            </ul>
+          <h2>Info &amp; Guides</h2>
+          <ul>
+            @for (guide of productResults.info_and_guides; track guide) {
+              <li>
+                <a [href]="guide.link" target="_blank">{{guide.title}}</a>
+              </li>
+            }
+          </ul>
         </div>
-    </div>
+      </div>
+    </mat-card>
+  }
 
-</mat-card>
-
-<mat-card *ngIf="productResults">
-    <h1>Specifications</h1>
-    <ng-container *ngFor="let spec of productResults.specifications">
+  @if (productResults) {
+    <mat-card>
+      <h1>Specifications</h1>
+      @for (spec of productResults.specifications; track spec) {
         <h2>{{spec.key}}</h2>
         <div class="specs-table">
-
-            <div *ngFor="let value of spec.value">
-                <div>{{value.name}}</div>
-                <div>{{value.value}}</div>
+          @for (value of spec.value; track value) {
+            <div>
+              <div>{{value.name}}</div>
+              <div>{{value.value}}</div>
             </div>
-
+          }
         </div>
-    </ng-container>
+      }
+    </mat-card>
+  }
 
-</mat-card>
-
-<app-search-loading *ngIf="loading"></app-search-loading>
+  @if (loading) {
+    <app-search-loading></app-search-loading>
+  }

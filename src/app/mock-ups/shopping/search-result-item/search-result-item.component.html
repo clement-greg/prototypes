@@ -4,31 +4,41 @@
 
 
 <div class="item-result-container" (click)="view()">
-    <span *ngIf="item.price_badge" class="badge">{{item.price_badge}}</span>
-    <div style="flex: 1;">
-        <div class="center">
-            <img *ngIf="!selectedVariant" [src]="item.thumbnails[item.currentThumnail ?? 0][3]" (mouseover)="item.currentThumnail = 1" (mouseout)="item.currentThumnail = 0">
-        
-            <img style="height: 300px;" *ngIf="selectedVariant" [src]="selectedVariant.thumbnail">
-            <div class="variants">
-                <a style="cursor: pointer;" *ngFor="let variant of item.variants"   (click)="showVariant(variant, $event)">
-                    <img [src]="variant.thumbnail">
-                </a>
-            </div>
-        </div>
-        <p class="info">{{item.product_id}}</p>
-        <p>{{item.title}}</p>
-        <h1>{{item.price | currency}}</h1>
-        <p *ngIf="item.price_saving" style="color: green;">
-            Save {{item.price_saving | currency}} ({{item.percentage_off}}%)
-        </p>
-        <app-star-rating-viewer [stars]="item.rating"></app-star-rating-viewer>
+  @if (item.price_badge) {
+    <span class="badge">{{item.price_badge}}</span>
+  }
+  <div style="flex: 1;">
+    <div class="center">
+      @if (!selectedVariant) {
+        <img [src]="item.thumbnails[item.currentThumnail ?? 0][3]" (mouseover)="item.currentThumnail = 1" (mouseout)="item.currentThumnail = 0">
+      }
+
+      @if (selectedVariant) {
+        <img style="height: 300px;" [src]="selectedVariant.thumbnail">
+      }
+      <div class="variants">
+        @for (variant of item.variants; track variant) {
+          <a style="cursor: pointer;"   (click)="showVariant(variant, $event)">
+            <img [src]="variant.thumbnail">
+          </a>
+        }
+      </div>
     </div>
-    <!-- <div style="flex: none">
-        <div class="center" style="margin-top: 20px">
-            <button mat-button style="display: block;width: 100%" (click)="view()">
-                <mat-icon>search</mat-icon>
-                View</button>
-        </div>
-    </div> -->
+    <p class="info">{{item.product_id}}</p>
+    <p>{{item.title}}</p>
+    <h1>{{item.price | currency}}</h1>
+    @if (item.price_saving) {
+      <p style="color: green;">
+        Save {{item.price_saving | currency}} ({{item.percentage_off}}%)
+      </p>
+    }
+    <app-star-rating-viewer [stars]="item.rating"></app-star-rating-viewer>
+  </div>
+  <!-- <div style="flex: none">
+  <div class="center" style="margin-top: 20px">
+    <button mat-button style="display: block;width: 100%" (click)="view()">
+      <mat-icon>search</mat-icon>
+    View</button>
+  </div>
+</div> -->
 </div>

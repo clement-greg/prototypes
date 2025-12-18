@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { LottiePlayerComponent } from '../../dependencies/lottie-player/lottie-player.component';
 import { DotLottieComponent } from '../../dependencies/dot-lottie/dot-lottie.component';
 import { UtilitiesService } from '../../dependencies/utilities';
@@ -60,7 +60,7 @@ class forcastItem {
 
 @Component({
     selector: 'app-weather-slide',
-    imports: [CommonModule, LottiePlayerComponent, DotLottieComponent],
+    imports: [LottiePlayerComponent, DotLottieComponent],
     templateUrl: './weather-slide.component.html',
     styleUrl: './weather-slide.component.scss'
 })

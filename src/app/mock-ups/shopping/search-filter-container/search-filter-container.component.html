@@ -1,10 +1,12 @@
 <mat-accordion>
-    <mat-expansion-panel *ngFor="let filter of filters">
-        <mat-expansion-panel-header>
-            <mat-panel-title>
-                {{filter.key}}
-            </mat-panel-title>
-        </mat-expansion-panel-header>
-        <app-search-filter (filterChange)="raiseFilterChange()" [filter]="filter"></app-search-filter>
+  @for (filter of filters; track filter) {
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{filter.key}}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-search-filter (filterChange)="raiseFilterChange()" [filter]="filter"></app-search-filter>
     </mat-expansion-panel>
+  }
 </mat-accordion>

@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { InspectionFinding } from '../cpoh-homeowner-portal/cpoh-homeowner-portal';
 import { CpohQuoteDetail } from '../cpoh-quote-detail/cpoh-quote-detail';
@@ -7,10 +7,9 @@ import { MatIconModule } from '@angular/material/icon';
 @Component({
   selector: 'app-cpoh-view-status',
   imports: [
-    CommonModule,
     CpohQuoteDetail,
-    MatIconModule,
-  ],
+    MatIconModule
+],
   templateUrl: './cpoh-view-status.html',
   styleUrl: './cpoh-view-status.scss',
 })

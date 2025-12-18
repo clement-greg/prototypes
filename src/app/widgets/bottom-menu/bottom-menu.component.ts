@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { AfterViewInit, Component, HostListener } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -8,7 +8,7 @@ import { UtilitiesService } from '../../dependencies/utilities';
 
 @Component({
     selector: 'app-bottom-menu',
-    imports: [CommonModule, MatIconModule, MatTabsModule, MatCardModule, MatButtonModule],
+    imports: [MatIconModule, MatTabsModule, MatCardModule, MatButtonModule],
     templateUrl: './bottom-menu.component.html',
     styleUrl: './bottom-menu.component.scss'
 })

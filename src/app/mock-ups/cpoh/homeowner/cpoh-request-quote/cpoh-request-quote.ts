@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { InspectionFinding } from '../cpoh-homeowner-portal/cpoh-homeowner-portal';
 import { LottiePlayerComponent } from '../../../website-parts/lottie-player/lottie-player.component';
@@ -8,11 +8,10 @@ import { MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'app-cpoh-request-quote',
   imports: [
-    CommonModule,
     LottiePlayerComponent,
     MatIconModule,
-    MatButtonModule,
-  ],
+    MatButtonModule
+],
   templateUrl: './cpoh-request-quote.html',
   styleUrl: './cpoh-request-quote.scss',
 })

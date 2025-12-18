@@ -1,29 +1,37 @@
 <div  flex="" class="header"
-    style="height: 60px; background-color: #fbf8f4; border-bottom: 2px solid transparent; box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, .2), 0px 1px 1px 0px rgba(0, 0, 0, .14), 0px 1px 3px 0px rgba(0, 0, 0, .12);">
-    <img  nogrow="" src="https://app.elevateh.com/cdn/images/elevate-logo-2025.svg"
-        style="height: 50px;">
+  style="height: 60px; background-color: #fbf8f4; border-bottom: 2px solid transparent; box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, .2), 0px 1px 1px 0px rgba(0, 0, 0, .14), 0px 1px 3px 0px rgba(0, 0, 0, .12);">
+  <img  nogrow="" src="https://app.elevateh.com/cdn/images/elevate-logo-2025.svg"
+    style="height: 50px;">
     <div ></div>
-</div>
-<app-slide-out-panel-container [panelTop]="0" [(showRightPanel)]="showRightPanel"
+  </div>
+  <app-slide-out-panel-container [panelTop]="0" [(showRightPanel)]="showRightPanel"
     (showRightPanelChange)="showRightPanelChange($event)">
     <div main-content>
-        <div class="container">
-            <h1>CPOH Portal</h1>
-            <app-cpoh-inspection-findings (findingSelected)="selectFinding($event)"
-                [findings]="findings"></app-cpoh-inspection-findings>
-        </div>
+      <div class="container">
+        <h1>CPOH Portal</h1>
+        <app-cpoh-inspection-findings (findingSelected)="selectFinding($event)"
+        [findings]="findings"></app-cpoh-inspection-findings>
+      </div>
 
     </div>
 
     <div right-panel style="padding: 15px;padding-top: 30px">
 
+      @if (selectedStatus === 'Pending') {
         <app-cpoh-request-quote [finding]="selectedFinding" (closePanelNeeded)="closeRightPanel()"
-            *ngIf="selectedStatus === 'Pending'"></app-cpoh-request-quote>
+        ></app-cpoh-request-quote>
+      }
+      @if (selectedStatus === 'Quoted') {
         <app-cpoh-view-quote [finding]="selectedFinding" (closePanelNeeded)="closeRightPanel()"
-            *ngIf="selectedStatus === 'Quoted'"></app-cpoh-view-quote>
+        ></app-cpoh-view-quote>
+      }
+      @if (selectedStatus === 'Work In Progress' || selectedStatus === 'Completed') {
         <app-cpoh-view-status [finding]="selectedFinding" (closePanelNeeded)="closeRightPanel()"
-            *ngIf="selectedStatus === 'Work In Progress' || selectedStatus === 'Completed'"></app-cpoh-view-status>
+        ></app-cpoh-view-status>
+      }
+      @if (selectedStatus === 'Rejected') {
         <app-cpoh-view-reopen [finding]="selectedFinding" (closePanelNeeded)="closeRightPanel()"
-            *ngIf="selectedStatus === 'Rejected'"></app-cpoh-view-reopen>
+        ></app-cpoh-view-reopen>
+      }
     </div>
-</app-slide-out-panel-container>
+  </app-slide-out-panel-container>

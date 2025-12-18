@@ -1,11 +1,11 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
     selector: 'app-polaroid-carousel',
-    imports: [CommonModule, MatButtonModule, MatIconModule],
+    imports: [MatButtonModule, MatIconModule],
     templateUrl: './polaroid-carousel.component.html',
     styleUrl: './polaroid-carousel.component.scss'
 })

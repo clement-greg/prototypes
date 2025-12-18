@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -8,7 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 
 @Component({
     selector: 'app-find-ae',
-    imports: [CommonModule, FormsModule, MatInputModule, MatFormFieldModule, MatButtonModule],
+    imports: [FormsModule, MatInputModule, MatFormFieldModule, MatButtonModule],
     templateUrl: './find-ae.component.html',
     styleUrl: './find-ae.component.scss'
 })

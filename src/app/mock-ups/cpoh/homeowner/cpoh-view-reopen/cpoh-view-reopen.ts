@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { InspectionFinding } from '../cpoh-homeowner-portal/cpoh-homeowner-portal';
 import { MatButtonModule } from '@angular/material/button';
@@ -6,9 +6,8 @@ import { MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'app-cpoh-view-reopen',
   imports: [
-    CommonModule,
-    MatButtonModule,
-  ],
+    MatButtonModule
+],
   templateUrl: './cpoh-view-reopen.html',
   styleUrl: './cpoh-view-reopen.scss',
 })

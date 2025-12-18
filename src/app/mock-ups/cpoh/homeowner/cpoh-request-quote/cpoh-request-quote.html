@@ -1,32 +1,35 @@
-<div class="center" *ngIf="operation === 'Requested'" animate.enter="slide-in" animate.leave="fade-out">
+@if (operation === 'Requested') {
+  <div class="center" animate.enter="slide-in" animate.leave="fade-out">
     <app-lottie-player src="https://lottie.host/fccee11d-e1a8-491e-9d05-276e0324faa6/rjywfpUeJj.json"
-        [intermission]="10000" height="200px"></app-lottie-player>
+    [intermission]="10000" height="200px"></app-lottie-player>
     <p class="info">
-        Quote Requested!
+      Quote Requested!
     </p>
-
     <button mat-icon-button (click)="closePanel()">
-        <mat-icon>close</mat-icon>
+      <mat-icon>close</mat-icon>
     </button>
-</div>
-<div *ngIf="operation === 'Requesting'" animate.enter="slide-in" animate.leave="fade-out">
+  </div>
+}
+@if (operation === 'Requesting') {
+  <div animate.enter="slide-in" animate.leave="fade-out">
     <div class="center">
-        <h2>Request a Quote</h2>
-        <p class="info">
-            {{finding?.description}}
-        </p>
+      <h2>Request a Quote</h2>
+      <p class="info">
+        {{finding?.description}}
+      </p>
     </div>
     <p>
-        Donec vitae nisl risus. Proin porttitor mi facilisis justo efficitur euismod. Ut tristique nulla id convallis
-        venenatis. Quisque maximus iaculis hendrerit. Morbi euismod vel lacus at feugiat. Ut dictum convallis purus,
-        pellentesque pellentesque tellus varius id. Etiam fermentum diam sed lacus accumsan molestie. Donec dictum
-        ultrices justo, in commodo ex tincidunt dignissim. Curabitur nec ligula sit amet nunc tristique congue. Nam
-        vestibulum ligula id rutrum blandit. Integer gravida porttitor erat, quis sollicitudin lorem tempor eu.
+      Donec vitae nisl risus. Proin porttitor mi facilisis justo efficitur euismod. Ut tristique nulla id convallis
+      venenatis. Quisque maximus iaculis hendrerit. Morbi euismod vel lacus at feugiat. Ut dictum convallis purus,
+      pellentesque pellentesque tellus varius id. Etiam fermentum diam sed lacus accumsan molestie. Donec dictum
+      ultrices justo, in commodo ex tincidunt dignissim. Curabitur nec ligula sit amet nunc tristique congue. Nam
+      vestibulum ligula id rutrum blandit. Integer gravida porttitor erat, quis sollicitudin lorem tempor eu.
     </p>
     <div class="center">
-        <button mat-button mat-raised-button color="primary" (click)="requestQuote()">
-            Request Quote
-        </button>
+      <button mat-button mat-raised-button color="primary" (click)="requestQuote()">
+        Request Quote
+      </button>
     </div>
-</div>
+  </div>
+}
 

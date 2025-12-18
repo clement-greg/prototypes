@@ -4,11 +4,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+
 
 @Component({
     selector: 'app-polaroid-carousel-demo',
-    imports: [CommonModule, PolaroidCarouselComponent, MatFormFieldModule, MatSelectModule, MatInputModule, FormsModule],
+    imports: [PolaroidCarouselComponent, MatFormFieldModule, MatSelectModule, MatInputModule, FormsModule],
     templateUrl: './polaroid-carousel-demo.component.html',
     styleUrl: './polaroid-carousel-demo.component.scss'
 })

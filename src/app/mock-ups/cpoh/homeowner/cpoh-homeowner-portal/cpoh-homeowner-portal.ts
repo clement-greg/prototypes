@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component } from '@angular/core';
 import { SlideOutPanelContainer } from '../../../website-parts/slide-out-panel-container/slide-out-panel-container';
 import { MatButtonModule } from '@angular/material/button';
@@ -11,7 +11,6 @@ import { CpohViewReopen } from '../cpoh-view-reopen/cpoh-view-reopen';
 @Component({
   selector: 'app-cpoh-homeowner-portal',
   imports: [
-    CommonModule,
     SlideOutPanelContainer,
     MatButtonModule,
     CpohInspectionFindings,
@@ -19,7 +18,7 @@ import { CpohViewReopen } from '../cpoh-view-reopen/cpoh-view-reopen';
     CpohViewQuote,
     CpohViewStatus,
     CpohViewReopen
-  ],
+],
   templateUrl: './cpoh-homeowner-portal.html',
   styleUrl: './cpoh-homeowner-portal.scss',
 })

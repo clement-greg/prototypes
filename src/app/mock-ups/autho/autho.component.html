@@ -1,149 +1,148 @@
 <div style="padding-left: 10px;padding-right: 10px;">
-    <h1>Costs</h1>
-    <p class="info">Please provide an estimate for parts &amp; labor</p>
-    <div aflex>
-        <div> <app-display-total [hideTriangle]="true" [total]="approvedTotal" label="$ Approved"></app-display-total>
-        </div>
-        <div>
-            <app-display-total [hideTriangle]="true" [total]="oop" label="Out Of Pocket"></app-display-total>
-        </div>
-        <div>
-            <app-display-total [hideTriangle]="true" [total]="partsCost" label="Parts Cost"></app-display-total>
-        </div>
-    </div>
+  <h1>Costs</h1>
+  <p class="info">Please provide an estimate for parts &amp; labor</p>
+  <div aflex>
+    <div> <app-display-total [hideTriangle]="true" [total]="approvedTotal" label="$ Approved"></app-display-total>
+  </div>
+  <div>
+    <app-display-total [hideTriangle]="true" [total]="oop" label="Out Of Pocket"></app-display-total>
+  </div>
+  <div>
+    <app-display-total [hideTriangle]="true" [total]="partsCost" label="Parts Cost"></app-display-total>
+  </div>
+</div>
 </div>
 
 
 <ul class="lines">
-    <li *ngFor="let item of costLines" [@simpleFadeAnimation] (click)="editLine(item)">
-
-        <div matRipple>
-            @if(item.isQuestion) {
-            <mat-icon class="covered-icon-sm">help</mat-icon>
-            } @else if(getIsLineCovered(item)) {
-            <mat-icon class="covered-icon-sm" style="color: green;">done</mat-icon>
-            } @else {
-            <mat-icon class="covered-icon-sm" style="color: red;">close</mat-icon>
-            }
+  @for (item of costLines; track item) {
+    <li [@simpleFadeAnimation] (click)="editLine(item)">
+      <div matRipple>
+        @if(item.isQuestion) {
+          <mat-icon class="covered-icon-sm">help</mat-icon>
+        } @else if(getIsLineCovered(item)) {
+          <mat-icon class="covered-icon-sm" style="color: green;">done</mat-icon>
+        } @else {
+          <mat-icon class="covered-icon-sm" style="color: red;">close</mat-icon>
+        }
+      </div>
+      <div matRipple>
+        <h3 style="margin: 0;line-height: 20px;">
+        {{item.description}}</h3>
+        <div aflex style="margin-top: 10px;">
+          <div>
+            <div class="data-label">Unit Price</div>
+            {{item.amount | currency}}
+          </div>
+          <div>
+            <div class="data-label">Qty</div>
+            {{item.qty}}
+          </div>
+          <div>
+            <div class="data-label">Total</div>
+            {{item.ext | currency}}
+          </div>
         </div>
-        <div matRipple>
-            <h3 style="margin: 0;line-height: 20px;">
-                {{item.description}}</h3>
-
-            <div aflex style="margin-top: 10px;">
-                <div>
-                    <div class="data-label">Unit Price</div>
-                    {{item.amount | currency}}
-                </div>
-                <div>
-                    <div class="data-label">Qty</div>
-                    {{item.qty}}
-                </div>
-                <div>
-                    <div class="data-label">Total</div>
-                    {{item.ext | currency}}
-                </div>
-            </div>
-
-
-        </div>
-        <div>
-            <button mat-button (click)="deleteItem(item, $event)">
-                <mat-icon>delete</mat-icon>
-            </button>
-        </div>
-    </li>
-
-    <li style="text-align: center;" [class.no-item-add]="costLines.length === 0">
-        <button mat-fab class="add-btn" (click)="createNew()">
-            <mat-icon>add</mat-icon>
+      </div>
+      <div>
+        <button mat-button (click)="deleteItem(item, $event)">
+          <mat-icon>delete</mat-icon>
         </button>
-        <p *ngIf="costLines.length === 0" style="margin-top: 30px;color: #aaa;" class="info">
-            Add Line Items To The Job
-        </p>
+      </div>
     </li>
+  }
+
+  <li style="text-align: center;" [class.no-item-add]="costLines.length === 0">
+    <button mat-fab class="add-btn" (click)="createNew()">
+      <mat-icon>add</mat-icon>
+    </button>
+    @if (costLines.length === 0) {
+      <p style="margin-top: 30px;color: #aaa;" class="info">
+        Add Line Items To The Job
+      </p>
+    }
+  </li>
 </ul>
 
-<div class="side-bar" *ngIf="sideBarOpen && selectedCostLine">
+@if (sideBarOpen && selectedCostLine) {
+  <div class="side-bar">
     <button mat-button (click)="sideBarOpen = false;sideBarOpenChange.emit(sideBarOpen);" class="close-btn">
-        <mat-icon>close</mat-icon>
+      <mat-icon>close</mat-icon>
     </button>
     <div style="text-align: center;margin-bottom: 30px;margin-top: -40px">
-        @if(selectedCostLine.isQuestion) {
+      @if(selectedCostLine.isQuestion) {
         <mat-icon class="covered-icon">help</mat-icon>
         <p class="info">Unsure</p>
-        } @else if(getIsLineCovered(selectedCostLine)) {
+      } @else if(getIsLineCovered(selectedCostLine)) {
         <mat-icon class="covered-icon" style="color: green;">done</mat-icon>
-
         <p class="info">Item Covered</p>
-        } @else {
+      } @else {
         <mat-icon class="covered-icon" style="color: red;">close</mat-icon>
         <p class="info">Item Not Covered</p>
-        }
+      }
     </div>
-
-    <div *ngIf="!selectedCostLine.defaultItem">
+    @if (!selectedCostLine.defaultItem) {
+      <div>
         <app-repair-item-selector #repairItemSelectorComponent (repairItemSelected)="repairItemSelected($event)"
-            (repairItemNameChange)="repairItemNameChange($event)" [repairItems]="items"></app-repair-item-selector>
-    </div>
-
-    <div *ngIf="selectedCostLine.defaultItem" (click)="unDefault()">
+        (repairItemNameChange)="repairItemNameChange($event)" [repairItems]="items"></app-repair-item-selector>
+      </div>
+    }
+    @if (selectedCostLine.defaultItem) {
+      <div (click)="unDefault()">
         <h2>{{selectedCostLine.description}}</h2>
-    </div>
-
+      </div>
+    }
     <mat-form-field appearance="outline" style="max-width: 130px;">
-        <mat-label>Quantity</mat-label>
-        <input matInput type="number" [(ngModel)]="selectedCostLine.qty">
+      <mat-label>Quantity</mat-label>
+      <input matInput type="number" [(ngModel)]="selectedCostLine.qty">
     </mat-form-field>
-
     <div aflex>
-        <div nogrow>
-            <mat-form-field appearance="outline" style="max-width: 160px;">
-                <mat-label>Unit Price</mat-label>
-                <input matInput type="number" [disabled]="selectedCostLine.companyProvidesPart"
-                    [(ngModel)]="selectedCostLine.amount">
-            </mat-form-field>
+      <div nogrow>
+        <mat-form-field appearance="outline" style="max-width: 160px;">
+          <mat-label>Unit Price</mat-label>
+          <input matInput type="number" [disabled]="selectedCostLine.companyProvidesPart"
+            [(ngModel)]="selectedCostLine.amount">
+          </mat-form-field>
         </div>
         <div>
             <div style="margin-top: -20px;
             margin-left: 20px;">
-                <app-display-total [hideTriangle]="true" [total]="selectedCostLine.ext"
-                    label="Subtotal"></app-display-total>
-            </div>
+            <app-display-total [hideTriangle]="true" [total]="selectedCostLine.ext"
+            label="Subtotal"></app-display-total>
+          </div>
         </div>
-    </div>
-
-    <div>
+      </div>
+      <div>
         <mat-slide-toggle [disabled]="!selectedCostLine.companyProvidedAvailable"
-            [(ngModel)]="selectedCostLine.companyProvidesPart">Elevate Provided</mat-slide-toggle>
-    </div>
-
-    <div style="margin-top: 20px;">
+        [(ngModel)]="selectedCostLine.companyProvidesPart">Elevate Provided</mat-slide-toggle>
+      </div>
+      <div style="margin-top: 20px;">
         <mat-slide-toggle [(ngModel)]="selectedCostLine.forIncompatibility">For Incompatibilty</mat-slide-toggle>
-    </div>
-
-    <div style="margin-top: 20px;">
+      </div>
+      <div style="margin-top: 20px;">
         <mat-slide-toggle [(ngModel)]="selectedCostLine.disputeCoverage">Don't Agree With Coverage</mat-slide-toggle>
-
-        <div *ngIf="selectedCostLine.disputeCoverage">
+        @if (selectedCostLine.disputeCoverage) {
+          <div>
             <mat-form-field appearance="outline" style="display: block; margin-top: 20px">
-                <mat-label>Reason</mat-label>
-                <textarea matInput [(ngModel)]="selectedCostLine.disputeReason" rows="3"></textarea>
+              <mat-label>Reason</mat-label>
+              <textarea matInput [(ngModel)]="selectedCostLine.disputeReason" rows="3"></textarea>
             </mat-form-field>
-        </div>
-    </div>
-
-    <button mat-button mat-raised-button (click)="addUpdateItem()" color="primary" [disabled]="!canSaveItem"
-        style="display: block;width: 100%;margin-top: 20px">Add</button>
-
-    <div style="margin-top: 30px;">
-        <div class="call-out" *ngIf="selectedCostLine.authorizationRepairItemSelector?.perUnitLimit">
-
+          </div>
+        }
+      </div>
+      <button mat-button mat-raised-button (click)="addUpdateItem()" color="primary" [disabled]="!canSaveItem"
+      style="display: block;width: 100%;margin-top: 20px">Add</button>
+      <div style="margin-top: 30px;">
+        @if (selectedCostLine.authorizationRepairItemSelector?.perUnitLimit) {
+          <div class="call-out">
             There is a limit of {{selectedCostLine.authorizationRepairItemSelector?.perUnitLimit | currency}} per unit.
-        </div>
-
-        <div class="call-out" *ngIf="selectedCostLine.authorizationRepairItemSelector?.overallLimit">
+          </div>
+        }
+        @if (selectedCostLine.authorizationRepairItemSelector?.overallLimit) {
+          <div class="call-out">
             There is an overall limit of {{selectedCostLine.authorizationRepairItemSelector?.overallLimit | currency}}.
-        </div>
+          </div>
+        }
+      </div>
     </div>
-</div>
+  }

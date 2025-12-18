@@ -1,11 +1,15 @@
 <img src="/assets/images/parts-diagram.png">
 
 <div id="svgContainer" (mousedown)="mouseDown($event)" (mouseup)="mouseUp($event)" (mousemove)="mouseMove($event)">
-    <svg version="1.2" baseProfile="tiny" id="mySvg">
+  <svg version="1.2" baseProfile="tiny" id="mySvg">
 
-        <circle (click)="selectCircle(hotSpot, $event)" style="cursor: pointer;" stroke="red" stroke-width="2" [attr.fill]="getFill(hotSpot)" *ngFor="let hotSpot of circles" [attr.cx]="hotSpot.x" [attr.cy]="hotSpot.y" [attr.r]="hotSpot.radius"></circle>
-        <polygon (click)="selectPolygon(polygon, $event)" style="cursor: pointer;" stroke="red" stroke-width="2" [attr.fill]="getPolygonFill(polygon)" *ngFor="let polygon of polygons" [attr.points]="getPolygonPoints(polygon)"></polygon>
-    </svg>
+    @for (hotSpot of circles; track hotSpot) {
+      <circle (click)="selectCircle(hotSpot, $event)" style="cursor: pointer;" stroke="red" stroke-width="2" [attr.fill]="getFill(hotSpot)" [attr.cx]="hotSpot.x" [attr.cy]="hotSpot.y" [attr.r]="hotSpot.radius"></circle>
+    }
+    @for (polygon of polygons; track polygon) {
+      <polygon (click)="selectPolygon(polygon, $event)" style="cursor: pointer;" stroke="red" stroke-width="2" [attr.fill]="getPolygonFill(polygon)" [attr.points]="getPolygonPoints(polygon)"></polygon>
+    }
+  </svg>
 </div>
 
 <h1>{{selectedMode}}</h1>

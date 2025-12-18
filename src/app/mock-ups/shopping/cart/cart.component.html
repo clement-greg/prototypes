@@ -1,95 +1,98 @@
 <mat-tab-group [(selectedIndex)]="selectedIndex" class="hide-tabs">
-    <mat-tab label="First">
-        <div class="center" *ngIf="cart.cartItems.length === 0">
-            <app-lottie-player src="https://lottie.host/499a22aa-a183-44ca-850a-0147e7ec18f8/Xh2FEpezVk.json"
-                height="120px" [intermission]="10000"></app-lottie-player>
-            <div class="info">Your Cart Is Empty</div>
-        </div>
-        <div *ngIf="cart.cartItems.length > 0">
-
-            <div aflex *ngFor="let item of cart.cartItems">
-
-                <div nogrow>
-                    <img [src]="item.item.images[0][0]">
-                </div>
-                <div>
-                    <h2>{{item.item.brand?.name}}</h2>
-                    <div>{{item.item.title}}</div>
-                    <div>
-                        {{item.item.price | currency}}
-                    </div>
-
-                </div>
-                <div nogrow>
-                    <button mat-icon-button (click)="removeItem(item)">
-                        <mat-icon>delete</mat-icon>
-                    </button>
-                </div>
+  <mat-tab label="First">
+    @if (cart.cartItems.length === 0) {
+      <div class="center">
+        <app-lottie-player src="https://lottie.host/499a22aa-a183-44ca-850a-0147e7ec18f8/Xh2FEpezVk.json"
+        height="120px" [intermission]="10000"></app-lottie-player>
+        <div class="info">Your Cart Is Empty</div>
+      </div>
+    }
+    @if (cart.cartItems.length > 0) {
+      <div>
+        @for (item of cart.cartItems; track item) {
+          <div aflex>
+            <div nogrow>
+              <img [src]="item.item.images[0][0]">
             </div>
-            <div class="center" style="margin-top: 40px">
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>Cart Total</td>
-                            <td class="right">{{cartTotal | currency}}</td>
-                        </tr>
-                        <tr>
-                            <td>Cash In Lieu Credit</td>
-                            <td class="right">-{{cart.cashOutAmount | currency}}</td>
-                        </tr>
-
-                    </tbody>
-                </table>
-                <span class="info">Due Now</span>
-                <h1 style="margin-bottom: 20px;">{{cartTotal - cart.cashOutAmount | currency}}</h1>
-                <button mat-button mat-raised-button (click)="selectedIndex = 1" color="primary">Check Out</button>
-            </div>
-
-        </div>
-    </mat-tab>
-    <mat-tab label="Second"> 
-        <div aflex>
             <div>
-                <div class="info">Delivery Location</div>    
-
-                232 W Carson Way<br>
-                Salem, UT 84653<br>
+              <h2>{{item.item.brand?.name}}</h2>
+              <div>{{item.item.title}}</div>
+              <div>
+                {{item.item.price | currency}}
+              </div>
             </div>
             <div nogrow>
-
-                <button mat-icon-button>
-                    <mat-icon>edit</mat-icon>
-                </button>
+              <button mat-icon-button (click)="removeItem(item)">
+                <mat-icon>delete</mat-icon>
+              </button>
             </div>
+          </div>
+        }
+        <div class="center" style="margin-top: 40px">
+          <table>
+            <tbody>
+              <tr>
+                <td>Cart Total</td>
+                <td class="right">{{cartTotal | currency}}</td>
+              </tr>
+              <tr>
+                <td>Cash In Lieu Credit</td>
+                <td class="right">-{{cart.cashOutAmount | currency}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <span class="info">Due Now</span>
+          <h1 style="margin-bottom: 20px;">{{cartTotal - cart.cashOutAmount | currency}}</h1>
+          <button mat-button mat-raised-button (click)="selectedIndex = 1" color="primary">Check Out</button>
         </div>
+      </div>
+    }
+  </mat-tab>
+  <mat-tab label="Second">
+    <div aflex>
+      <div>
+        <div class="info">Delivery Location</div>
 
-        <div style="margin-top: 40px;">
-            <div class="info">Payment Method</div>
-            <div aflex>
-                <div>
-                    <div>Visa</div>
-                    <div>**** **** **** 1234</div>
-                </div>
-                <div nogrow>
-                    <button mat-icon-button>
-                        <mat-icon>edit</mat-icon>
-                    </button>
-                </div>
-            </div>
+        232 W Carson Way<br>
+        Salem, UT 84653<br>
+      </div>
+      <div nogrow>
+
+        <button mat-icon-button>
+          <mat-icon>edit</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <div style="margin-top: 40px;">
+      <div class="info">Payment Method</div>
+      <div aflex>
+        <div>
+          <div>Visa</div>
+          <div>**** **** **** 1234</div>
         </div>
-
-        <div class="center" style="margin-top: 40px;">
-            <button mat-button mat-raised-button color="primary" [disabled]="saving" (click)="placeOrder()">
-                <mat-spinner style="display: inline-block;" *ngIf="saving" diameter="16"></mat-spinner>
-                Place Order</button>
+        <div nogrow>
+          <button mat-icon-button>
+            <mat-icon>edit</mat-icon>
+          </button>
         </div>
+      </div>
+    </div>
 
-    </mat-tab>
-    <mat-tab label="Third"> 
-        <div class="center">
-            <h1>Order Placed</h1>
-            <app-lottie-player src="https://lottie.host/63ef23c2-1162-4d37-be9f-56626c87841e/vt2aeD94Vy.json"
-                height="200px" [intermission]="10000"></app-lottie-player>
-        </div>    
-    </mat-tab>
+    <div class="center" style="margin-top: 40px;">
+      <button mat-button mat-raised-button color="primary" [disabled]="saving" (click)="placeOrder()">
+        @if (saving) {
+          <mat-spinner style="display: inline-block;" diameter="16"></mat-spinner>
+        }
+      Place Order</button>
+    </div>
+
+  </mat-tab>
+  <mat-tab label="Third">
+    <div class="center">
+      <h1>Order Placed</h1>
+      <app-lottie-player src="https://lottie.host/63ef23c2-1162-4d37-be9f-56626c87841e/vt2aeD94Vy.json"
+      height="200px" [intermission]="10000"></app-lottie-player>
+    </div>
+  </mat-tab>
 </mat-tab-group>

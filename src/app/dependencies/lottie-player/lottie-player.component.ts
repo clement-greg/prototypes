@@ -1,9 +1,9 @@
-import { CommonModule } from '@angular/common';
+
 import { AfterViewInit, Component, CUSTOM_ELEMENTS_SCHEMA, Input } from '@angular/core';
 
 @Component({
     selector: 'app-lottie-player',
-    imports: [CommonModule],
+    imports: [],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     templateUrl: './lottie-player.component.html',
     styleUrl: './lottie-player.component.scss'

@@ -1,10 +1,10 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
     selector: 'app-search-pagination',
-    imports: [CommonModule, MatButtonModule],
+    imports: [MatButtonModule],
     templateUrl: './search-pagination.component.html',
     styleUrl: './search-pagination.component.scss'
 })

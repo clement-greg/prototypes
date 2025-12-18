@@ -1,28 +1,31 @@
 <div style="padding: 40px" (window:mouseup)="stop($event)">
-    <button mat-button mat-raised-button class="record-button" [class.recording]="recording"
-      (mousedown)="doRecord($event)" (touchstart)="doRecord($event)" (touchend)="stop($event)" (mouseup)="stop($event)">
-      <mat-icon style="font-size: 40px;height: 40px;width: 40px;">mic</mat-icon>
-    </button>
-  
-  
-    <div class="sound-clips" style="margin-top: 40px;"></div>
-  
-  
-    <h2>Recordings</h2>
-    <div *ngFor="let recording of recordings">
+  <button mat-button mat-raised-button class="record-button" [class.recording]="recording"
+    (mousedown)="doRecord($event)" (touchstart)="doRecord($event)" (touchend)="stop($event)" (mouseup)="stop($event)">
+    <mat-icon style="font-size: 40px;height: 40px;width: 40px;">mic</mat-icon>
+  </button>
+
+
+  <div class="sound-clips" style="margin-top: 40px;"></div>
+
+
+  <h2>Recordings</h2>
+  @for (recording of recordings; track recording) {
+    <div>
       <audio controls [src]="recording"></audio>
-  
       <button mat-button (click)="removeRecording(recording)">
         <mat-icon>delete</mat-icon>
       </button>
     </div>
-  </div>
-  
-  <div>
+  }
+</div>
+
+<div>
   <mat-form-field style="display: block;width: 100%;" appearance="outline">
     <mat-label>Voice</mat-label>
     <mat-select [(ngModel)]="seletedVoice">
-      <mat-option *ngFor="let voice of voices" [value]="voice">{{voice.name}}</mat-option>
+      @for (voice of voices; track voice) {
+        <mat-option [value]="voice">{{voice.name}}</mat-option>
+      }
     </mat-select>
   </mat-form-field>
 </div>

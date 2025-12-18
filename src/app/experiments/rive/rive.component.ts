@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -9,7 +9,7 @@ import * as rive from "@rive-app/canvas";
 
 @Component({
     selector: 'app-rive',
-    imports: [CommonModule, MatButtonModule, FormsModule, MatInputModule, MatSelectModule, MatFormFieldModule],
+    imports: [MatButtonModule, FormsModule, MatInputModule, MatSelectModule, MatFormFieldModule],
     templateUrl: './rive.component.html',
     styleUrl: './rive.component.scss'
 })

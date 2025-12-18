@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -18,13 +18,7 @@ import { SerpapiService } from '../serpapi.service';
 
 @Component({
     selector: 'app-shopping',
-    imports: [CommonModule, MatButtonModule, MatFormFieldModule, FormsModule,
-        SearchPaginationComponent,
-        SearchLoadingComponent,
-        SearchItemDetailComponent,
-        SearchFilterContainerComponent,
-        CartComponent,
-        SearchFilterComponent, MatInputModule, MatIconModule, MatProgressSpinnerModule, SearchResultItemComponent],
+    imports: [MatButtonModule, MatFormFieldModule, FormsModule, SearchPaginationComponent, SearchLoadingComponent, SearchItemDetailComponent, SearchFilterContainerComponent, CartComponent, SearchFilterComponent, MatInputModule, MatIconModule, MatProgressSpinnerModule, SearchResultItemComponent],
     templateUrl: './shopping.component.html',
     styleUrl: './shopping.component.scss'
 })

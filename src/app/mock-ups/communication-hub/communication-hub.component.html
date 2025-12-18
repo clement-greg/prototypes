@@ -5,153 +5,160 @@
 </div>
 
 <div aflex>
-    <div></div>
-    <div nogrow>
-        <button mat-button style="    z-index: 1; color: #fff; top: 20px;" id="open-coms" (click)="communicationOpen = !communicationOpen; goBack();">
-            <mat-icon>message</mat-icon>
-            <span class="badge">{{unreadCount}}</span>
-        </button>
-    </div>
-</div> 
+  <div></div>
+  <div nogrow>
+    <button mat-button style="    z-index: 1; color: #fff; top: 20px;" id="open-coms" (click)="communicationOpen = !communicationOpen; goBack();">
+      <mat-icon>message</mat-icon>
+      <span class="badge">{{unreadCount}}</span>
+    </button>
+  </div>
+</div>
 
-<div id="communication-panel" *ngIf="communicationOpen">
-
+@if (communicationOpen) {
+  <div id="communication-panel">
     <mat-tab-group class="hide-tabs max-height" [(selectedIndex)]="selectedIndex">
-        <mat-tab>
-            <div style="height: 100%;display: flex;flex-direction: column;">
-                <div style="flex: none;">
-                    <div aflex>
-                        <div>
-                            <h2 class="sub-heading" style="margin-top: 10px !important;margin-left: 10px !important;">Communications
-                                
-                            </h2>
-                        </div>
-                        <div nogrow>
-                            <button mat-fab color="primary"
-                                [matMenuTriggerFor]="menu">
-                                <mat-icon>add</mat-icon>
-                            </button>
-                        </div>
-                    </div>
-                
-                    <mat-menu #menu="matMenu">
-                        <button mat-menu-item>
-                            <mat-icon>sms</mat-icon>
-                            SMS Text
-                        </button>
-                        <button mat-menu-item>
-                            <mat-icon>email</mat-icon> Email
-                        </button>
-                        <button mat-menu-item>
-                            <mat-icon>phone</mat-icon> Phone Call
-                        </button>
-                        <button mat-menu-item>
-                            <mat-icon>voicemail</mat-icon> Voice Chat
-                        </button>
-                        <button mat-menu-item>
-                            <mat-icon>record_voice_over</mat-icon> Task
-                        </button>
-                        <button mat-menu-item>
-                            <mat-icon>note</mat-icon> Note
-                        </button>
-                    </mat-menu>
-                </div>
-                <div style="flex: 1;overflow: auto;">
-                    <button style="height: unset;" mat-button class="communication-item toggle-button" [class.bold]="communication.isNew"
-                    [class.selected]="selectedCommunication === communication" (click)="selectCommunication(communication)"
-                    *ngFor="let communication of communications">
-            
-                    <div aflex>
-                        <div nogrow class="from-box">
-                            <img *ngIf="communication.fromId"
-                                src="https://dev-api.upkeeplabs.com/api/entity/thumbnail/{{communication.fromId}}" class="avatar">
-            
-                            <div class="communication-type-container" [class.no-avatar]="!communication.fromId">
-                                <mat-icon class="communication-type" [class.no-avatar]="!communication.fromId">
-                                    {{communication.cssClass}}</mat-icon>
-                            </div>
-                            <br>
-                            <span class="small">{{communication.from}}</span>
-                        </div>
-                        <div class="communication-text">
-                            {{communication.text}}
-                        </div>
-                        <div nogrow class="date">
-                            {{communication.createdDate | date: 'shortDate'}} <br> {{communication.createdDate | date: 'shortTime'}}
-                        </div>
-                    </div>
+      <mat-tab>
+        <div style="height: 100%;display: flex;flex-direction: column;">
+          <div style="flex: none;">
+            <div aflex>
+              <div>
+                <h2 class="sub-heading" style="margin-top: 10px !important;margin-left: 10px !important;">Communications
+                </h2>
+              </div>
+              <div nogrow>
+                <button mat-fab color="primary"
+                  [matMenuTriggerFor]="menu">
+                  <mat-icon>add</mat-icon>
                 </button>
-                </div>
+              </div>
             </div>
-
-
-        </mat-tab>
-        <mat-tab>
-
-            <div style="display: flex;flex-direction: column;height: 100%;" *ngIf="selectedCommunication">
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>
+                <mat-icon>sms</mat-icon>
+                SMS Text
+              </button>
+              <button mat-menu-item>
+                <mat-icon>email</mat-icon> Email
+              </button>
+              <button mat-menu-item>
+                <mat-icon>phone</mat-icon> Phone Call
+              </button>
+              <button mat-menu-item>
+                <mat-icon>voicemail</mat-icon> Voice Chat
+              </button>
+              <button mat-menu-item>
+                <mat-icon>record_voice_over</mat-icon> Task
+              </button>
+              <button mat-menu-item>
+                <mat-icon>note</mat-icon> Note
+              </button>
+            </mat-menu>
+          </div>
+          <div style="flex: 1;overflow: auto;">
+            @for (communication of communications; track communication) {
+              <button style="height: unset;" mat-button class="communication-item toggle-button" [class.bold]="communication.isNew"
+                [class.selected]="selectedCommunication === communication" (click)="selectCommunication(communication)"
+                >
+                <div aflex>
+                  <div nogrow class="from-box">
+                    @if (communication.fromId) {
+                      <img
+                        src="https://dev-api.upkeeplabs.com/api/entity/thumbnail/{{communication.fromId}}" class="avatar">
+                      }
+                      <div class="communication-type-container" [class.no-avatar]="!communication.fromId">
+                        <mat-icon class="communication-type" [class.no-avatar]="!communication.fromId">
+                        {{communication.cssClass}}</mat-icon>
+                      </div>
+                      <br>
+                        <span class="small">{{communication.from}}</span>
+                      </div>
+                      <div class="communication-text">
+                        {{communication.text}}
+                      </div>
+                      <div nogrow class="date">
+                        {{communication.createdDate | date: 'shortDate'}} <br> {{communication.createdDate | date: 'shortTime'}}
+                      </div>
+                    </div>
+                  </button>
+                }
+              </div>
+            </div>
+          </mat-tab>
+          <mat-tab>
+            @if (selectedCommunication) {
+              <div style="display: flex;flex-direction: column;height: 100%;">
                 <div style="flex: none;">
-                    <div aflex>
-                        <button nogrow mat-button (click)="goBack()">
-                            <mat-icon>arrow_back</mat-icon>
-                        </button>
-                        <div class="center padding">
-                            <img *ngIf="selectedCommunication.fromId"
-                            src="https://dev-api.upkeeplabs.com/api/entity/thumbnail/{{selectedCommunication.fromId}}" style="height: 60px !important;" class="avatar"><br>
-                            <span class="small">{{selectedCommunication.from}}</span>
+                  <div aflex>
+                    <button nogrow mat-button (click)="goBack()">
+                      <mat-icon>arrow_back</mat-icon>
+                    </button>
+                    <div class="center padding">
+                      @if (selectedCommunication.fromId) {
+                        <img
+                          src="https://dev-api.upkeeplabs.com/api/entity/thumbnail/{{selectedCommunication.fromId}}" style="height: 60px !important;" class="avatar">
+                          }<br>
+                          <span class="small">{{selectedCommunication.from}}</span>
                         </div>
                         <div nogrow style="width: 36px;">
-
                         </div>
+                      </div>
                     </div>
-                </div>
-                    
-                <div style="flex: 1;overflow-y: auto;" [id]="panelId">
-                    <div class="mention-outer-container">
-                        <div *ngFor="let thread of selectedCommunication.messages" [class.incoming-grid-container]="thread.direction === 'in'" [class.outgoing-grid-container]="thread.direction === 'out'">
-
-                            <div *ngIf="thread.direction === 'in'">
+                    <div style="flex: 1;overflow-y: auto;" [id]="panelId">
+                      <div class="mention-outer-container">
+                        @for (thread of selectedCommunication.messages; track thread) {
+                          <div [class.incoming-grid-container]="thread.direction === 'in'" [class.outgoing-grid-container]="thread.direction === 'out'">
+                            @if (thread.direction === 'in') {
+                              <div>
                                 <img src="https://dev-api.upkeeplabs.com/api/entity/thumbnail/{{thread.senderId}}" class="avatar">
                                 <div class="message-date">
-                                    {{thread.createdDate | date: 'shortDate'}} <br>
-                                    {{thread.createdDate | date: 'shortTime'}}
+                                  {{thread.createdDate | date: 'shortDate'}} <br>
+                                  {{thread.createdDate | date: 'shortTime'}}
                                 </div>
-
-                            </div>
-                            <div *ngIf="thread.direction !== 'in'"></div>
+                              </div>
+                            }
+                            @if (thread.direction !== 'in') {
+                              <div></div>
+                            }
                             <div>
-
                                 <div class="mention conversation-bubble" [class.incoming]="thread.direction === 'in'" [class.outgoing]="
                                     thread.direction === 'out'">
-                                    {{thread.text}}</div>
+                              {{thread.text}}</div>
                             </div>
-                            <div *ngIf="thread.direction === 'out'">
+                            @if (thread.direction === 'out') {
+                              <div>
                                 <img src="https://dev-api.upkeeplabs.com/api/entity/thumbnail/{{thread.senderId}}" class="avatar">
                                 <div class="message-date">
-                                    {{thread.createdDate | date: 'shortDate'}} <br>
-                                    {{thread.createdDate | date: 'shortTime'}}
+                                  {{thread.createdDate | date: 'shortDate'}} <br>
+                                  {{thread.createdDate | date: 'shortTime'}}
                                 </div>
-                            </div>
-                            <div *ngIf="thread.direction !== 'out'"></div>
-                        </div>
+                              </div>
+                            }
+                            @if (thread.direction !== 'out') {
+                              <div></div>
+                            }
+                          </div>
+                        }
+                      </div>
                     </div>
-                </div>
-                <div style="flex: none;" class="padding" *ngIf="canReply">
-                    <form>
-                    <mat-form-field style="display: block;" appearance="outline">
-                        <mat-label>Message</mat-label>
-                         <textarea matInput name="new-message" cdkTextareaAutosize
-                         #autosize="cdkTextareaAutosize"
-                         cdkAutosizeMinRows="1"
-                         cdkAutosizeMaxRows="5"  [id]="textBoxId" [(ngModel)]="newMessage"></textarea>
-                        <button mat-button matSuffix  (click)="sendMessage()">
-                            <mat-icon>send</mat-icon>
-                        </button>
-                    </mat-form-field>
-                </form>
-                </div>
-            </div>
-        </mat-tab>
-    </mat-tab-group>
-
-
-</div>
+                    @if (canReply) {
+                      <div style="flex: none;" class="padding">
+                        <form>
+                          <mat-form-field style="display: block;" appearance="outline">
+                            <mat-label>Message</mat-label>
+                            <textarea matInput name="new-message" cdkTextareaAutosize
+                              #autosize="cdkTextareaAutosize"
+                              cdkAutosizeMinRows="1"
+                            cdkAutosizeMaxRows="5"  [id]="textBoxId" [(ngModel)]="newMessage"></textarea>
+                            <button mat-button matSuffix  (click)="sendMessage()">
+                              <mat-icon>send</mat-icon>
+                            </button>
+                          </mat-form-field>
+                        </form>
+                      </div>
+                    }
+                  </div>
+                }
+              </mat-tab>
+            </mat-tab-group>
+          </div>
+        }

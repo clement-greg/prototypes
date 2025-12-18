@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -7,7 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 
 @Component({
     selector: 'app-search-filter',
-    imports: [CommonModule, MatCheckboxModule, MatFormFieldModule, FormsModule, MatInputModule],
+    imports: [MatCheckboxModule, MatFormFieldModule, FormsModule, MatInputModule],
     templateUrl: './search-filter.component.html',
     styleUrl: './search-filter.component.scss'
 })

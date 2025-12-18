@@ -1,1 +1,3 @@
-<button mat-button *ngFor="let page of allPages" class="toggle-button" [class.selected]="currentPage === page" (click)="setPage(page)">{{page}}</button>
+@for (page of allPages; track page) {
+  <button mat-button class="toggle-button" [class.selected]="currentPage === page" (click)="setPage(page)">{{page}}</button>
+}

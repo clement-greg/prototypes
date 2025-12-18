@@ -1,4 +1,6 @@
 
-<div *ngFor="let value of filter.value">
+@for (value of filter.value; track value) {
+  <div>
     <mat-checkbox (ngModelChange)="raiseChange()" [(ngModel)]="value.selected">{{value.name}}</mat-checkbox>
-</div>
+  </div>
+}
