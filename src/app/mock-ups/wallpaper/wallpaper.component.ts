@@ -3,11 +3,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
-  selector: 'app-wallpaper',
-  templateUrl: './wallpaper.component.html',
-  styleUrls: ['./wallpaper.component.css'],
-  standalone: true,
-  imports: [MatIconModule, MatButtonModule]
+    selector: 'app-wallpaper',
+    templateUrl: './wallpaper.component.html',
+    styleUrls: ['./wallpaper.component.css'],
+    imports: [MatIconModule, MatButtonModule]
 })
 export class WallpaperComponent implements OnInit, OnDestroy, AfterViewInit {
   scrolled = false;

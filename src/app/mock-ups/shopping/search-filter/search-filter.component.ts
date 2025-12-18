@@ -6,11 +6,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
 @Component({
-  selector: 'app-search-filter',
-  standalone: true,
-  imports: [CommonModule, MatCheckboxModule, MatFormFieldModule, FormsModule, MatInputModule],
-  templateUrl: './search-filter.component.html',
-  styleUrl: './search-filter.component.scss'
+    selector: 'app-search-filter',
+    imports: [CommonModule, MatCheckboxModule, MatFormFieldModule, FormsModule, MatInputModule],
+    templateUrl: './search-filter.component.html',
+    styleUrl: './search-filter.component.scss'
 })
 export class SearchFilterComponent {
   @Input() filter: any;

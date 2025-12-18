@@ -2,11 +2,10 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-customer-count-wig-visual',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './customer-count-wig-visual.component.html',
-  styleUrl: './customer-count-wig-visual.component.scss'
+    selector: 'app-customer-count-wig-visual',
+    imports: [CommonModule],
+    templateUrl: './customer-count-wig-visual.component.html',
+    styleUrl: './customer-count-wig-visual.component.scss'
 })
 export class CustomerCountWigVisualComponent {
 

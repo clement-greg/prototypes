@@ -9,11 +9,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ShoppingCart, ShoppingCartItem } from '../shopping-cart.model';
 
 @Component({
-  selector: 'app-cart',
-  standalone: true,
-  imports: [CommonModule, LottiePlayerComponent, MatButtonModule, MatIconModule, MatSnackBarModule, MatTabsModule, MatProgressSpinnerModule],
-  templateUrl: './cart.component.html',
-  styleUrl: './cart.component.scss'
+    selector: 'app-cart',
+    imports: [CommonModule, LottiePlayerComponent, MatButtonModule, MatIconModule, MatSnackBarModule, MatTabsModule, MatProgressSpinnerModule],
+    templateUrl: './cart.component.html',
+    styleUrl: './cart.component.scss'
 })
 export class CartComponent {
   cart = ShoppingCart.getCart();

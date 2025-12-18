@@ -18,37 +18,36 @@ import { DisplayTotalComponent } from '../../dependencies/display-total/display-
 import { UtilitiesService } from '../../dependencies/utilities';
 
 @Component({
-  selector: 'app-autho',
-  standalone: true,
-  animations: [
-    // the fade-in/fade-out animation.
-    trigger('simpleFadeAnimation', [
-      transition(':enter', [
-        style({ opacity: 0, height: '0' }),
-        animate('200ms', style({ height: '*' })),
-        animate('100ms', style({ opacity: 1 }))
-      ]),
-      transition(':leave', [
-        style({ opacity: 1, height: '*' }),
-        animate('100ms', style({ opacity: 0 })),
-        animate('200ms', style({ height: '0' }))
-      ])
-    ])
-  ],
-  imports: [CommonModule,
-    MatButtonModule,
-    MatIconModule,
-    RepairItemSelectorComponent,
-    DisplayTotalComponent,
-    ReactiveFormsModule,
-    FormsModule,
-    MatCheckboxModule,
-    MatRippleModule,
-    MatFormFieldModule,
-    MatSlideToggleModule,
-    MatInputModule],
-  templateUrl: './autho.component.html',
-  styleUrl: './autho.component.scss'
+    selector: 'app-autho',
+    animations: [
+        // the fade-in/fade-out animation.
+        trigger('simpleFadeAnimation', [
+            transition(':enter', [
+                style({ opacity: 0, height: '0' }),
+                animate('200ms', style({ height: '*' })),
+                animate('100ms', style({ opacity: 1 }))
+            ]),
+            transition(':leave', [
+                style({ opacity: 1, height: '*' }),
+                animate('100ms', style({ opacity: 0 })),
+                animate('200ms', style({ height: '0' }))
+            ])
+        ])
+    ],
+    imports: [CommonModule,
+        MatButtonModule,
+        MatIconModule,
+        RepairItemSelectorComponent,
+        DisplayTotalComponent,
+        ReactiveFormsModule,
+        FormsModule,
+        MatCheckboxModule,
+        MatRippleModule,
+        MatFormFieldModule,
+        MatSlideToggleModule,
+        MatInputModule],
+    templateUrl: './autho.component.html',
+    styleUrl: './autho.component.scss'
 })
 export class AuthoComponent {
 

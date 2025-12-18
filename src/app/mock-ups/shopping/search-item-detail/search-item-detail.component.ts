@@ -11,11 +11,10 @@ import { ShoppingCart } from '../shopping-cart.model';
 
 
 @Component({
-  selector: 'app-search-item-detail',
-  standalone: true,
-  imports: [CommonModule, MatCardModule, StarRatingViewerComponent, MatButtonModule, MatIconModule, SearchLoadingComponent, MatExpansionModule],
-  templateUrl: './search-item-detail.component.html',
-  styleUrl: './search-item-detail.component.scss'
+    selector: 'app-search-item-detail',
+    imports: [CommonModule, MatCardModule, StarRatingViewerComponent, MatButtonModule, MatIconModule, SearchLoadingComponent, MatExpansionModule],
+    templateUrl: './search-item-detail.component.html',
+    styleUrl: './search-item-detail.component.scss'
 })
 export class SearchItemDetailComponent implements OnChanges, OnDestroy {
   @Input() itemId: string;

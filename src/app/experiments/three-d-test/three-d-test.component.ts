@@ -5,11 +5,10 @@ import 'babylonjs-loaders';
 
 
 @Component({
-  selector: 'app-three-d-test',
-  standalone: true,
-  imports: [],
-  templateUrl: './three-d-test.component.html',
-  styleUrl: './three-d-test.component.scss'
+    selector: 'app-three-d-test',
+    imports: [],
+    templateUrl: './three-d-test.component.html',
+    styleUrl: './three-d-test.component.scss'
 })
 export class ThreeDTestComponent {
 

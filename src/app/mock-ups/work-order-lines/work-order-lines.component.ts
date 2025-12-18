@@ -12,26 +12,25 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { AuthoComponent } from '../autho/autho.component';
 
 @Component({
-  selector: 'app-work-order-lines',
-  standalone: true,
-  animations: [
-    trigger('simpleFadeAnimation', [
-      transition(':enter', [
-        style({ opacity: 0, height: '0' }),
-        animate('200ms', style({ height: '*' })),
-        animate('100ms', style({ opacity: 1 }))
-      ]),
-      transition(':leave', [
-        style({ opacity: 1, height: '*' }),
-        animate('100ms', style({ opacity: 0 })),
-        animate('200ms', style({ height: '0' }))
-      ])
-    ])
-  ],
-  imports: [AuthoComponent, MatSlideToggleModule, MatMenuModule, MatSnackBarModule, CommonModule, MatProgressBarModule, FormsModule, MatButtonModule, MatTabsModule, MatIconModule],
-  templateUrl: './work-order-lines.component.html',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  styleUrl: './work-order-lines.component.scss'
+    selector: 'app-work-order-lines',
+    animations: [
+        trigger('simpleFadeAnimation', [
+            transition(':enter', [
+                style({ opacity: 0, height: '0' }),
+                animate('200ms', style({ height: '*' })),
+                animate('100ms', style({ opacity: 1 }))
+            ]),
+            transition(':leave', [
+                style({ opacity: 1, height: '*' }),
+                animate('100ms', style({ opacity: 0 })),
+                animate('200ms', style({ height: '0' }))
+            ])
+        ])
+    ],
+    imports: [AuthoComponent, MatSlideToggleModule, MatMenuModule, MatSnackBarModule, CommonModule, MatProgressBarModule, FormsModule, MatButtonModule, MatTabsModule, MatIconModule],
+    templateUrl: './work-order-lines.component.html',
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    styleUrl: './work-order-lines.component.scss'
 })
 export class WorkOrderLinesComponent {
   hasIncompatibilityCoverage: boolean;

@@ -7,11 +7,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { UtilitiesService } from '../../dependencies/utilities';
 
 @Component({
-  selector: 'app-bottom-menu',
-  standalone: true,
-  imports: [CommonModule, MatIconModule, MatTabsModule,  MatCardModule, MatButtonModule],
-  templateUrl: './bottom-menu.component.html',
-  styleUrl: './bottom-menu.component.scss'
+    selector: 'app-bottom-menu',
+    imports: [CommonModule, MatIconModule, MatTabsModule, MatCardModule, MatButtonModule],
+    templateUrl: './bottom-menu.component.html',
+    styleUrl: './bottom-menu.component.scss'
 })
 export class BottomMenuComponent implements AfterViewInit {
 

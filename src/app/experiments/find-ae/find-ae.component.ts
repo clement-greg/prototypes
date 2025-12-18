@@ -7,11 +7,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
 @Component({
-  selector: 'app-find-ae',
-  standalone: true,
-  imports: [CommonModule, FormsModule, MatInputModule, MatFormFieldModule, MatButtonModule],
-  templateUrl: './find-ae.component.html',
-  styleUrl: './find-ae.component.scss'
+    selector: 'app-find-ae',
+    imports: [CommonModule, FormsModule, MatInputModule, MatFormFieldModule, MatButtonModule],
+    templateUrl: './find-ae.component.html',
+    styleUrl: './find-ae.component.scss'
 })
 export class FindAeComponent {
 

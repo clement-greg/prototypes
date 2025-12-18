@@ -59,11 +59,10 @@ class forcastItem {
 
 
 @Component({
-  selector: 'app-weather-slide',
-  standalone: true,
-  imports: [CommonModule, LottiePlayerComponent, DotLottieComponent],
-  templateUrl: './weather-slide.component.html',
-  styleUrl: './weather-slide.component.scss'
+    selector: 'app-weather-slide',
+    imports: [CommonModule, LottiePlayerComponent, DotLottieComponent],
+    templateUrl: './weather-slide.component.html',
+    styleUrl: './weather-slide.component.scss'
 })
 export class WeatherSlideComponent implements OnInit {
 

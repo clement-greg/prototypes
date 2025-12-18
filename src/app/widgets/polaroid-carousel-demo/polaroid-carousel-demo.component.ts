@@ -7,11 +7,10 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-polaroid-carousel-demo',
-  standalone: true,
-  imports: [CommonModule, PolaroidCarouselComponent, MatFormFieldModule, MatSelectModule, MatInputModule, FormsModule],
-  templateUrl: './polaroid-carousel-demo.component.html',
-  styleUrl: './polaroid-carousel-demo.component.scss'
+    selector: 'app-polaroid-carousel-demo',
+    imports: [CommonModule, PolaroidCarouselComponent, MatFormFieldModule, MatSelectModule, MatInputModule, FormsModule],
+    templateUrl: './polaroid-carousel-demo.component.html',
+    styleUrl: './polaroid-carousel-demo.component.scss'
 })
 export class PolaroidCarouselDemoComponent {
 

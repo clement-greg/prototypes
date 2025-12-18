@@ -8,11 +8,10 @@ import { MatSelectModule } from '@angular/material/select';
 import * as rive from "@rive-app/canvas";
 
 @Component({
-  selector: 'app-rive',
-  standalone: true,
-  imports: [CommonModule, MatButtonModule, FormsModule, MatInputModule, MatSelectModule, MatFormFieldModule],
-  templateUrl: './rive.component.html',
-  styleUrl: './rive.component.scss'
+    selector: 'app-rive',
+    imports: [CommonModule, MatButtonModule, FormsModule, MatInputModule, MatSelectModule, MatFormFieldModule],
+    templateUrl: './rive.component.html',
+    styleUrl: './rive.component.scss'
 })
 export class RiveComponent {
 

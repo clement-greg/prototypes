@@ -42,11 +42,10 @@ class Message {
 }
 
 @Component({
-  selector: 'app-communication-hub',
-  templateUrl: './communication-hub.component.html',
-  styleUrls: ['./communication-hub.component.css'],
-  standalone: true,
-  imports: [CommonModule, MatMenuModule, MatButtonModule, MatIconModule, MatTabsModule, MatFormFieldModule, FormsModule, MatInputModule, TextFieldModule]
+    selector: 'app-communication-hub',
+    templateUrl: './communication-hub.component.html',
+    styleUrls: ['./communication-hub.component.css'],
+    imports: [CommonModule, MatMenuModule, MatButtonModule, MatIconModule, MatTabsModule, MatFormFieldModule, FormsModule, MatInputModule, TextFieldModule]
 })
 export class CommunicationHubComponent implements OnInit {
 

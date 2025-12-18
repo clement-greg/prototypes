@@ -8,11 +8,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 
 @Component({
-  selector: 'app-contractor-home-re-design',
-  standalone: true,
-  imports: [MatCardModule, MatIconModule, MatButtonModule, MatInputModule, MatFormFieldModule, CommonModule, ReactiveFormsModule, FormsModule],
-  templateUrl: './contractor-home-re-design.component.html',
-  styleUrl: './contractor-home-re-design.component.scss'
+    selector: 'app-contractor-home-re-design',
+    imports: [MatCardModule, MatIconModule, MatButtonModule, MatInputModule, MatFormFieldModule, CommonModule, ReactiveFormsModule, FormsModule],
+    templateUrl: './contractor-home-re-design.component.html',
+    styleUrl: './contractor-home-re-design.component.scss'
 })
 export class ContractorHomeReDesignComponent {
 

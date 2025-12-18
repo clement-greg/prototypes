@@ -2,11 +2,10 @@ import { Component } from '@angular/core';
 import { DotLottie } from '@lottiefiles/dotlottie-web';
 
 @Component({
-  selector: 'app-dot-lottie',
-  standalone: true,
-  imports: [],
-  templateUrl: './dot-lottie.component.html',
-  styleUrl: './dot-lottie.component.scss'
+    selector: 'app-dot-lottie',
+    imports: [],
+    templateUrl: './dot-lottie.component.html',
+    styleUrl: './dot-lottie.component.scss'
 })
 export class DotLottieComponent {
 

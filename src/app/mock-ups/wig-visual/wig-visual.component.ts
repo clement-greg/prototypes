@@ -5,11 +5,10 @@ import { UtilitiesService } from '../../dependencies/utilities';
 declare var Matter: any;
 
 @Component({
-  selector: 'app-wig-visual',
-  standalone: true,
-  imports: [MatIconModule],
-  templateUrl: './wig-visual.component.html',
-  styleUrl: './wig-visual.component.scss'
+    selector: 'app-wig-visual',
+    imports: [MatIconModule],
+    templateUrl: './wig-visual.component.html',
+    styleUrl: './wig-visual.component.scss'
 })
 export class WigVisualComponent implements OnInit {
 

@@ -5,11 +5,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { StarRatingViewerComponent } from '../../../widgets/star-rating-viewer/star-rating-viewer.component';
 
 @Component({
-  selector: 'app-search-result-item',
-  standalone: true,
-  imports: [CommonModule, StarRatingViewerComponent, MatButtonModule, MatIconModule],
-  templateUrl: './search-result-item.component.html',
-  styleUrl: './search-result-item.component.scss'
+    selector: 'app-search-result-item',
+    imports: [CommonModule, StarRatingViewerComponent, MatButtonModule, MatIconModule],
+    templateUrl: './search-result-item.component.html',
+    styleUrl: './search-result-item.component.scss'
 })
 export class SearchResultItemComponent {
 

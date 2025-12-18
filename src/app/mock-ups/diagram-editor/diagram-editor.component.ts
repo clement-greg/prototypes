@@ -3,11 +3,10 @@ import { Component, HostListener } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  selector: 'app-diagram-editor',
-  standalone: true,
-  imports: [CommonModule, MatButtonModule],
-  templateUrl: './diagram-editor.component.html',
-  styleUrl: './diagram-editor.component.scss'
+    selector: 'app-diagram-editor',
+    imports: [CommonModule, MatButtonModule],
+    templateUrl: './diagram-editor.component.html',
+    styleUrl: './diagram-editor.component.scss'
 })
 export class DiagramEditorComponent {
 

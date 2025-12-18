@@ -2,11 +2,10 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-clip-path-test',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './clip-path-test.component.html',
-  styleUrl: './clip-path-test.component.scss'
+    selector: 'app-clip-path-test',
+    imports: [CommonModule],
+    templateUrl: './clip-path-test.component.html',
+    styleUrl: './clip-path-test.component.scss'
 })
 export class ClipPathTestComponent {
 

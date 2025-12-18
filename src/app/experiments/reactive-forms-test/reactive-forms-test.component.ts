@@ -2,11 +2,10 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-reactive-forms-test',
-  standalone: true,
-  imports: [ReactiveFormsModule, FormsModule],
-  templateUrl: './reactive-forms-test.component.html',
-  styleUrl: './reactive-forms-test.component.scss'
+    selector: 'app-reactive-forms-test',
+    imports: [ReactiveFormsModule, FormsModule],
+    templateUrl: './reactive-forms-test.component.html',
+    styleUrl: './reactive-forms-test.component.scss'
 })
 export class ReactiveFormsTestComponent {
 

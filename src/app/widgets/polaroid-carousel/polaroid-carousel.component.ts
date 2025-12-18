@@ -4,11 +4,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
-  selector: 'app-polaroid-carousel',
-  standalone: true,
-  imports: [CommonModule, MatButtonModule, MatIconModule],
-  templateUrl: './polaroid-carousel.component.html',
-  styleUrl: './polaroid-carousel.component.scss'
+    selector: 'app-polaroid-carousel',
+    imports: [CommonModule, MatButtonModule, MatIconModule],
+    templateUrl: './polaroid-carousel.component.html',
+    styleUrl: './polaroid-carousel.component.scss'
 })
 export class PolaroidCarouselComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {

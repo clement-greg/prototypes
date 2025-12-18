@@ -12,19 +12,18 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  selector: 'app-repair-item-selector',
-  standalone: true,
-  imports: [FormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatIconModule,
-    MatButtonModule,
-    MatAutocompleteModule,
-    CommonModule,
-    ReactiveFormsModule,
-    AsyncPipe],
-  templateUrl: './repair-item-selector.component.html',
-  styleUrl: './repair-item-selector.component.scss'
+    selector: 'app-repair-item-selector',
+    imports: [FormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatIconModule,
+        MatButtonModule,
+        MatAutocompleteModule,
+        CommonModule,
+        ReactiveFormsModule,
+        AsyncPipe],
+    templateUrl: './repair-item-selector.component.html',
+    styleUrl: './repair-item-selector.component.scss'
 })
 export class RepairItemSelectorComponent {
   @Input() repairItems: WorkOrderLineAuthorizationRepairItem[];

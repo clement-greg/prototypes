@@ -69,11 +69,10 @@ export class AppliancePartCategory {
 // }
 
 @Component({
-  selector: 'app-appliance-autho',
-  templateUrl: './appliance-autho.component.html',
-  styleUrls: ['./appliance-autho.component.css'],
-  standalone: true,
-  imports: [CommonModule, MatButtonModule, MatIconModule, HttpClientModule, MatProgressSpinnerModule, MatMenuModule, MatTabsModule, MatInputModule, MatFormFieldModule, FormsModule, MatSelectModule]
+    selector: 'app-appliance-autho',
+    templateUrl: './appliance-autho.component.html',
+    styleUrls: ['./appliance-autho.component.css'],
+    imports: [CommonModule, MatButtonModule, MatIconModule, HttpClientModule, MatProgressSpinnerModule, MatMenuModule, MatTabsModule, MatInputModule, MatFormFieldModule, FormsModule, MatSelectModule]
 })
 export class ApplianceAuthoComponent implements OnInit {
 

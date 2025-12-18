@@ -17,17 +17,16 @@ import { CartComponent } from '../cart/cart.component';
 import { SerpapiService } from '../serpapi.service';
 
 @Component({
-  selector: 'app-shopping',
-  standalone: true,
-  imports: [CommonModule, MatButtonModule, MatFormFieldModule, FormsModule,
-    SearchPaginationComponent,
-    SearchLoadingComponent,
-    SearchItemDetailComponent,
-    SearchFilterContainerComponent,
-    CartComponent,
-    SearchFilterComponent, MatInputModule, MatIconModule, MatProgressSpinnerModule, SearchResultItemComponent],
-  templateUrl: './shopping.component.html',
-  styleUrl: './shopping.component.scss'
+    selector: 'app-shopping',
+    imports: [CommonModule, MatButtonModule, MatFormFieldModule, FormsModule,
+        SearchPaginationComponent,
+        SearchLoadingComponent,
+        SearchItemDetailComponent,
+        SearchFilterContainerComponent,
+        CartComponent,
+        SearchFilterComponent, MatInputModule, MatIconModule, MatProgressSpinnerModule, SearchResultItemComponent],
+    templateUrl: './shopping.component.html',
+    styleUrl: './shopping.component.scss'
 })
 export class ShoppingComponent {
 

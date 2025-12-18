@@ -2,12 +2,11 @@ import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, CUSTOM_ELEMENTS_SCHEMA, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-lottie-player',
-  standalone: true,
-  imports: [CommonModule],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  templateUrl: './lottie-player.component.html',
-  styleUrl: './lottie-player.component.scss'
+    selector: 'app-lottie-player',
+    imports: [CommonModule],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    templateUrl: './lottie-player.component.html',
+    styleUrl: './lottie-player.component.scss'
 })
 export class LottiePlayerComponent implements AfterViewInit {
     @Input() height: string = 'unset';

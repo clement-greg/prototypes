@@ -11,12 +11,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 declare var MediaRecorder: any;
 
 @Component({
-  selector: 'app-record',
-  standalone: true,
-  imports: [CommonModule, MatIconModule, MatButtonModule,
-    HttpClientModule, MatSelectModule, MatFormFieldModule, MatInputModule, FormsModule, ReactiveFormsModule],
-  templateUrl: './record.component.html',
-  styleUrl: './record.component.scss'
+    selector: 'app-record',
+    imports: [CommonModule, MatIconModule, MatButtonModule,
+        HttpClientModule, MatSelectModule, MatFormFieldModule, MatInputModule, FormsModule, ReactiveFormsModule],
+    templateUrl: './record.component.html',
+    styleUrl: './record.component.scss'
 })
 export class RecordComponent implements AfterViewInit {
   mediaRecorder: typeof MediaRecorder;

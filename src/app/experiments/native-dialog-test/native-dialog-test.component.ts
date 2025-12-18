@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-native-dialog-test',
-  standalone: true,
-  imports: [],
-  templateUrl: './native-dialog-test.component.html',
-  styleUrl: './native-dialog-test.component.scss'
+    selector: 'app-native-dialog-test',
+    imports: [],
+    templateUrl: './native-dialog-test.component.html',
+    styleUrl: './native-dialog-test.component.scss'
 })
 export class NativeDialogTestComponent {
 

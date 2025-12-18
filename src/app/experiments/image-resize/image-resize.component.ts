@@ -6,11 +6,10 @@ import { CommonModule } from '@angular/common';
 import { UtilitiesService } from '../../dependencies/utilities';
 
 @Component({
-  selector: 'app-image-resize',
-  standalone: true,
-  imports: [MatIconModule, MatButtonModule, MatCommonModule, CommonModule],
-  templateUrl: './image-resize.component.html',
-  styleUrl: './image-resize.component.scss'
+    selector: 'app-image-resize',
+    imports: [MatIconModule, MatButtonModule, MatCommonModule, CommonModule],
+    templateUrl: './image-resize.component.html',
+    styleUrl: './image-resize.component.scss'
 })
 export class ImageResizeComponent {
   fileElemId = UtilitiesService.newid();
