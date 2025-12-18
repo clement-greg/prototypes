@@ -10,7 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatIconModule,
     MatButtonModule],
   templateUrl: './cpoh-inspection-findings.html',
-  styleUrl: './cpoh-inspection-findings.scss',
+  styleUrls: ['./cpoh-inspection-findings.scss',  '../style.scss']
 })
 export class CpohInspectionFindings {
 

@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Quote } from '../cpoh-homeowner-portal/cpoh-homeowner-portal';
 import { CommonModule } from '@angular/common';
-import { DisplayTotalComponent } from '../../../website-parts/display-total/display-total.component';
+import { DisplayTotalComponent } from '../../../../dependencies/display-total/display-total.component';
 
 @Component({
   selector: 'app-cpoh-quote-detail',
@@ -10,7 +10,7 @@ import { DisplayTotalComponent } from '../../../website-parts/display-total/disp
     DisplayTotalComponent,
   ],
   templateUrl: './cpoh-quote-detail.html',
-  styleUrl: './cpoh-quote-detail.scss',
+  styleUrls: ['./cpoh-quote-detail.scss', '../style.scss']
 })
 export class CpohQuoteDetail {
 

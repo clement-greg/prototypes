@@ -9,7 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatButtonModule
 ],
   templateUrl: './cpoh-view-reopen.html',
-  styleUrl: './cpoh-view-reopen.scss',
+  styleUrls: ['./cpoh-view-reopen.scss', '../style.scss']
 })
 export class CpohViewReopen {
 

@@ -1,12 +1,13 @@
 
 import { Component } from '@angular/core';
-import { SlideOutPanelContainer } from '../../../website-parts/slide-out-panel-container/slide-out-panel-container';
+
 import { MatButtonModule } from '@angular/material/button';
 import { CpohInspectionFindings } from '../cpoh-inspection-findings/cpoh-inspection-findings';
 import { CpohRequestQuote } from '../cpoh-request-quote/cpoh-request-quote';
 import { CpohViewQuote } from '../cpoh-view-quote/cpoh-view-quote';
 import { CpohViewStatus } from '../cpoh-view-status/cpoh-view-status';
 import { CpohViewReopen } from '../cpoh-view-reopen/cpoh-view-reopen';
+import { SlideOutPanelContainer } from '../../../../widgets/website-parts/slide-out-panel-container/slide-out-panel-container';
 
 @Component({
   selector: 'app-cpoh-homeowner-portal',
@@ -20,7 +21,7 @@ import { CpohViewReopen } from '../cpoh-view-reopen/cpoh-view-reopen';
     CpohViewReopen
 ],
   templateUrl: './cpoh-homeowner-portal.html',
-  styleUrl: './cpoh-homeowner-portal.scss',
+  styleUrls: ['./cpoh-homeowner-portal.scss', '../style.scss'],
 })
 export class CpohHomeownerPortal {
 

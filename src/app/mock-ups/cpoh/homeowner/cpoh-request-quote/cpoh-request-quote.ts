@@ -1,9 +1,9 @@
 
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { InspectionFinding } from '../cpoh-homeowner-portal/cpoh-homeowner-portal';
-import { LottiePlayerComponent } from '../../../website-parts/lottie-player/lottie-player.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { LottiePlayerComponent } from '../../../../dependencies/lottie-player/lottie-player.component';
 
 @Component({
   selector: 'app-cpoh-request-quote',
@@ -13,7 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatButtonModule
 ],
   templateUrl: './cpoh-request-quote.html',
-  styleUrl: './cpoh-request-quote.scss',
+  styleUrls: ['./cpoh-request-quote.scss', '../style.scss']
 })
 export class CpohRequestQuote {
 

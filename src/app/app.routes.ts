@@ -26,6 +26,18 @@ export const routes: Routes = [
         loadComponent: () => import('./load-screens/cogent-load-pulse/cogent-load-pulse.component').then(r => r.CogentLoadPulseComponent)
     },
     {
+        path: 'new-years-2026',
+        loadComponent: () => import('./load-screens/new-years-2026/new-years-2026.component').then(r => r.NewYears2026Component)
+    },
+    {
+        path: 'major-award-christmas',
+        loadComponent: () => import('./load-screens/major-award-christmas/major-award-christmas.component').then(r => r.MajorAwardChristmasComponent)
+    },
+    {
+        path: 'halloween-2',
+        loadComponent: ()=> import('./load-screens/halloween-2/halloween-2.component').then(r => r.Halloween2Component)
+    },
+    {
         path: 'cogent-load-radial',
         loadComponent: () => import('./load-screens/cogent-load-radial/cogent-load-radial.component').then(r => r.CogentLoadRadialComponent)
     },

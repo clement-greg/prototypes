@@ -7,8 +7,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { LottiePlayerComponent } from '../../../website-parts/lottie-player/lottie-player.component';
 import { FormsModule } from '@angular/forms';
+import { LottiePlayerComponent } from '../../../../dependencies/lottie-player/lottie-player.component';
 
 @Component({
   selector: 'app-cpoh-view-quote',
@@ -23,7 +23,7 @@ import { FormsModule } from '@angular/forms';
     CpohQuoteDetail
 ],
   templateUrl: './cpoh-view-quote.html',
-  styleUrl: './cpoh-view-quote.scss',
+  styleUrls: ['./cpoh-view-quote.scss', '../style.scss']
 })
 export class CpohViewQuote {
 

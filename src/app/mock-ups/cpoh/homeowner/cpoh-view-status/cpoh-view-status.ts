@@ -11,7 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatIconModule
 ],
   templateUrl: './cpoh-view-status.html',
-  styleUrl: './cpoh-view-status.scss',
+  styleUrls: ['./cpoh-view-status.scss', '../style.scss']
 })
 export class CpohViewStatus {
 

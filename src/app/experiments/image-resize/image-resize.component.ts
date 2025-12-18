@@ -1,13 +1,12 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { MatCommonModule } from '@angular/material/core';
 
 import { UtilitiesService } from '../../dependencies/utilities';
 
 @Component({
     selector: 'app-image-resize',
-    imports: [MatIconModule, MatButtonModule, MatCommonModule],
+    imports: [MatIconModule, MatButtonModule],
     templateUrl: './image-resize.component.html',
     styleUrl: './image-resize.component.scss'
 })
