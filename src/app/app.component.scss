@@ -1,0 +1,15 @@
+.menu {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+::ng-deep .menu-category {
+    padding: 12px 16px 4px;
+    font-weight: 600;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.54);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
