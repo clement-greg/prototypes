@@ -26,6 +26,7 @@ export class MenuComponent {
 export class GroupedRoutes {
     category: string;
     routes: typeof routes;
+    subcategories?: SubcategoryGroup[];
 
     static fromRoutes(routes: RoutesWithMeta): GroupedRoutes[] { 
         const result: GroupedRoutes[] = [];
@@ -40,6 +41,39 @@ export class GroupedRoutes {
                 });
             }
         }
+        
+        // Group routes by subcategory within each category
+        for(const group of result) {
+            const subcategoryMap = new Map<string, typeof routes>();
+            const routesWithoutSubcategory: typeof routes = [];
+            
+            for(const route of group.routes) {
+                if(route.subcategory) {
+                    const existing = subcategoryMap.get(route.subcategory);
+                    if(existing) {
+                        existing.push(route);
+                    } else {
+                        subcategoryMap.set(route.subcategory, [route]);
+                    }
+                } else {
+                    routesWithoutSubcategory.push(route);
+                }
+            }
+            
+            if(subcategoryMap.size > 0) {
+                group.subcategories = Array.from(subcategoryMap.entries()).map(([name, routes]) => ({
+                    name,
+                    routes
+                }));
+                group.routes = routesWithoutSubcategory;
+            }
+        }
+        
         return result;
     }
+}
+
+export interface SubcategoryGroup {
+    name: string;
+    routes: typeof routes;
 }

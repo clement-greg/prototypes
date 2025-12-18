@@ -3,6 +3,7 @@ import { Route, Routes } from '@angular/router';
 export type RouteWithMeta = Route & {
     description?: string,
     category?: string,
+    subcategory?: string,
 
 };
 export type RoutesWithMeta = RouteWithMeta[];
@@ -23,6 +24,7 @@ export const routes: RoutesWithMeta = [
     {
         path: 'cogent-load-curly',
         category: 'Load Screens',
+        subcategory: 'Other',
         title: 'Cogent Load Curly',
         loadComponent: () => import('./load-screens/cogent-load-curly/cogent-load-curly.component').then(r => r.CogentLoadCurlyComponent)
     },
@@ -30,78 +32,91 @@ export const routes: RoutesWithMeta = [
         path: 'cogent-load-hex',
         category: 'Load Screens',
         title: 'Cogent Load Hex',
+        subcategory: 'Other',
         loadComponent: () => import('./load-screens/cogent-load-hex/cogent-load-hex.component').then(r => r.CogentLoadHexComponent)
     },
     {
         path: 'cogent-load-vert-lines',
         category: 'Load Screens',
         title: 'Cogent Load Vert Lines',
+        subcategory: 'Other',
         loadComponent: () => import('./load-screens/cogent-load-vert-lines/cogent-load-vert-lines.component').then(r => r.CogentLoadVertLinesComponent)
     },
     {
         path: 'cogent-load-pulse',
         category: 'Load Screens',
         title: 'Cogent Load Pulse',
+        subcategory: 'Other',
         loadComponent: () => import('./load-screens/cogent-load-pulse/cogent-load-pulse.component').then(r => r.CogentLoadPulseComponent)
     },
     {
         path: 'new-years-2026',
         category: 'Load Screens',
         title: 'New Years 2026',
+        subcategory: 'Winter',
         loadComponent: () => import('./load-screens/new-years-2026/new-years-2026.component').then(r => r.NewYears2026Component)
     },
     {
         path: 'major-award-christmas',
         category: 'Load Screens',
         title: 'Major Award Christmas',
+        subcategory: 'Winter',
         loadComponent: () => import('./load-screens/major-award-christmas/major-award-christmas.component').then(r => r.MajorAwardChristmasComponent)
     },
     {
         path: 'halloween-2',
         category: 'Load Screens',
         title: 'Halloween 2',
+        subcategory: 'Fall',
         loadComponent: () => import('./load-screens/halloween-2/halloween-2.component').then(r => r.Halloween2Component)
     },
     {
         path: 'cogent-load-radial',
         category: 'Load Screens',
         title: 'Cogent Load Radial',
+        subcategory: 'Other',
         loadComponent: () => import('./load-screens/cogent-load-radial/cogent-load-radial.component').then(r => r.CogentLoadRadialComponent)
     },
     {
         path: 'cogent-load-bubbles',
         category: 'Load Screens',
         title: 'Cogent Load Bubbles',
+        subcategory: 'Other',
         loadComponent: () => import('./load-screens/cogent-load-bubbles/cogent-load-bubbles.component').then(r => r.CogentLoadBubblesComponent),
     },
     {
         path: 'cogent-load-pong',
         category: 'Load Screens',
         title: 'Cogent Load Pong',
+        subcategory: 'Game',
         loadComponent: () => import('./load-screens/cogent-load-pong/cogent-load-pong.component').then(r => r.CogentLoadPongComponent),
     },
     {
         path: 'cogent-load-halloween',
         category: 'Load Screens',
         title: 'Cogent Load Halloween',
+        subcategory: 'Fall',
         loadComponent: () => import('./load-screens/cogent-load-halloween/cogent-load-halloween.component').then(r => r.CogentLoadHalloweenComponent),
     },
     {
         path: 'cogent-load-summer',
         category: 'Load Screens',
         title: 'Cogent Load Summer',
+        subcategory: 'Summer',
         loadComponent: () => import('./load-screens/cogent-load-summer/cogent-load-summer.component').then(r => r.CogentLoadSummerComponent),
     },
     {
         path: 'cogent-load-independence',
         category: 'Load Screens',
         title: 'Cogent Load Independence',
+        subcategory: 'Summer',
         loadComponent: () => import('./load-screens/cogent-load-independence/cogent-load-independence.component').then(r => r.CogentLoadIndependenceComponent),
     },
     {
         path: 'cogent-load-birthday',
         category: 'Load Screens',
         title: 'Cogent Load Birthday',
+        subcategory: 'Other',
         loadComponent: () => import('./load-screens/cogent-load-birthday/cogent-load-birthday.component').then(r => r.CogentLoadBirthdayComponent),
     },
     {
@@ -120,54 +135,63 @@ export const routes: RoutesWithMeta = [
         path: 'cogent-load-christmas',
         category: 'Load Screens',
         title: 'Cogent Load Christmas',
+        subcategory: 'Winter',
         loadComponent: () => import('./load-screens/cogent-load-christmas/cogent-load-christmas.component').then(r => r.CogentLoadChristmasComponent),
     },
     {
         path: 'cogent-load-thanksgiving',
         category: 'Load Screens',
         title: 'Cogent Load Thanksgiving',
+        subcategory: 'Fall',
         loadComponent: () => import('./load-screens/cogent-load-thanksgiving/cogent-load-thanksgiving.component').then(r => r.CogentLoadThanksgivingComponent),
     },
     {
         path: 'cogent-load-st-patricks',
         category: 'Load Screens',
         title: 'Cogent Load St Patricks',
+        subcategory: 'Spring',
         loadComponent: () => import('./load-screens/cogent-load-st-patricks/cogent-load-st-patricks.component').then(r => r.CogentLoadStPatricksComponent),
     },
     {
         path: 'cogent-load-valentines-day',
         category: 'Load Screens',
         title: 'Cogent Load Valentines Day',
+        subcategory: 'Spring',
         loadComponent: () => import('./load-screens/cogent-load-valentines-day/cogent-load-valentines-day.component').then(r => r.CogentLoadValentinesDayComponent)
     },
     {
         path: 'cogent-load-waves',
         category: 'Load Screens',
         title: 'Cogent Load Waves',
+        subcategory: 'Other',
         loadComponent: () => import('./load-screens/cogent-load-waves/cogent-load-waves.component').then(r => r.CogentLoadWavesComponent),
     },
     {
         path: 'cogent-load-ball',
         category: 'Load Screens',
         title: 'Cogent Load Ball',
+        subcategory: 'Other',
         loadComponent: () => import('./load-screens/cogent-ball-load/cogent-ball-load.component').then(r => r.CogentBallLoadComponent),
     },
     {
         path: 'cogent-load-pixels',
         category: 'Load Screens',
         title: 'Cogent Load Pixels',
+        subcategory: 'Game',
         loadComponent: () => import('./load-screens/cogent-load-pixels/cogent-load-pixels.component').then(r => r.CogentLoadPixelsComponent),
     },
     {
         path: 'cogent-load-neumorphism',
         category: 'Load Screens',
         title: 'Cogent Load Neumorphism',
+        subcategory: 'Other',
         loadComponent: () => import('./load-screens/cogent-load-neumorphism/cogent-load-neumorphism.component').then(r => r.CogentLoadNeumorphismComponent),
     },
     {
         path: 'cogent-load-edge-glow',
         category: 'Load Screens',
         title: 'Cogent Load Edge Glow',
+        subcategory: 'Other',
         loadComponent: () => import('./load-screens/cogent-load-edge-glow/cogent-load-edge-glow.component').then(r => r.CogentLoadEdgeGlowComponent),
     },
     {
@@ -180,6 +204,7 @@ export const routes: RoutesWithMeta = [
         path: 'cogent-load-spring',
         category: 'Load Screens',
         title: 'Cogent Load Spring',
+        subcategory: 'Spring',
         loadComponent: () => import('./load-screens/cogent-load-spring/cogent-load-spring.component').then(r => r.CogentLoadSpringComponent),
     },
     {
@@ -305,6 +330,7 @@ export const routes: RoutesWithMeta = [
     {
         path: 'cogent-load-dark-and-shiny',
         category: 'Load Screens',
+        subcategory: 'Other',
         title: 'Cogent Load Dark And Shiny',
         loadComponent: () => import('./load-screens/cogent-load-dark-and-shiney/cogent-load-dark-and-shiney.component').then(r => r.CogentLoadDarkAndShineyComponent),
     },
@@ -317,6 +343,7 @@ export const routes: RoutesWithMeta = [
     {
         path: 'neumorphism-load',
         category: 'Load Screens',
+        subcategory: 'Other',
         title: 'Neumorphism Load',
         loadComponent: () => import('./load-screens/neumorphism-load/neumorphism-load.component').then(r => r.NeumorphismLoadComponent),
     },
@@ -330,12 +357,14 @@ export const routes: RoutesWithMeta = [
         path: 'cogent-load-halloween-2',
         category: 'Load Screens',
         title: 'Cogent Load Halloween 2',
+        subcategory: 'Fall',
         loadComponent: () => import('./load-screens/cogent-load-halloween-2/cogent-load-halloween-2.component').then(r => r.CogentLoadHalloween2Component),
     },
     {
         path: 'cogent-load-launch',
         category: 'Load Screens',
         title: 'Cogent Load Launch',
+        subcategory: 'Other',
         loadComponent: () => import('./load-screens/cogent-launch-plans/cogent-launch-plans.component').then(r => r.CogentLaunchPlansComponent),
     },
     {

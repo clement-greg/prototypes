@@ -7,15 +7,31 @@
 <mat-menu #mainMenu="matMenu">
     @for (group of groupedRoutes; track group.category; let i = $index) {
         @if (group.category !== 'Uncategorized') {
-            <button mat-menu-item [matMenuTriggerFor]="subMenu" #menuTrigger>
+            <button mat-menu-item [matMenuTriggerFor]="categoryMenu">
                 {{ group.category }}
             </button>
-            <mat-menu #subMenu="matMenu">
+            <mat-menu #categoryMenu="matMenu">
                 @for (route of group.routes; track route.path) {
                     @if (route.path) {
                         <button mat-menu-item [routerLink]="'/' + route.path">
                             {{ route.title }}
                         </button>
+                    }
+                }
+                @if (group.subcategories) {
+                    @for (subcategory of group.subcategories; track subcategory.name) {
+                        <button mat-menu-item [matMenuTriggerFor]="subcategoryMenu">
+                            {{ subcategory.name }}
+                        </button>
+                        <mat-menu #subcategoryMenu="matMenu">
+                            @for (route of subcategory.routes; track route.path) {
+                                @if (route.path) {
+                                    <button mat-menu-item [routerLink]="'/' + route.path">
+                                        {{ route.title }}
+                                    </button>
+                                }
+                            }
+                        </mat-menu>
                     }
                 }
             </mat-menu>
