@@ -1,0 +1,26 @@
+.contractor-info  {
+    padding-bottom: 5px;
+    border-bottom: 5px solid #e6e6e6;
+    display: inline-block;
+    margin-bottom: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.contractor-info > div > div:first-child {
+    height: 60px;
+    width: 60px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.contractor-info > div > div:first-child img {
+    height: 100%;
+    width: auto;
+}
+
+.contractor-info > div {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 20px;
+}

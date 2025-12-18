@@ -1,0 +1,14 @@
+<ng-content select="[main-content]"></ng-content>
+
+<div class="backdrop" (click)="closeRightPanel()" *ngIf="showRightPanel"></div>
+<div class="right-panel" animate.enter="slide-in" animate.leave="slide-out" *ngIf="showRightPanel"
+    [style.width.px]="panelWidth" [style.height]="panelHeight" [style.top.px]="panelTop">
+
+    <button [class.scrolled]="isScrolled" mat-icon-button class="close-detail-button" (click)="closeRightPanel()">
+        <mat-icon>close</mat-icon>
+    </button>
+
+    <div (scroll)="trackScroll($event)">
+        <ng-content select="[right-panel]"></ng-content>
+    </div>
+</div>

@@ -226,6 +226,10 @@ export const routes: Routes = [
         loadComponent: () => import('./experiments/three-d-test/three-d-test.component').then(r => r.ThreeDTestComponent),
     },
     {
+        path: 'cpoh',
+        loadComponent: ()=> import('./mock-ups/cpoh/homeowner/cpoh-homeowner-portal/cpoh-homeowner-portal').then(r => r.CpohHomeownerPortal),
+    },
+    {
         path: '',
         loadComponent: () => import('./menu/menu.component').then(r => r.MenuComponent)
     }

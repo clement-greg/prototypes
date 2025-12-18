@@ -1,0 +1,15 @@
+<app-cpoh-quote-detail [quote]="quote"></app-cpoh-quote-detail>
+
+<div class="step-container">
+    <div *ngFor="let status of statuses" [class.completed]="isComplete(status.name)" [class.current]="isCurrent(status.name)" [class.upcoming]="isUpcoming(status.name)">
+        <div>
+            <div>
+                <mat-icon>{{status.icon}}</mat-icon>
+            </div>
+        </div>
+        <div>
+            <p class="info" style="margin-bottom: 0;margin-top: 0">Step #{{getStepNumber(status.name)}}</p>
+            <h2 style="margin: 0;margin-top: 5px">{{status.name}}</h2>
+        </div>
+    </div>
+</div>

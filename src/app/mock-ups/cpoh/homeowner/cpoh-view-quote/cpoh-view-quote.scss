@@ -1,0 +1,34 @@
+.separator {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+.separator::before {
+    content: "";
+    display: inline-block;
+    border-bottom: 1px solid #aaa;
+    position: absolute;
+    width: 40px;
+    top: 50%;
+    right: -43px;
+}
+
+.separator::after {
+    content: "";
+    display: inline-block;
+    border-bottom: 1px solid #aaa;
+    position: absolute;
+    width: 40px;
+    top: 50%;
+    left: -43px;
+}
+
+.reject-list {
+    button {
+        display: block;
+        width: 100%;
+        text-align: left;
+    }
+}

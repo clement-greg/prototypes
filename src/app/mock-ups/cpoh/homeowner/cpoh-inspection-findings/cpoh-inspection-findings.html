@@ -1,0 +1,58 @@
+<table class="table hide-xs">
+    <thead>
+        <tr>
+            <th>Finding</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let finding of findings">
+            <td>{{ finding.description }}</td>
+            <td>{{ finding.status }}</td>
+            <td style="width: 130px;">
+                <ng-container *ngTemplateOutlet="buttonOptions; context: { finding: finding }"></ng-container>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<ul class="condition-list show-xs">
+    <li *ngFor="let finding of findings">
+        <div>
+            <mat-icon>find_in_page</mat-icon>
+            <div>
+                <h2>{{finding.description}}</h2>
+                <div>
+                    <div>
+                        <div class="info" style="margin-top: 15px">Status</div>
+                        <div>{{finding.status}}</div>
+                    </div>
+                    <div style="text-align: right;">
+                        <ng-container *ngTemplateOutlet="buttonOptions; context: { finding: finding }"></ng-container>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </li>
+</ul>
+
+<ng-template #buttonOptions let-finding="finding">
+    <button mat-button *ngIf="finding.status === 'Pending'" (click)="selectFinding(finding)">
+        <mat-icon>drive_file_move</mat-icon> Get Quote
+    </button>
+    <button mat-button *ngIf="finding.status === 'Quoted'" (click)="selectFinding(finding)">
+        <mat-icon>request_quote</mat-icon> View Quote
+    </button>
+    <button mat-button *ngIf="finding.status === 'Work In Progress'" (click)="selectFinding(finding)">
+        <mat-icon>work</mat-icon>View Status
+    </button>
+    <button mat-button *ngIf="finding.status === 'Completed'" (click)="selectFinding(finding)">
+        <mat-icon>check_circle</mat-icon>View Status
+    </button>
+    <button mat-button *ngIf="finding.status === 'Rejected'" (click)="selectFinding(finding)">
+        <mat-icon>replay</mat-icon>Re-Open
+    </button>
+</ng-template>

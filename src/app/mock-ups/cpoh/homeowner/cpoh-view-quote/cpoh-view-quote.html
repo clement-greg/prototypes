@@ -1,0 +1,115 @@
+<div *ngIf="operation === 'Viewing'" animate.enter="slide-in" animate.leave="fade-out">
+    <app-cpoh-quote-detail [quote]="selectedQuote"></app-cpoh-quote-detail>
+    <div class="center">
+        <button mat-button mat-raised-button color="primary" (click)="beginAcceptQuote()">Accept Quote</button>
+
+        <div>
+            <div class="separator">OR</div>
+        </div>
+
+        <button mat-button mat-raised-button color="warn" (click)="beginRejectQuote()">Reject Quote</button>
+    </div>
+</div>
+<div *ngIf="operation === 'Accepting'" animate.enter="slide-in" animate.leave="fade-out">
+    <button mat-button (click)="back()">
+        <mat-icon>arrow_back</mat-icon> Back
+    </button>
+    <h2>Terms &amp; Conditions</h2>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent in risus in mauris euismod iaculis. Quisque
+        tincidunt, libero vitae fermentum tempus, nulla enim consectetur nisi, id viverra elit felis nec felis. Etiam
+        congue ut magna a vehicula. Maecenas nisl nunc, imperdiet ut risus et, vehicula lobortis velit. Fusce eget porta
+        felis. Fusce ut sem non nisi aliquam hendrerit. Nunc sit amet nibh metus. Aliquam maximus, lectus nec
+        sollicitudin porta, sapien odio vulputate mauris, viverra viverra eros sapien sit amet nibh. Donec in fringilla
+        nibh. Vestibulum rhoncus nisl eget molestie feugiat. Nullam id quam ac erat venenatis ornare. Sed sed consequat
+        orci. Cras tincidunt gravida massa a sollicitudin. Integer hendrerit, lorem et condimentum placerat, eros ex
+        blandit arcu, nec cursus eros nibh id erat.
+    </p>
+    <p>
+        Nam pellentesque dapibus eros, at vulputate arcu dapibus vitae. Curabitur elementum justo at venenatis tempus.
+        Phasellus at consectetur ligula, sed convallis dolor. Vivamus rutrum nunc quis arcu faucibus consectetur. Sed
+        sagittis ipsum at pulvinar accumsan. Praesent at lacus orci. Quisque et sem sapien. Suspendisse eget gravida
+        nibh, a auctor orci. Mauris consectetur justo in nisi fermentum consequat. Donec in interdum nunc.
+    </p>
+    <p>
+        Quisque suscipit congue purus, ut efficitur eros venenatis sed. Nunc sollicitudin non leo vitae imperdiet. Ut
+        eget massa nibh. Vivamus imperdiet et urna in ultrices. Vestibulum in nulla non ex tristique finibus id sit amet
+        tortor. Proin congue, ante bibendum feugiat accumsan, libero augue fermentum mi, a commodo est turpis vitae
+        massa. Curabitur sed aliquam leo, eget viverra sapien. Curabitur semper erat vitae sapien faucibus vulputate.
+    </p>
+    <p>
+        Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse potenti.
+        Vestibulum sed volutpat purus, vitae vulputate ex. Etiam laoreet interdum mollis. Morbi eu congue lectus, at
+        consectetur metus. Fusce at vulputate felis, at lobortis purus. Nunc faucibus ante in porttitor iaculis. Nam
+        aliquet euismod lectus, at tincidunt lorem mattis nec. Phasellus cursus a lectus et congue. Ut feugiat sapien
+        vel posuere varius. Proin a nunc accumsan, egestas purus sit amet, viverra elit. Quisque eleifend mattis
+        pulvinar. Morbi porta congue orci, at commodo metus volutpat vitae. Vivamus eleifend a lectus vitae cursus.
+    </p>
+    <p>
+        Donec vitae nisl risus. Proin porttitor mi facilisis justo efficitur euismod. Ut tristique nulla id convallis
+        venenatis. Quisque maximus iaculis hendrerit. Morbi euismod vel lacus at feugiat. Ut dictum convallis purus,
+        pellentesque pellentesque tellus varius id. Etiam fermentum diam sed lacus accumsan molestie. Donec dictum
+        ultrices justo, in commodo ex tincidunt dignissim. Curabitur nec ligula sit amet nunc tristique congue. Nam
+        vestibulum ligula id rutrum blandit. Integer gravida porttitor erat, quis sollicitudin lorem tempor eu.
+    </p>
+
+
+    <mat-checkbox [(ngModel)]="acceptTerms">I accept the terms and conditions</mat-checkbox>
+    <div class="center">
+        <button mat-button mat-raised-button color="primary" [disabled]="!acceptTerms" (click)="acceptQuote()">Accept
+            Quote</button>
+    </div>
+
+</div>
+<div *ngIf="operation === 'Rejecting'" animate.enter="slide-in" animate.leave="fade-out">
+    <button mat-button (click)="back()">
+        <mat-icon>arrow_back</mat-icon> Back
+    </button>
+    <h2>Reject Quote</h2>
+    <p>Let us know why you are rejecting this quote</p>
+    rejectReasons
+
+    <div class="reject-list">
+        <button mat-button *ngFor="let reason of rejectReasons" class="toggle-button"
+            [class.selected]="selectedReason === reason" (click)="selectedReason = reason">
+            {{reason}}
+        </button>
+    </div>
+
+    <mat-form-field appearance="outline" style="margin-top: 20px">
+        <mat-label>Additional Comments</mat-label>
+        <textarea matInput [(ngModel)]="comments" rows="5"></textarea>
+    </mat-form-field>
+
+    <div class="center">
+        <button mat-button mat-raised-button color="warn" [disabled]="!selectedReason"
+            (click)="rejectQuote()">Submit</button>
+    </div>
+</div>
+
+<div *ngIf="operation === 'Accepted'" animate.enter="slide-in" animate.leave="fade-out">
+    <div class="center">
+        <app-lottie-player src="https://lottie.host/fccee11d-e1a8-491e-9d05-276e0324faa6/rjywfpUeJj.json"
+            [intermission]="10000" height="200px"></app-lottie-player>
+        <p class="info">
+            Quote Approved!
+        </p>
+
+        <button mat-icon-button (click)="closePanel()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+</div>
+
+<div *ngIf="operation === 'Rejected'" animate.enter="slide-in" animate.leave="fade-out">
+
+    <div class="center">
+        <app-lottie-player src="https://lottie.host/75765acd-f535-49d3-bb22-66c748564fb9/HtUpSrwLTA.json"
+            [intermission]="10000" height="200px"></app-lottie-player>
+        <h1>Quote Rejected</h1>
+
+        <button mat-icon-button (click)="closePanel()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+</div>
