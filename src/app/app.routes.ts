@@ -4,6 +4,7 @@ export type RouteWithMeta = Route & {
     description?: string,
     category?: string,
     subcategory?: string,
+    icon?: string, // material icon name
 
 };
 export type RoutesWithMeta = RouteWithMeta[];
@@ -13,12 +14,14 @@ export const routes: RoutesWithMeta = [
         path: 'autho',
         title: 'Appliance Autho',
         category: 'Mock-Ups',
+        icon: 'kitchen',
         loadComponent: () => import('./mock-ups/work-order-lines/work-order-lines.component').then(r => r.WorkOrderLinesComponent)
     },
     {
         path: 'record',
         title: 'Record',
         category: 'Widgets',
+        icon: 'fiber_manual_record',
         loadComponent: () => import('./widgets/record/record.component').then(r => r.RecordComponent)
     },
     {
@@ -26,6 +29,7 @@ export const routes: RoutesWithMeta = [
         category: 'Load Screens',
         subcategory: 'Other',
         title: 'Cogent Load Curly',
+        icon: 'mode',
         loadComponent: () => import('./load-screens/cogent-load-curly/cogent-load-curly.component').then(r => r.CogentLoadCurlyComponent)
     },
     {
@@ -33,6 +37,7 @@ export const routes: RoutesWithMeta = [
         category: 'Load Screens',
         title: 'Cogent Load Hex',
         subcategory: 'Other',
+        icon: 'hexagon',
         loadComponent: () => import('./load-screens/cogent-load-hex/cogent-load-hex.component').then(r => r.CogentLoadHexComponent)
     },
     {
@@ -40,6 +45,7 @@ export const routes: RoutesWithMeta = [
         category: 'Load Screens',
         title: 'Cogent Load Vert Lines',
         subcategory: 'Other',
+        icon: 'line_weight',
         loadComponent: () => import('./load-screens/cogent-load-vert-lines/cogent-load-vert-lines.component').then(r => r.CogentLoadVertLinesComponent)
     },
     {
@@ -47,6 +53,7 @@ export const routes: RoutesWithMeta = [
         category: 'Load Screens',
         title: 'Cogent Load Pulse',
         subcategory: 'Other',
+        icon: 'radar',
         loadComponent: () => import('./load-screens/cogent-load-pulse/cogent-load-pulse.component').then(r => r.CogentLoadPulseComponent)
     },
     {
@@ -54,6 +61,7 @@ export const routes: RoutesWithMeta = [
         category: 'Load Screens',
         title: 'New Years 2026',
         subcategory: 'Winter',
+        icon: 'celebration',
         loadComponent: () => import('./load-screens/new-years-2026/new-years-2026.component').then(r => r.NewYears2026Component)
     },
     {
@@ -61,6 +69,7 @@ export const routes: RoutesWithMeta = [
         category: 'Load Screens',
         title: 'Major Award Christmas',
         subcategory: 'Winter',
+        icon: 'sledding',
         loadComponent: () => import('./load-screens/major-award-christmas/major-award-christmas.component').then(r => r.MajorAwardChristmasComponent)
     },
     {
@@ -75,6 +84,7 @@ export const routes: RoutesWithMeta = [
         category: 'Load Screens',
         title: 'Cogent Load Radial',
         subcategory: 'Other',
+        icon: 'radio_button_checked',
         loadComponent: () => import('./load-screens/cogent-load-radial/cogent-load-radial.component').then(r => r.CogentLoadRadialComponent)
     },
     {
@@ -82,6 +92,7 @@ export const routes: RoutesWithMeta = [
         category: 'Load Screens',
         title: 'Cogent Load Bubbles',
         subcategory: 'Other',
+        icon: 'bubble_chart',
         loadComponent: () => import('./load-screens/cogent-load-bubbles/cogent-load-bubbles.component').then(r => r.CogentLoadBubblesComponent),
     },
     {
@@ -89,6 +100,7 @@ export const routes: RoutesWithMeta = [
         category: 'Load Screens',
         title: 'Cogent Load Pong',
         subcategory: 'Game',
+        icon: 'sports_esports',
         loadComponent: () => import('./load-screens/cogent-load-pong/cogent-load-pong.component').then(r => r.CogentLoadPongComponent),
     },
     {
@@ -103,6 +115,7 @@ export const routes: RoutesWithMeta = [
         category: 'Load Screens',
         title: 'Cogent Load Summer',
         subcategory: 'Summer',
+        icon: 'wb_sunny',
         loadComponent: () => import('./load-screens/cogent-load-summer/cogent-load-summer.component').then(r => r.CogentLoadSummerComponent),
     },
     {
@@ -110,6 +123,7 @@ export const routes: RoutesWithMeta = [
         category: 'Load Screens',
         title: 'Cogent Load Independence',
         subcategory: 'Summer',
+        icon: 'flag',
         loadComponent: () => import('./load-screens/cogent-load-independence/cogent-load-independence.component').then(r => r.CogentLoadIndependenceComponent),
     },
     {
@@ -117,18 +131,21 @@ export const routes: RoutesWithMeta = [
         category: 'Load Screens',
         title: 'Cogent Load Birthday',
         subcategory: 'Other',
+        icon: 'cake',
         loadComponent: () => import('./load-screens/cogent-load-birthday/cogent-load-birthday.component').then(r => r.CogentLoadBirthdayComponent),
     },
     {
         path: 'clip-path-test',
         category: 'Experiments',
         title: 'Clip Path Test',
+        icon: 'content_cut',
         loadComponent: () => import('./experiments/clip-path-test/clip-path-test.component').then(r => r.ClipPathTestComponent),
     },
     {
         path: 'image-resize',
         category: 'Experiments',
         title: 'Image Resize',
+        icon: 'compress',
         loadComponent: () => import('./experiments/image-resize/image-resize.component').then(r => r.ImageResizeComponent),
     },
     {
@@ -136,6 +153,7 @@ export const routes: RoutesWithMeta = [
         category: 'Load Screens',
         title: 'Cogent Load Christmas',
         subcategory: 'Winter',
+        icon: 'holiday_village',
         loadComponent: () => import('./load-screens/cogent-load-christmas/cogent-load-christmas.component').then(r => r.CogentLoadChristmasComponent),
     },
     {
@@ -143,6 +161,7 @@ export const routes: RoutesWithMeta = [
         category: 'Load Screens',
         title: 'Cogent Load Thanksgiving',
         subcategory: 'Fall',
+        icon: 'restaurant_menu',
         loadComponent: () => import('./load-screens/cogent-load-thanksgiving/cogent-load-thanksgiving.component').then(r => r.CogentLoadThanksgivingComponent),
     },
     {
@@ -150,6 +169,7 @@ export const routes: RoutesWithMeta = [
         category: 'Load Screens',
         title: 'Cogent Load St Patricks',
         subcategory: 'Spring',
+        icon: 'local_florist',
         loadComponent: () => import('./load-screens/cogent-load-st-patricks/cogent-load-st-patricks.component').then(r => r.CogentLoadStPatricksComponent),
     },
     {
@@ -157,6 +177,7 @@ export const routes: RoutesWithMeta = [
         category: 'Load Screens',
         title: 'Cogent Load Valentines Day',
         subcategory: 'Spring',
+        icon: 'favorite',
         loadComponent: () => import('./load-screens/cogent-load-valentines-day/cogent-load-valentines-day.component').then(r => r.CogentLoadValentinesDayComponent)
     },
     {
@@ -164,6 +185,7 @@ export const routes: RoutesWithMeta = [
         category: 'Load Screens',
         title: 'Cogent Load Waves',
         subcategory: 'Other',
+        icon: 'waves',
         loadComponent: () => import('./load-screens/cogent-load-waves/cogent-load-waves.component').then(r => r.CogentLoadWavesComponent),
     },
     {
@@ -171,6 +193,7 @@ export const routes: RoutesWithMeta = [
         category: 'Load Screens',
         title: 'Cogent Load Ball',
         subcategory: 'Other',
+        icon: 'sports_baseball',
         loadComponent: () => import('./load-screens/cogent-ball-load/cogent-ball-load.component').then(r => r.CogentBallLoadComponent),
     },
     {
@@ -178,6 +201,7 @@ export const routes: RoutesWithMeta = [
         category: 'Load Screens',
         title: 'Cogent Load Pixels',
         subcategory: 'Game',
+        icon: 'grid_on',
         loadComponent: () => import('./load-screens/cogent-load-pixels/cogent-load-pixels.component').then(r => r.CogentLoadPixelsComponent),
     },
     {
@@ -185,6 +209,7 @@ export const routes: RoutesWithMeta = [
         category: 'Load Screens',
         title: 'Cogent Load Neumorphism',
         subcategory: 'Other',
+        icon: 'brightness_low',
         loadComponent: () => import('./load-screens/cogent-load-neumorphism/cogent-load-neumorphism.component').then(r => r.CogentLoadNeumorphismComponent),
     },
     {
@@ -192,12 +217,14 @@ export const routes: RoutesWithMeta = [
         category: 'Load Screens',
         title: 'Cogent Load Edge Glow',
         subcategory: 'Other',
+        icon: 'blur_on',
         loadComponent: () => import('./load-screens/cogent-load-edge-glow/cogent-load-edge-glow.component').then(r => r.CogentLoadEdgeGlowComponent),
     },
     {
         path: 'shopping',
         category: 'Mock-Ups',
         title: 'Shopping',
+        icon: 'shopping_cart',
         loadComponent: () => import('./mock-ups/shopping/shopping/shopping.component').then(r => r.ShoppingComponent),
     },
     {
@@ -205,126 +232,147 @@ export const routes: RoutesWithMeta = [
         category: 'Load Screens',
         title: 'Cogent Load Spring',
         subcategory: 'Spring',
+        icon: 'emoji_nature',
         loadComponent: () => import('./load-screens/cogent-load-spring/cogent-load-spring.component').then(r => r.CogentLoadSpringComponent),
     },
     {
         path: 'box-test',
         category: 'Experiments',
         title: 'Box Test',
+        icon: 'check_box_outline_blank',
         loadComponent: () => import('./experiments/box-test/box-test.component').then(r => r.BoxTestComponent),
     },
     {
         path: 'wig-visual',
         category: 'Mock-Ups',
         title: 'Wig Visual',
+        icon: 'show_chart',
         loadComponent: () => import('./mock-ups/wig-visual/wig-visual.component').then(r => r.WigVisualComponent),
     },
     {
         path: 'contractor-home',
         category: 'Mock-Ups',
         title: 'Contractor Home Re-Design',
+        icon: 'home_repair_service',
         loadComponent: () => import('./mock-ups/contractor-home-re-design/contractor-home-re-design.component').then(r => r.ContractorHomeReDesignComponent),
     },
     {
         path: 'gears',
         category: 'Experiments',
         title: 'Gears Test',
+        icon: 'settings',
         loadComponent: () => import('./experiments/gears-test/gears-test.component').then(r => r.GearsTestComponent),
     },
     {
         path: 'edge',
         category: 'Experiments',
         title: 'Edge Glow',
+        icon: 'blur_circular',
         loadComponent: () => import('./experiments/edge-glow/edge-glow.component').then(r => r.EdgeGlowComponent),
     },
     {
         path: 'back-to-school',
         category: 'Mock-Ups',
         title: 'Back To School',
+        icon: 'school',
         loadComponent: () => import('./mock-ups/back-to-school/back-to-school.component').then(r => r.BackToSchoolComponent),
     },
     {
         path: 'wallpaper',
         category: 'Mock-Ups',
         title: 'Wallpaper',
+        icon: 'wallpaper',
         loadComponent: () => import('./mock-ups/wallpaper/wallpaper.component').then(r => r.WallpaperComponent),
     },
     {
         path: 'appliance-autho',
         category: 'Mock-Ups',
         title: 'Appliance Autho',
+        icon: 'kitchen',
         loadComponent: () => import('./mock-ups/appliance-autho/appliance-autho.component').then(r => r.ApplianceAuthoComponent),
     },
     {
         path: 'dashboard',
         title: 'Dashboard',
         category: 'Mock-Ups',
+        icon: 'dashboard',
         loadComponent: () => import('./mock-ups/dashboard/dashboard.component').then(r => r.DashboardComponent),
     },
     {
         path: 'throb',
         title: 'Throb Test',
         category: 'Widgets',
+        icon: 'hourglass_top',
         loadComponent: () => import('./widgets/throb-test/throb-test.component').then(r => r.ThrobTestComponent),
     },
     {
         path: 'communication-hub',
         title: 'Communication Hub',
         category: 'Mock-Ups',
+        icon: 'forum',
         loadComponent: () => import('./mock-ups/communication-hub/communication-hub.component').then(r => r.CommunicationHubComponent),
     },
     {
         path: 'reactive-forms-test',
         title: 'Reactive Forms Test',
         category: 'Experiments',
+        icon: 'playlist_add_check',
         loadComponent: () => import('./experiments/reactive-forms-test/reactive-forms-test.component').then(r => r.ReactiveFormsTestComponent),
     },
     {
         path: 'diagram-editor',
         title: 'Diagram Editor',
         category: 'Mock-Ups',
+        icon: 'account_tree',
         loadComponent: () => import('./mock-ups/diagram-editor/diagram-editor.component').then(r => r.DiagramEditorComponent),
     },
     {
         path: 'bottom-menu',
         title: 'Bottom Menu',
         category: 'Widgets',
+        icon: 'menu',
         loadComponent: () => import('./widgets/bottom-menu/bottom-menu.component').then(r => r.BottomMenuComponent),
     },
     {
         path: 'lottie',
         title: 'Lottie',
         category: 'Dependencies',
+        icon: 'animation',
         loadComponent: () => import('./dependencies/dot-lottie/dot-lottie.component').then(r => r.DotLottieComponent),
     },
     {
         path: 'native-dialog',
         title: 'Native Dialog',
         category: 'Experiments',
+        icon: 'call_to_action',
         loadComponent: () => import('./experiments/native-dialog-test/native-dialog-test.component').then(r => r.NativeDialogTestComponent),
     },
     {
         path: 'native-popover',
         title: 'Native Popover',
         category: 'Experiments',
+        icon: 'moving',
         loadComponent: () => import('./experiments/native-popover-test/native-popover-test.component').then(r => r.NativePopoverTestComponent),
     },
     {
         path: 'info-call-out',
         title: 'Info Call Out',
         category: 'Widgets',
+        icon: 'info',
         loadComponent: () => import('./widgets/info-call-out/info-call-out.component').then(r => r.InfoCallOutComponent),
     },
     {
         path: 'count-wig',
         title: 'Customer Count Wig Visual',
         category: 'Mock-Ups',
+        icon: 'trending_up',
         loadComponent: () => import('./mock-ups/customer-count-wig-visual/customer-count-wig-visual.component').then(r => r.CustomerCountWigVisualComponent),
     },
     {
         path: 'pie',
         title: 'Pie Component',
         category: 'Widgets',
+        icon: 'pie_chart',
         loadComponent: () => import('./widgets/pie/pie.component').then(r => r.PieComponent),
     },
     {
@@ -332,12 +380,14 @@ export const routes: RoutesWithMeta = [
         category: 'Load Screens',
         subcategory: 'Other',
         title: 'Cogent Load Dark And Shiny',
+            icon: 'nightlight_round',
         loadComponent: () => import('./load-screens/cogent-load-dark-and-shiney/cogent-load-dark-and-shiney.component').then(r => r.CogentLoadDarkAndShineyComponent),
     },
     {
         path: 'weather-slide',
         title: 'Weather Slide',
         category: 'Mock-Ups',
+        icon: 'cloud',
         loadComponent: () => import('./mock-ups/weather-slide/weather-slide.component').then(r => r.WeatherSlideComponent),
     },
     {
@@ -345,12 +395,14 @@ export const routes: RoutesWithMeta = [
         category: 'Load Screens',
         subcategory: 'Other',
         title: 'Neumorphism Load',
+        icon: 'circle_outlined',
         loadComponent: () => import('./load-screens/neumorphism-load/neumorphism-load.component').then(r => r.NeumorphismLoadComponent),
     },
     {
         path: 'dark-button',
         title: 'Dark Button',
         category: 'Widgets',
+        icon: 'dark_mode',
         loadComponent: () => import('./widgets/dark-button/dark-button.component').then(r => r.DarkButtonComponent),
     },
     {
@@ -358,6 +410,7 @@ export const routes: RoutesWithMeta = [
         category: 'Load Screens',
         title: 'Cogent Load Halloween 2',
         subcategory: 'Fall',
+
         loadComponent: () => import('./load-screens/cogent-load-halloween-2/cogent-load-halloween-2.component').then(r => r.CogentLoadHalloween2Component),
     },
     {
@@ -365,36 +418,42 @@ export const routes: RoutesWithMeta = [
         category: 'Load Screens',
         title: 'Cogent Load Launch',
         subcategory: 'Other',
+        icon: 'rocket_launch',
         loadComponent: () => import('./load-screens/cogent-launch-plans/cogent-launch-plans.component').then(r => r.CogentLaunchPlansComponent),
     },
     {
         path: 'polaroid-carousel',
         title: 'Polaroid Carousel Demo',
         category: 'Widgets',
+        icon: 'photo_library',
         loadComponent: () => import('./widgets/polaroid-carousel-demo/polaroid-carousel-demo.component').then(r => r.PolaroidCarouselDemoComponent),
     },
     {
         path: 'rive',
         title: 'Rive Component',
         category: 'Dependencies',
+        icon: 'animation',
         loadComponent: () => import('./experiments/rive/rive.component').then(r => r.RiveComponent),
     },
     {
         path: 'find-ae',
         title: 'Find AE Component',
         category: 'Experiments',
+        icon: 'search',
         loadComponent: () => import('./experiments/find-ae/find-ae.component').then(r => r.FindAeComponent),
     },
     {
         path: '3-d',
         title: '3D Test Component',
         category: 'Experiments',
+        icon: '3d_rotation',
         loadComponent: () => import('./experiments/three-d-test/three-d-test.component').then(r => r.ThreeDTestComponent),
     },
     {
         path: 'cpoh',
         title: 'CPOH Homeowner Portal',
         category: 'Mock-Ups',
+        icon: 'gpp_good',
         loadComponent: () => import('./mock-ups/cpoh/homeowner/cpoh-homeowner-portal/cpoh-homeowner-portal').then(r => r.CpohHomeownerPortal),
     },
     {

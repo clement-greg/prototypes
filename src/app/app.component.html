@@ -5,36 +5,46 @@
 </button>
 
 <mat-menu #mainMenu="matMenu">
+    <button mat-menu-item [routerLink]="'/'">
+        <mat-icon>home</mat-icon>
+        Home
+    </button>
     @for (group of groupedRoutes; track group.category; let i = $index) {
-        @if (group.category !== 'Uncategorized') {
-            <button mat-menu-item [matMenuTriggerFor]="categoryMenu">
-                {{ group.category }}
-            </button>
-            <mat-menu #categoryMenu="matMenu">
-                @for (route of group.routes; track route.path) {
-                    @if (route.path) {
-                        <button mat-menu-item [routerLink]="'/' + route.path">
-                            {{ route.title }}
-                        </button>
-                    }
-                }
-                @if (group.subcategories) {
-                    @for (subcategory of group.subcategories; track subcategory.name) {
-                        <button mat-menu-item [matMenuTriggerFor]="subcategoryMenu">
-                            {{ subcategory.name }}
-                        </button>
-                        <mat-menu #subcategoryMenu="matMenu">
-                            @for (route of subcategory.routes; track route.path) {
-                                @if (route.path) {
-                                    <button mat-menu-item [routerLink]="'/' + route.path">
-                                        {{ route.title }}
-                                    </button>
-                                }
-                            }
-                        </mat-menu>
-                    }
-                }
-            </mat-menu>
+    @if (group.category !== 'Uncategorized') {
+    <button mat-menu-item [matMenuTriggerFor]="categoryMenu">
+        <mat-icon>folder</mat-icon>
+        {{ group.category }}
+    </button>
+    <mat-menu #categoryMenu="matMenu">
+        @for (route of group.routes; track route.path) {
+        @if (route.path) {
+        <button mat-menu-item [routerLink]="'/' + route.path">
+            <mat-icon *ngIf="!route.icon">chevron_right</mat-icon>
+            <mat-icon *ngIf="route.icon">{{ route.icon }}</mat-icon>
+            {{ route.title }}
+        </button>
         }
+        }
+        @if (group.subcategories) {
+        @for (subcategory of group.subcategories; track subcategory.name) {
+        <button mat-menu-item [matMenuTriggerFor]="subcategoryMenu">
+            <mat-icon>folder</mat-icon>
+            {{ subcategory.name }}
+        </button>
+        <mat-menu #subcategoryMenu="matMenu">
+            @for (route of subcategory.routes; track route.path) {
+            @if (route.path) {
+            <button mat-menu-item [routerLink]="'/' + route.path">
+                <mat-icon *ngIf="!route.icon">chevron_right</mat-icon>
+                <mat-icon *ngIf="route.icon">{{ route.icon }}</mat-icon>
+                {{ route.title }}
+            </button>
+            }
+            }
+        </mat-menu>
+        }
+        }
+    </mat-menu>
+    }
     }
 </mat-menu>

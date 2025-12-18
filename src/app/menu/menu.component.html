@@ -1,14 +1,17 @@
 <div class="container">
 
-    <h1 class="center">Menu</h1>
+    <h1 style="margin-top: 40px;">Main Menu</h1>
 
 
-    <div *ngFor="let group of groupedRoutes">
+    <mat-card *ngFor="let group of groupedRoutes">
         <h2>{{ group.category }}</h2>
         <ul>
             <li *ngFor="let route of group.routes">
-                <a mat-button [routerLink]="route.path">{{ route.title || route.path }}</a>
+                <a mat-button [routerLink]="route.path">
+                    <mat-icon *ngIf="!route.icon">chevron_right</mat-icon>
+                    <mat-icon *ngIf="route.icon">{{ route.icon }}</mat-icon>
+                    {{ route.title || route.path }}</a>
             </li>
         </ul>
-    </div>
+    </mat-card>
 </div>

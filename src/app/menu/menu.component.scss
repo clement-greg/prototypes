@@ -13,3 +13,15 @@ ul {
     max-width: 1200px;
     margin: 0 auto;
 }
+
+mat-card {
+    margin-bottom: 20px;
+    >h2 {
+        text-align: center;
+        border-bottom: 1px dotted #ccc;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    border: 1px dotted #ccc;
+    box-shadow: none;
+}

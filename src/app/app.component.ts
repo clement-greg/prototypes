@@ -6,6 +6,7 @@ import { GroupedRoutes } from './menu/menu.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-root',
@@ -15,6 +16,7 @@ import { MatDividerModule } from '@angular/material/divider';
       MatMenuModule,
       MatButtonModule,
       MatIconModule,
+      CommonModule,
       MatDividerModule
     ],
     templateUrl: './app.component.html',
