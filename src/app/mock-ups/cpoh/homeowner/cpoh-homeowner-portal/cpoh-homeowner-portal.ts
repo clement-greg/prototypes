@@ -8,6 +8,7 @@ import { CpohViewQuote } from '../cpoh-view-quote/cpoh-view-quote';
 import { CpohViewStatus } from '../cpoh-view-status/cpoh-view-status';
 import { CpohViewReopen } from '../cpoh-view-reopen/cpoh-view-reopen';
 import { SlideOutPanelContainer } from '../../../../widgets/website-parts/slide-out-panel-container/slide-out-panel-container';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-cpoh-homeowner-portal',
@@ -18,7 +19,8 @@ import { SlideOutPanelContainer } from '../../../../widgets/website-parts/slide-
     CpohRequestQuote,
     CpohViewQuote,
     CpohViewStatus,
-    CpohViewReopen
+    CpohViewReopen,
+    RouterModule,
 ],
   templateUrl: './cpoh-homeowner-portal.html',
   styleUrls: ['./cpoh-homeowner-portal.scss', '../style.scss'],
