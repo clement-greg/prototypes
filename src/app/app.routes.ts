@@ -449,6 +449,14 @@ export const routes: RoutesWithMeta = [
         loadComponent: () => import('./mock-ups/cpoh/homeowner/cpoh-homeowner-portal/cpoh-homeowner-portal').then(r => r.CpohHomeownerPortal),
     },
     {
+        path: 'valentines-day-2',
+        category: 'Load Screens',
+        title: 'Valentines Day-2',
+        subcategory: 'Spring',
+        icon: 'favorite_border',
+        loadComponent: () => import('./load-screens/cogent-load-valentines-day-2/cogent-load-valentines-day-2.component').then(r => r.CogentLoadValentinesDay2Component),
+    },
+    {
         path: '',
         loadComponent: () => import('./menu/menu.component').then(r => r.MenuComponent)
     }
