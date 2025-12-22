@@ -458,6 +458,9 @@ export const routes: RoutesWithMeta = [
     },
     {
         path: '',
+        title: 'Main Menu',
+        category: 'Navigation',
+        icon: 'home',
         loadComponent: () => import('./menu/menu.component').then(r => r.MenuComponent)
     }
 ];
