@@ -40,7 +40,6 @@ export class SearchItemDetailComponent implements OnChanges, OnDestroy {
       this.serpapi.get(`https://serpapi.com/search.json?store_id=4416&delivery_zip=84653&engine=home_depot_product&product_id=${this.itemId}`).then(results => {
 
         this.productResults = results.data[0].product_results;
-        console.log(results);
 
         this.selectImageGroup(this.productResults.images[0]);
         this.loading = false;

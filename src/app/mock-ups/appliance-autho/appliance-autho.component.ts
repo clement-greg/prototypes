@@ -127,7 +127,6 @@ export class ApplianceAuthoComponent implements OnInit {
   }
 
   showCategory(partCategory: AppliancePartCategory) {
-    console.log(partCategory);
     this.selectedPartCategory = partCategory;
   }
 
@@ -228,9 +227,6 @@ export class ApplianceAuthoComponent implements OnInit {
     this.noMatch = false;
     const modelDetail: ApplianceApiModel = (await this.http.get('/assets/json/model-detail.json').toPromise() as any);
     const partDetail: ApplianceApiPart = (await this.http.get('/assets/json/part-detail.json').toPromise() as any);
-
-    console.log(modelDetail);
-    console.log(partDetail);
 
     for (const cat of modelDetail.partCategories) {
       for (const item of cat.parts) {

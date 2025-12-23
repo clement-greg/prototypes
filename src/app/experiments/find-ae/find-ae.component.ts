@@ -23,7 +23,6 @@ export class FindAeComponent {
   findAE() {
     const url = `https://test-api2.upkeeplabs.com/api/entity/find-account-executive-by-postalcode/${this.postalCode}`;
     this.http.get(url).subscribe((response: any) => {
-      console.log(response);
       // Handle the response here
     }, (error) => {
       console.error('Error fetching data:', error);

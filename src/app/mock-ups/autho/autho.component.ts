@@ -77,7 +77,6 @@ export class AuthoComponent {
 
   editLine(item: CostLine) {
     const copy = UtilitiesService.copyObject(item, null, () => new CostLine());
-    console.log({ item, copy });
     this.selectedCostLine = copy;
     copy.defaultItem = true;
     this.sideBarOpen = true;
@@ -239,8 +238,6 @@ export class AuthoComponent {
     let range = maxValue - minValue;
     value = value - minValue;
 
-    //console.log({value, minValue, maxValue, range, lines: this.lines.filter(i => !i.companyProvidesPart && i.isCovered)});
-
     if (range === 0) {
       return 0;
     }
@@ -254,7 +251,6 @@ export class AuthoComponent {
 
 
   deleteItem(item: CostLine, evt: MouseEvent) {
-    console.log('delete Item')
     evt.stopPropagation();
     const index = this.costLines.indexOf(item);
 

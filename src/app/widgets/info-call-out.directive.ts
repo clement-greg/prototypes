@@ -16,7 +16,6 @@ export class InfoCallOutDirective {
   constructor(private el: ElementRef) {
 
     //el.nativeElement.title = this.appInfoCallOut;
-    setTimeout(() => console.log(this.appInfoCallOut), 2000);
 
     setTimeout(() => {
 

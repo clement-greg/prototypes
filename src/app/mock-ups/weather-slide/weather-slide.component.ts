@@ -52,7 +52,7 @@ class forcastItem {
     } if (this.icon === 'https://api.weather.gov/icons/land/day/cold?size=medium') {
       return 'https://lottie.host/e8e9c130-9ab3-4736-9a8d-065a21791cbe/nOTmjhR4Ss.json';
     }
-    console.log('Unknown icon', this.icon);
+    console.error('Unknown icon', this.icon);
     return '';
   }
 }

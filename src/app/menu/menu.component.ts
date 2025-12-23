@@ -23,17 +23,12 @@ export class MenuComponent {
     groupedRoutes = GroupedRoutes.fromRoutes(this.allRoutes.filter(i=>i.path !== ''));
 
     constructor() {
-
-        console.log(this.groupedRoutes);
         for (const group of this.groupedRoutes) {
             if (group.routes.length === 0 && group.subcategories.length > 0) {
                 group.routes = group.subcategories.flatMap(subcat => subcat.routes);
             }
         }
-
     }
-
-
 }
 
 export class GroupedRoutes {

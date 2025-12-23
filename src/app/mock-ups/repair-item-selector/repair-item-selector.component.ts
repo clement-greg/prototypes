@@ -37,7 +37,6 @@ export class RepairItemSelectorComponent {
   focus() {
     if (!document.getElementById(this.id)) {
       setTimeout(() => this.focus(), 100);
-      console.log(this.id);
       return;
     }
     document.getElementById(this.id).focus();

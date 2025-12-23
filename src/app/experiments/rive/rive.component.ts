@@ -35,12 +35,9 @@ export class RiveComponent {
         onLoad: () => {
           r.resizeDrawingSurfaceToCanvas();
           this.animations = [...r.animationNames];
-          console.log(this.animations);
-          console.log(r.stateMachineInputs('home-hero'));
           this.inputs = r.stateMachineInputs('home-hero');
         },
       });
-      console.log(r);
       this.rive = r;
 
 
@@ -49,6 +46,5 @@ export class RiveComponent {
 
   playAnimation() {
     this.selectedInput.fire();
-    console.log('playing..................')
   }
 }

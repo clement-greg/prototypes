@@ -39,7 +39,6 @@ export class RecordComponent implements AfterViewInit {
     this.voices = synth.getVoices().filter(i => i.lang === 'en-US' || i.lang === 'en-GB' || i.lang === 'es-MX');
 
     this.seletedVoice = this.voices.find(i => i.default);
-    console.log(this.voices);
     if (!this.voices?.length) {
       setTimeout(() => this.loadVoices(), 500);
     }

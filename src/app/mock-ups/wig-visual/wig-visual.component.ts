@@ -30,7 +30,6 @@ export class WigVisualComponent implements OnInit {
     //   script.onload = (e) => {
 
     // this.engine = Matter.Engine.create(this.engine);
-    // console.log(this.engine.world)
     // this.engine.gravity = 1;
 
     // const ground = Matter.Bodies.rectangle(0, 1075, 1920, 5, { isStatic: true });
@@ -39,7 +38,6 @@ export class WigVisualComponent implements OnInit {
 
     // const square = Matter.Bodies.rectangle(500, 0, 10, 10);
     // Matter.Composite.add(this.engine.world, [square]);
-    // console.log(square);
     // square._id = 'square1';
 
     // this.sprites = [square];

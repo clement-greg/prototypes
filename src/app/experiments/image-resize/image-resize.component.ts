@@ -74,8 +74,6 @@ export class ImageResizeComponent {
           ctx.drawImage(myImg, 0, 0, width, height);
           const shortenedUrl = canvas.toDataURL('image/jpeg');
           this.url = shortenedUrl;
-
-          console.log({ height: myImg.height, width: myImg.width, shortenedUrl });
         }, 100);
       };
       reader.onload = (function () {
@@ -127,10 +125,8 @@ export class ImageResizeComponent {
       setTimeout(() => this.setupPasteHandler(), 100);
       return;
     }
-    console.log('setting up paste handler');
 
     document.getElementById(this.pasteTargetId).onpaste = (event: any) => {
-      console.log('data pasted')
       var items = (event.clipboardData || event.originalEvent.clipboardData).items;
 
       for (const index in items) {

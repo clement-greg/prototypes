@@ -98,7 +98,6 @@ export class ShoppingComponent {
   }
 
   setResults(results, newSearch = false) {
-    console.log(results);
     this.searching = false;
     this.searchResults = results.data[0].products.filter(i => i.price);
     if (newSearch) {

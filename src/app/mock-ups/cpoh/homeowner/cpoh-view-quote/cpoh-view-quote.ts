@@ -50,7 +50,6 @@ export class CpohViewQuote {
   }
 
   beginAcceptQuote() {
-    console.log('Accepting quote');
     this.operation = 'Accepting';
   }
 

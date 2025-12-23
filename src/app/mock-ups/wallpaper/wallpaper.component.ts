@@ -16,7 +16,6 @@ export class WallpaperComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit(): void {
     document.body.classList.add('body-no-scroll');
-    console.log('ngOnInit');
   }
 
   ngOnDestroy(): void {
@@ -34,14 +33,12 @@ export class WallpaperComponent implements OnInit, OnDestroy, AfterViewInit {
     // }, 200);
 
     // setTimeout(()
-    console.log('ngAfterViewInit')
     // setTimeout(() => this.loaded = true, 100);
   }
 
   @HostListener('window:scroll', ['$event'])  // for window scroll events
   onScroll(event) {
     event.preventDefault(); 
-    // console.log(event);
     if (window.scrollY > 0) { 
       window.scrollTo(0, 0);
     }
@@ -57,7 +54,6 @@ export class WallpaperComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   getStarted() {
-    console.log('got dsd');
     this.scrolled = true;
   }
 
