@@ -1,0 +1,24 @@
+<app-bottom-app-and-panels>
+    <ng-template myTab title="Orders" icon="shopping_cart">
+        <h1>Orders Content</h1>
+    </ng-template>
+    <ng-template myTab title="Search" icon="search">
+        <h1>Search Content</h1>
+    </ng-template>
+    <ng-template myTab title="Home" icon="home">
+        <h1>Home Content</h1>
+
+        <button mat-button (click)="showLastTab = !showLastTab">
+          Toggle Contacts Tab
+        </button>
+    </ng-template>
+    <ng-template myTab title="Profile" icon="person">
+        <h1>Profile Content</h1>
+    </ng-template>
+    <ng-template myTab title="Settings" icon="settings">
+        <h1>Settings Content</h1>
+    </ng-template>
+    <ng-template myTab *ngIf="showLastTab" title="Contacts" icon="contacts">
+        <h1>Contacts Content</h1>
+    </ng-template>
+</app-bottom-app-and-panels>

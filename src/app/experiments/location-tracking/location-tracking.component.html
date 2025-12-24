@@ -1,0 +1,63 @@
+<div class="location-tracking-container">
+  <div class="tracking-header">
+    <h2>Location Tracker</h2>
+    <div class="status-badge" [class.active]="isTracking">
+      {{ isTracking ? 'Tracking Active' : 'Tracking Inactive' }}
+    </div>
+  </div>
+
+  <div class="controls">
+    <button (click)="startTracking()" [disabled]="isTracking" class="btn btn-primary">
+      Start Tracking
+    </button>
+    <button (click)="stopTracking()" [disabled]="!isTracking" class="btn btn-danger">
+      Stop Tracking
+    </button>
+    <button (click)="clearLocationHistory()" class="btn btn-warning">
+      Clear History
+    </button>
+  </div>
+
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="lastLocation" class="last-location">
+    <h3>Current Location & Statistics</h3>
+    <div class="location-info">
+      <p><strong>Latitude:</strong> {{ lastLocation.latitude | number: '1.6-6' }}</p>
+      <p><strong>Longitude:</strong> {{ lastLocation.longitude | number: '1.6-6' }}</p>
+      <p><strong>Accuracy:</strong> {{ lastLocation.accuracy | number: '1.0-0' }}m</p>
+      <p><strong>Speed:</strong> {{ lastLocation.speed | number: '1.0-2' }} m/s</p>
+      <p><strong>Heading:</strong> {{ lastLocation.heading | number: '1.0-0' }}°</p>
+      <p><strong>Altitude:</strong> {{ lastLocation.altitude | number: '1.0-0' }}m</p>
+      <p><strong>Timestamp:</strong> {{ lastLocation.timestamp | date: 'medium' }}</p>
+    </div>
+    <div class="distance-stats" *ngIf="getTotalDistance().meters > 0">
+      <div class="distance-card">
+        <div class="distance-value">{{ getTotalDistance().kilometers }}</div>
+        <div class="distance-unit">km</div>
+      </div>
+      <div class="distance-card">
+        <div class="distance-value">{{ getTotalDistance().meters }}</div>
+        <div class="distance-unit">meters</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="history-section">
+    <h3>Location History ({{ getLocationCount() }} points)</h3>
+    <div *ngIf="geolocations.length === 0" class="empty-state">
+      <p>No location data recorded yet. Start tracking to begin recording locations.</p>
+    </div>
+    <div *ngIf="geolocations.length > 0" class="history-list">
+      <div class="history-item" *ngFor="let location of geolocations | slice: -10">
+        <span class="coordinates">
+          {{ location.latitude | number: '1.4-4' }}, {{ location.longitude | number: '1.4-4' }}
+        </span>
+        <span class="time">{{ location.timestamp | date: 'HH:mm:ss' }}</span>
+        <span class="accuracy">±{{ location.accuracy | number: '1.0-0' }}m</span>
+      </div>
+    </div>
+  </div>
+</div>

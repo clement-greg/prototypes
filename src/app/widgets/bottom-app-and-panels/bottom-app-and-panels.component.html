@@ -1,0 +1,10 @@
+<div style="width: 100%;overflow-x: hidden;">
+    <div [@tabAnimation]="selectedIndex" class="tab-content">
+        <ng-container *ngTemplateOutlet="tabs?.toArray()[selectedIndex]?.template">
+        </ng-container>
+    </div>
+</div>
+
+
+<app-bottom-app-menu [primaryRoutes]="primary" [initialIndex]="initialIndex" [(selectedIndex)]="selectedIndex">
+</app-bottom-app-menu>

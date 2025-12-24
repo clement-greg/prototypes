@@ -5,6 +5,10 @@ export type RouteWithMeta = Route & {
     category?: string,
     subcategory?: string,
     icon?: string, // material icon name
+    id?: string;
+    primary?: boolean;
+    iconUrl?: string;
+    clickAction?: () => void;
 
 };
 export type RoutesWithMeta = RouteWithMeta[];
@@ -368,12 +372,20 @@ export const routes: RoutesWithMeta = [
         icon: 'trending_up',
         loadComponent: () => import('./mock-ups/customer-count-wig-visual/customer-count-wig-visual.component').then(r => r.CustomerCountWigVisualComponent),
     },
+    // {
+    //     path: 'pie',
+    //     title: 'Pie Component',
+    //     category: 'Widgets',
+    //     icon: 'pie_chart',
+    //     loadComponent: () => import('./widgets/pie/pie.component').then(r => r.PieComponent),
+    // },
     {
-        path: 'pie',
-        title: 'Pie Component',
+        path: 'bottom-menu-demo',
+        title: 'Bottom App Menu Demo',
         category: 'Widgets',
-        icon: 'pie_chart',
-        loadComponent: () => import('./widgets/pie/pie.component').then(r => r.PieComponent),
+        icon: 'menu',
+        primary: true,
+        loadComponent: () => import('./widgets/bottom-app-menu-demo/bottom-app-menu-demo.component').then(r => r.BottomAppMenuDemoComponent),
     },
     {
         path: 'cogent-load-dark-and-shiny',
@@ -383,13 +395,13 @@ export const routes: RoutesWithMeta = [
             icon: 'nightlight_round',
         loadComponent: () => import('./load-screens/cogent-load-dark-and-shiney/cogent-load-dark-and-shiney.component').then(r => r.CogentLoadDarkAndShineyComponent),
     },
-    {
-        path: 'weather-slide',
-        title: 'Weather Slide',
-        category: 'Mock-Ups',
-        icon: 'cloud',
-        loadComponent: () => import('./mock-ups/weather-slide/weather-slide.component').then(r => r.WeatherSlideComponent),
-    },
+    // {
+    //     path: 'weather-slide',
+    //     title: 'Weather Slide',
+    //     category: 'Mock-Ups',
+    //     icon: 'cloud',
+    //     loadComponent: () => import('./mock-ups/weather-slide/weather-slide.component').then(r => r.WeatherSlideComponent),
+    // },
     {
         path: 'neumorphism-load',
         category: 'Load Screens',
@@ -418,6 +430,7 @@ export const routes: RoutesWithMeta = [
         title: 'Polaroid Carousel Demo',
         category: 'Widgets',
         icon: 'photo_library',
+        primary: true,
         loadComponent: () => import('./widgets/polaroid-carousel-demo/polaroid-carousel-demo.component').then(r => r.PolaroidCarouselDemoComponent),
     },
     {
@@ -446,6 +459,7 @@ export const routes: RoutesWithMeta = [
         title: 'CPOH Homeowner Portal',
         category: 'Mock-Ups',
         icon: 'gpp_good',
+        primary: true,
         loadComponent: () => import('./mock-ups/cpoh/homeowner/cpoh-homeowner-portal/cpoh-homeowner-portal').then(r => r.CpohHomeownerPortal),
     },
     {
@@ -455,12 +469,21 @@ export const routes: RoutesWithMeta = [
         subcategory: 'Spring',
         icon: 'favorite_border',
         loadComponent: () => import('./load-screens/cogent-load-valentines-day-2/cogent-load-valentines-day-2.component').then(r => r.CogentLoadValentinesDay2Component),
+        primary: true,
+    },
+    {
+        path: 'location-tracking',
+        title: 'Location Tracking',
+        category: 'Experiments',
+        icon: 'location_on',
+        loadComponent: () => import('./experiments/location-tracking/location-tracking.component').then(r => r.LocationTrackingComponent),  
     },
     {
         path: '',
         title: 'Main Menu',
         category: 'Navigation',
         icon: 'home',
+        primary: true,
         loadComponent: () => import('./menu/menu.component').then(r => r.MenuComponent)
     }
 ];

@@ -7,10 +7,10 @@ import { FormsModule } from '@angular/forms';
 
 
 @Component({
-    selector: 'app-polaroid-carousel-demo',
-    imports: [PolaroidCarouselComponent, MatFormFieldModule, MatSelectModule, MatInputModule, FormsModule],
-    templateUrl: './polaroid-carousel-demo.component.html',
-    styleUrl: './polaroid-carousel-demo.component.scss'
+  selector: 'app-polaroid-carousel-demo',
+  imports: [PolaroidCarouselComponent, MatFormFieldModule, MatSelectModule, MatInputModule, FormsModule],
+  templateUrl: './polaroid-carousel-demo.component.html',
+  styleUrl: './polaroid-carousel-demo.component.scss'
 })
 export class PolaroidCarouselDemoComponent {
 
@@ -25,11 +25,14 @@ export class PolaroidCarouselDemoComponent {
     700,
   ]
 
-  items =  [
+  items = [
     { id: 1, name: 'Item 1', url: 'https://www.elevatehomescriptions.com/_next/image?url=%2Fassets%2Fimages%2Fhomeownership-01.jpg&w=1536&q=80&dpl=dpl_9cD42nJHbZ4w7hoAmfRXXRkEs8vE', text: 'Hello from California' },
     { id: 2, name: 'Item 2', url: 'https://www.elevatehomescriptions.com/_next/image?url=%2Fassets%2Fimages%2Fhomeownership-02.jpg&w=1536&q=80&dpl=dpl_9cD42nJHbZ4w7hoAmfRXXRkEs8vE', text: 'This dudes a lazy butt!!!' },
     { id: 3, name: 'Item 3', url: 'https://www.elevatehomescriptions.com/_next/image?url=%2Fassets%2Fimages%2Fhomeownership-03.jpg&w=1536&q=80&dpl=dpl_9cD42nJHbZ4w7hoAmfRXXRkEs8vE', text: 'Homeownership is the American dream' },
     { id: 4, name: 'Item 4', url: 'https://www.elevatehomescriptions.com/_next/image?url=%2Fassets%2Fimages%2Fhomeownership-04.jpg&w=1536&q=80&dpl=dpl_9cD42nJHbZ4w7hoAmfRXXRkEs8vE', text: 'On app to rule them all!!!!' },
     { id: 5, name: 'Item 5', url: 'https://www.elevatehomescriptions.com/_next/image?url=%2Fassets%2Fimages%2Fhomeownership-05.jpg&w=1536&q=80&dpl=dpl_9cD42nJHbZ4w7hoAmfRXXRkEs8vE', text: 'Homeownership can be bi-polar' },
+    { id: 6, name: 'Item 6', url: 'https://www.datocms-assets.com/160911/1755173417-download-brochure.jpg?dpr=1.5', text: 'Just another polaroid' },
+    { id: 7, name: 'Item 7', url: 'https://www.datocms-assets.com/160911/1751469733-homeowners_text_image_1-1.png?dpr=1.5', text: 'Friendly AI couple' },
+    { id: 8, name: 'Item 8', url: 'https://www.datocms-assets.com/160911/1751469990-homeowners_reward-1.png?dpr=1.5', text: 'Another AI Couple' },
   ]
 }
