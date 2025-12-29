@@ -16,6 +16,9 @@
     <button (click)="clearLocationHistory()" class="btn btn-warning">
       Clear History
     </button>
+    <button (click)="loadDummyRouteOnMap()" class="btn btn-primary">
+      Load Dummy Route on Map
+    </button>
   </div>
 
   <div *ngIf="errorMessage" class="error-message">
@@ -59,5 +62,10 @@
         <span class="accuracy">±{{ location.accuracy | number: '1.0-0' }}m</span>
       </div>
     </div>
+  </div>
+
+  <div class="map-section">
+    <h3>Route Map</h3>
+    <div #mapRef class="map-container"></div>
   </div>
 </div>

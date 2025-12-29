@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 export interface GeolocationData {
@@ -10,6 +10,7 @@ export interface GeolocationData {
   heading: number | null;
   speed: number | null;
   timestamp: number;
+  
 }
 
 @Component({
@@ -21,6 +22,9 @@ export interface GeolocationData {
 export class LocationTrackingComponent implements OnInit, OnDestroy {
   @Input() trackingEnabled = true;
   @Input() updateInterval = 1000; // milliseconds
+  @Input() googleMapsApiKey?: string = 'AIzaSyDEHHVWjBc0ivnk3TSRwISAi5e3NGT87iQ'; // provide to enable map rendering
+
+  @ViewChild('mapRef', { static: false }) mapRef!: ElementRef<HTMLDivElement>;
 
   geolocations: GeolocationData[] = [];
   isTracking = false;
@@ -28,6 +32,14 @@ export class LocationTrackingComponent implements OnInit, OnDestroy {
   errorMessage: string | null = null;
   totalDistance = 0; // in meters
   private watchId: number | null = null;
+  private map: any = null;
+
+  // Global type for Google Maps without installing types
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  private get google(): any {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return (window as any).google;
+  }
 
   ngOnInit(): void {
     if (this.trackingEnabled) {
@@ -150,5 +162,134 @@ export class LocationTrackingComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.stopTracking();
+  }
+
+  /**
+   * Static helper that returns dummy geolocation samples approximating
+   * a ~1.5 mile (≈2.4 km) northbound jog along Central Park West Drive.
+   *
+   * Start: near Columbus Circle (40.7681, -73.9819)
+   * End: mid-park near 79th St (≈40.7882, -73.9696)
+   *
+   * Distances are approximate; timestamps are spaced by 30s.
+   */
+  static sampleCentralParkJog(count = 120): GeolocationData[] {
+    // Start near Columbus Circle, end mid-park near 79th St
+    const start = { lat: 40.7681, lon: -73.9819 };
+    const end = { lat: 40.7882, lon: -73.9696 };
+
+    const accuracy = 10;   // meters
+    const speed = 2.8;     // m/s (~10 km/h)
+    const heading = 20;    // degrees roughly NNE
+    const tsStepMs = 10_000; // 10 seconds between samples
+    const startTs = Date.now() - count * tsStepMs;
+
+    const out: GeolocationData[] = [];
+    for (let i = 0; i < count; i++) {
+      const t = i / Math.max(1, count - 1);
+      // Linear interpolation with a gentle meander on longitude to mimic path curvature
+      const lat = start.lat + (end.lat - start.lat) * t;
+      const lonLinear = start.lon + (end.lon - start.lon) * t;
+      const lonCurve = 0.0008 * Math.sin(t * Math.PI * 1.2);
+      const lon = lonLinear + lonCurve;
+
+      out.push({
+        latitude: lat,
+        longitude: lon,
+        accuracy,
+        altitude: null,
+        altitudeAccuracy: null,
+        heading,
+        speed,
+        timestamp: startTs + i * tsStepMs,
+      });
+    }
+    return out;
+  }
+
+  // Load Google Maps JS API if needed and render dummy route
+  async loadDummyRouteOnMap(): Promise<void> {
+    try {
+      await this.ensureMapsApiLoaded();
+
+      // Populate geolocations with dummy jog and compute distance
+      const pts = LocationTrackingComponent.sampleCentralParkJog(120);
+      this.geolocations = pts;
+      this.lastLocation = pts.at(-1) || null;
+      this.totalDistance = 0;
+      for (let i = 1; i < pts.length; i++) {
+        this.totalDistance += this.calculateDistance(
+          pts[i - 1].latitude,
+          pts[i - 1].longitude,
+          pts[i].latitude,
+          pts[i].longitude
+        );
+      }
+
+      this.createMapIfNeeded(pts[0]);
+
+      const path = pts.map(p => ({ lat: p.latitude, lng: p.longitude }));
+
+      // Fit bounds to path
+      const bounds = new this.google.maps.LatLngBounds();
+      path.forEach(p => bounds.extend(p));
+      this.map.fitBounds(bounds);
+
+      // Draw polyline
+      const polyline = new this.google.maps.Polyline({
+        path,
+        strokeColor: '#1976d2',
+        strokeOpacity: 0.9,
+        strokeWeight: 4,
+      });
+      polyline.setMap(this.map);
+
+      // Start and end markers
+      new this.google.maps.Marker({ position: path[0], map: this.map, label: 'Start' });
+      new this.google.maps.Marker({ position: path[path.length - 1], map: this.map, label: 'End' });
+    } catch (err) {
+      console.error('Map load error:', err);
+      this.errorMessage = (err as Error)?.message ?? 'Failed to load Google Maps';
+    }
+  }
+
+  private createMapIfNeeded(center: GeolocationData): void {
+    if (this.map) { return; }
+    const el = this.mapRef?.nativeElement;
+    if (!el) {
+      throw new Error('Map container not found');
+    }
+    this.map = new this.google.maps.Map(el, {
+      center: { lat: center.latitude, lng: center.longitude },
+      zoom: 14,
+      mapTypeId: 'terrain',
+    });
+  }
+
+  private ensureMapsApiLoaded(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      if (this.google && this.google.maps) {
+        resolve();
+        return;
+      }
+      if (!this.googleMapsApiKey) {
+        reject(new Error('Google Maps API key required to load map. Set `googleMapsApiKey`.'));
+        return;
+      }
+      const existing = document.querySelector('script[data-role="gmaps-loader"]');
+      if (existing) {
+        existing.addEventListener('load', () => resolve());
+        existing.addEventListener('error', () => reject(new Error('Failed to load Google Maps script')));
+        return;
+      }
+      const script = document.createElement('script');
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${this.googleMapsApiKey}`;
+      script.async = true;
+      script.defer = true;
+      script.setAttribute('data-role', 'gmaps-loader');
+      script.onload = () => resolve();
+      script.onerror = () => reject(new Error('Failed to load Google Maps script'));
+      document.head.appendChild(script);
+    });
   }
 }
