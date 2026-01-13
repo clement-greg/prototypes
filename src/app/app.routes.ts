@@ -479,6 +479,13 @@ export const routes: RoutesWithMeta = [
         loadComponent: () => import('./experiments/location-tracking/location-tracking.component').then(r => r.LocationTrackingComponent),  
     },
     {
+        path: 'video-chat-test',
+        title: 'Video Chat Test',
+        category: 'Experiments',
+        icon: 'videocam',
+        loadComponent: () => import('./experiments/video-chat-test/video-chat-test.component').then(r => r.VideoChatTestComponent),
+    },
+    {
         path: '',
         title: 'Main Menu',
         category: 'Navigation',
