@@ -1,0 +1,20 @@
+<h3 matDialogTitle class="sub-heading">{{ title }}</h3>
+<mat-dialog-content>
+  <div class="flex-container">
+    <div class="no-grow">
+      <i class="material-icons big-icon">info</i>
+    </div>
+    <div flex1>
+      <p [innerHTML]="message" style="max-width: 800px;"></p>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <div class="flex-container" style="width: 100%;">
+
+        <div></div>
+        <div nogrow>
+            <button type="button" mat-button mat-raised-button class="small-primary" color="primary" (click)="dialogRef.close(true)">OK</button>
+        </div>
+    </div>
+</mat-dialog-actions>

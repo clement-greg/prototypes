@@ -1,0 +1,19 @@
+.receipt-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0;
+    row-gap: 20px;
+    column-gap: 20px;
+    >button {
+        height: auto;
+        display: block;
+        width: 100%;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        mat-icon {
+            font-size: 32px;
+            height: 32px;
+            width: 32px;
+        }
+    }
+}

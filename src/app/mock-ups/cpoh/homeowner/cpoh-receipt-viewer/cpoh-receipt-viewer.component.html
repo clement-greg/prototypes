@@ -1,0 +1,23 @@
+<div style="    height: 100%;
+    overflow: auto;">
+    <img [src]="imageUrl" *ngIf="!sanitizedPdfSrc" style="max-width: 100%;" animate-enter="fade-in" animate-leave="fade-out" />
+    <iframe *ngIf="sanitizedPdfSrc"  animate-enter="fade-in" animate-leave="fade-out" [src]="sanitizedPdfSrc" style="width: 100%; height: calc(100% - 6px)" frameborder="0"
+        border="0"></iframe>
+</div>
+
+<button mat-icon-button (click)="close()" class="close-button">
+    <mat-icon>close</mat-icon>
+</button>
+
+<button mat-icon-button (click)="previous()" class="nav-button previous-button">
+    <mat-icon>chevron_left</mat-icon>
+</button>
+<button mat-icon-button (click)="next()" class="nav-button next-button">
+    <mat-icon>chevron_right</mat-icon>
+</button>
+
+<div class="file-name">
+    {{inspectionFinding.receipts?.[receiptIndex]?.fileName}}<br>
+    {{receiptIndex + 1}} of {{inspectionFinding.receipts?.length}}
+</div>
+

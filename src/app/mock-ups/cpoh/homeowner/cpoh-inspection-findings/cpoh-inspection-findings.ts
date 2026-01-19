@@ -17,7 +17,12 @@ export class CpohInspectionFindings {
   @Input() findings: InspectionFinding[] = [];
 
   @Output() findingSelected: EventEmitter<InspectionFinding> = new EventEmitter<InspectionFinding>();
+  @Output() viewReceiptsRequested: EventEmitter<InspectionFinding> = new EventEmitter<InspectionFinding>();
   selectFinding(finding: InspectionFinding): void { 
     this.findingSelected.emit(finding);
+  }
+
+  viewReceipts(finding: InspectionFinding): void { 
+    this.viewReceiptsRequested.emit(finding);
   }
 }

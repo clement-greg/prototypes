@@ -3,16 +3,23 @@
     <tr>
       <th>Finding</th>
       <th>Status</th>
-      <th></th>
+      <!-- <th></th> -->
+      <th>Receipts</th>
     </tr>
   </thead>
   <tbody>
     @for (finding of findings; track finding) {
-      <tr>
+      <tr  (click)="selectFinding(finding)" class="inspection-row">
         <td>{{ finding.description }}</td>
         <td>{{ finding.status }}</td>
-        <td style="width: 140px;">
+        <!-- <td style="width: 140px;">
           <ng-container *ngTemplateOutlet="buttonOptions; context: { finding: finding }"></ng-container>
+        </td> -->
+        <td>
+          <div *ngIf="finding.receipts?.length"  class="receipt-container">
+            <mat-icon>receipt</mat-icon>
+            <span class="badge">{{ finding.receipts.length }}</span>
+          </div>
         </td>
       </tr>
     }
@@ -65,6 +72,12 @@
   @if (finding.status === 'Rejected') {
     <button mat-button (click)="selectFinding(finding)">
       <mat-icon>replay</mat-icon>Re-Open
+    </button>
+  }
+  @if (finding.status === 'Declined Repair') {
+    <button mat-button (click)="selectFinding(finding)">
+      
+      <mat-icon>visibility</mat-icon> View
     </button>
   }
 </ng-template>

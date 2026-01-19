@@ -9,6 +9,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { LottiePlayerComponent } from '../../../../dependencies/lottie-player/lottie-player.component';
+import { DialogsService } from '../../../../dependencies/dialog-service/dialog.service';
 
 @Component({
   selector: 'app-cpoh-view-quote',
@@ -21,7 +22,7 @@ import { LottiePlayerComponent } from '../../../../dependencies/lottie-player/lo
     MatFormFieldModule,
     MatInputModule,
     CpohQuoteDetail
-],
+  ],
   templateUrl: './cpoh-view-quote.html',
   styleUrls: ['./cpoh-view-quote.scss', '../style.scss']
 })
@@ -38,8 +39,10 @@ export class CpohViewQuote {
     'Timing Doesn\'t Work',
     'Other',
   ];
-  selectedReason:string = '';
+  selectedReason: string = '';
   comments: string = '';
+
+  constructor(private dialogService: DialogsService) { }
 
   get selectedQuote() {
     return this.finding?.quotes?.[0];
@@ -62,14 +65,27 @@ export class CpohViewQuote {
   }
 
   rejectQuote() {
-    this.finding.status = 'Rejected';
-    this.operation = 'Rejected'
-    setTimeout(() => this.closePanel(), 10000);
+    this.dialogService.confirm('Confirm Quote Rejection', 'Are you sure you want to reject this quote?').subscribe(confirmed => {
+      if (confirmed) {
+        this.finding.status = 'Rejected';
+        this.operation = 'Rejected'
+        this.finding.rejectedReason = this.selectedReason;
+        setTimeout(() => this.closePanel(), 10000);
+      }
+    });
   }
 
   acceptQuote() {
-    this.operation = 'Accepted';
-    this.finding.status = 'Work In Progress';
-    setTimeout(() => this.closePanel(), 10000);
+    this.dialogService.confirm('Confirm Quote Acceptance', 'Are you sure you want to accept this quote?').subscribe(confirmed => {
+      if (confirmed) {
+        this.operation = 'Accepted';
+        this.finding.status = 'Work In Progress';
+        setTimeout(() => this.closePanel(), 10000);
+        this.finding.job = {
+          quote: this.selectedQuote,
+          currentStatus: 'Accepted',
+        }
+      }
+    });
   }
 }

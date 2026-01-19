@@ -1,35 +1,40 @@
 @if (operation === 'Requested') {
-  <div class="center" animate.enter="slide-in" animate.leave="fade-out">
-    <app-lottie-player src="https://lottie.host/fccee11d-e1a8-491e-9d05-276e0324faa6/rjywfpUeJj.json"
-    [intermission]="10000" height="200px"></app-lottie-player>
-    <p class="info">
-      Quote Requested!
-    </p>
-    <button mat-icon-button (click)="closePanel()">
-      <mat-icon>close</mat-icon>
-    </button>
-  </div>
+<div class="center" animate.enter="slide-in" animate.leave="fade-out">
+  <app-lottie-player src="https://lottie.host/fccee11d-e1a8-491e-9d05-276e0324faa6/rjywfpUeJj.json"
+    [intermission]="10000" height="100px"></app-lottie-player>
+  <p class="info" style="margin-bottom: 40px;">
+    Quote Requested!
+  </p>
+  <!-- <button mat-icon-button (click)="closePanel()">
+    <mat-icon>close</mat-icon>
+  </button> -->
+
+  <p>We've sent of a request to one of our licensed, insured service professionals<br><br>Below you can find their
+    contact information:</p>
+  <app-cpoh-quote-detail [quote]="quote"></app-cpoh-quote-detail>
+</div>
 }
 @if (operation === 'Requesting') {
-  <div animate.enter="slide-in" animate.leave="fade-out">
-    <div class="center">
-      <h2>Request a Quote</h2>
-      <p class="info">
-        {{finding?.description}}
-      </p>
-    </div>
-    <p>
-      Donec vitae nisl risus. Proin porttitor mi facilisis justo efficitur euismod. Ut tristique nulla id convallis
-      venenatis. Quisque maximus iaculis hendrerit. Morbi euismod vel lacus at feugiat. Ut dictum convallis purus,
-      pellentesque pellentesque tellus varius id. Etiam fermentum diam sed lacus accumsan molestie. Donec dictum
-      ultrices justo, in commodo ex tincidunt dignissim. Curabitur nec ligula sit amet nunc tristique congue. Nam
-      vestibulum ligula id rutrum blandit. Integer gravida porttitor erat, quis sollicitudin lorem tempor eu.
+<div animate.enter="slide-in" animate.leave="fade-out">
+  <div class="center">
+    <h2>Request a Quote</h2>
+    <p class="info">
+      {{finding?.description}}
     </p>
-    <div class="center">
-      <button mat-button mat-raised-button color="primary" (click)="requestQuote()">
-        Request Quote
-      </button>
-    </div>
   </div>
+  <p *ngIf="finding?.extendedDescription">
+    {{finding?.extendedDescription}}
+  </p>
+  <div class="center">
+    <button mat-button mat-raised-button color="primary" (click)="requestQuote()">
+      Request Quote
+    </button>
+    <div>
+      <div class="separator">OR</div>
+    </div>
+    <button mat-button mat-raised-button color="warn" (click)="declineRepair()">
+      Decline Repair
+    </button>
+  </div>
+</div>
 }
-

@@ -1,0 +1,23 @@
+<div class="center" *ngIf="inspectionFinding && !inspectionFinding.receipts?.length">
+    
+    <app-lottie-player src="https://lottie.host/e88247ed-3b2d-4de2-8c38-278b9ae71b1d/ctuZhToKfi.json" height="150px" [intermission]="7000"></app-lottie-player>
+    <p class="info">There are no receipts uploaded yet</p>
+</div>
+<div class="receipt-list">
+
+    <button mat-button (click)="viewReceipts(receipt)" *ngFor="let receipt of inspectionFinding?.receipts">
+        <div>
+            <mat-icon *ngIf="isPdf(receipt)">picture_as_pdf</mat-icon><br>
+            <mat-icon *ngIf="!isPdf(receipt)">image</mat-icon><br>
+            {{ receipt.fileName }}
+        </div>
+    </button>
+</div>
+
+<div class="center">
+    <button matFab color="primary" (click)="fileInput.click()">
+        <mat-icon>add</mat-icon>
+    </button>
+</div>
+
+<input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)" accept="image/*,.pdf" />

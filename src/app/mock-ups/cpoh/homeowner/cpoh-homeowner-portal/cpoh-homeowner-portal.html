@@ -1,38 +1,62 @@
-<div  flex="" class="header"
+<div flex="" class="header"
   style="height: 60px; background-color: #fbf8f4; border-bottom: 2px solid transparent; box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, .2), 0px 1px 1px 0px rgba(0, 0, 0, .14), 0px 1px 3px 0px rgba(0, 0, 0, .12);">
   <a routerLink="/cpoh">
-  <img  nogrow="" src="https://app.elevateh.com/cdn/images/elevate-logo-2025.svg"
-    style="height: 50px;"></a>
-    <div ></div>
+    <img nogrow="" src="https://app.elevateh.com/cdn/images/elevate-logo-2025.svg" style="height: 50px;"></a>
+  <div></div>
+</div>
+<app-slide-out-panel-container [(showBottomPanel)]="showBottomPanel" [rightPanelTop]="0"
+  [(showRightPanel)]="showRightPanel" (showRightPanelChange)="showRightPanelChange($event)">
+  <div main-content>
+    <div class="container">
+      <h1 style="margin-top: 30px">CPOH Portal</h1>
+      <app-cpoh-inspection-findings (findingSelected)="selectFinding($event)"
+        (viewReceiptsRequested)="viewReceipts($event)" [findings]="findings"></app-cpoh-inspection-findings>
+
+    </div>
+
+    <div class="center" style="margin-top: 30px;">
+      <button mat-button class="help-btn" (click)="showBottomPanel = true">
+        <mat-icon>help</mat-icon> How Does This Work?
+      </button>
+
+    </div>
+
   </div>
-  <app-slide-out-panel-container [panelTop]="0" [(showRightPanel)]="showRightPanel"
-    (showRightPanelChange)="showRightPanelChange($event)">
-    <div main-content>
-      <div class="container">
-        <h1 style="margin-top: 30px">CPOH Portal</h1>
-        <app-cpoh-inspection-findings (findingSelected)="selectFinding($event)"
-        [findings]="findings"></app-cpoh-inspection-findings>
-      </div>
 
+  <div bottom-panel>
+    <app-how-it-works></app-how-it-works>
+  </div>
+  <div right-panel style="padding: 15px;padding-top: 0">
+
+    <h2>{{selectedFinding?.description}}</h2>
+    <div class="tool-bar">
+      <button mat-button (click)="receiptsPanelOpen = !receiptsPanelOpen" [class.selected]="receiptsPanelOpen"
+        class="toggle-button">
+        <mat-icon>receipt</mat-icon> Receipts
+        <span *ngIf="selectedFinding?.receipts?.length" class="badge" style="vertical-align: top; margin-left: 5px;">{{
+          selectedFinding?.receipts?.length }}</span>
+      </button>
     </div>
 
-    <div right-panel style="padding: 15px;padding-top: 30px">
-
-      @if (selectedStatus === 'Pending') {
-        <app-cpoh-request-quote [finding]="selectedFinding" (closePanelNeeded)="closeRightPanel()"
-        ></app-cpoh-request-quote>
-      }
-      @if (selectedStatus === 'Quoted') {
-        <app-cpoh-view-quote [finding]="selectedFinding" (closePanelNeeded)="closeRightPanel()"
-        ></app-cpoh-view-quote>
-      }
-      @if (selectedStatus === 'Work In Progress' || selectedStatus === 'Completed') {
-        <app-cpoh-view-status [finding]="selectedFinding" (closePanelNeeded)="closeRightPanel()"
-        ></app-cpoh-view-status>
-      }
-      @if (selectedStatus === 'Rejected') {
-        <app-cpoh-view-reopen [finding]="selectedFinding" (closePanelNeeded)="closeRightPanel()"
-        ></app-cpoh-view-reopen>
-      }
+    @if (selectedStatus === 'Pending' && !receiptsPanelOpen) {
+    <app-cpoh-request-quote [finding]="selectedFinding" (closePanelNeeded)="closeRightPanel()"></app-cpoh-request-quote>
+    }
+    @if (selectedStatus === 'Quoted' && !receiptsPanelOpen) {
+    <app-cpoh-view-quote [finding]="selectedFinding" (closePanelNeeded)="closeRightPanel()"></app-cpoh-view-quote>
+    }
+    @if ((selectedStatus === 'Work In Progress' || selectedStatus === 'Completed') && !receiptsPanelOpen) {
+    <app-cpoh-view-status [finding]="selectedFinding" (closePanelNeeded)="closeRightPanel()"></app-cpoh-view-status>
+    }
+    @if (selectedStatus === 'Rejected' && !receiptsPanelOpen) {
+    <app-cpoh-view-reopen [finding]="selectedFinding" (closePanelNeeded)="closeRightPanel()"></app-cpoh-view-reopen>
+    }
+    @if(selectedStatus === 'Waiting On Quote' && !receiptsPanelOpen) {
+      <app-cpoh-waiting-on-quote [finding]="selectedFinding" (closePanelNeeded)="closeRightPanel()"></app-cpoh-waiting-on-quote>
+    }
+    @if(receiptsPanelOpen) {
+    <div [animate.enter]="'slide-in'" [animate.leave]="'fade-out'">
+      <app-cpoh-receipt-list [inspectionFinding]="selectedFinding"></app-cpoh-receipt-list>
     </div>
-  </app-slide-out-panel-container>
+    }
+  </div>
+</app-slide-out-panel-container>

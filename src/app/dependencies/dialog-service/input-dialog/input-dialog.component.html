@@ -1,0 +1,22 @@
+<div aflex>
+    <h2 class="sub-heading">{{ data.title }}</h2>
+    <div nogrow>
+        <button mat-icon-button mat-dialog-close>
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+</div>
+
+<mat-dialog-content>
+    <mat-form-field appearance="outline" style="width: 100%;">
+        <input matInput [(ngModel)]="data.value" />
+    </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+
+    <div style="width: 100%;" aflex>
+        <div></div>
+        <button mat-button nogrow mat-raised-button color="primary" (click)="save()" cdkFocusInitial>Save</button>
+
+    </div>
+</mat-dialog-actions>

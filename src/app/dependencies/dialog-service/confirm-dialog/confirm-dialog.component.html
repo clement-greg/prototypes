@@ -1,0 +1,32 @@
+<div aflex>
+    <div>
+        <h2 mat-dialog-title cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle class="sub-heading">{{title}}</h2>
+    </div>
+    <div nogrow>
+        <button tabindex="-1" mat-button (click)="dialogRef.close()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+</div>
+
+<div aflex style="padding-left: 40px;padding-right: 40px;">
+    <div nogrow>
+        <mat-icon class="big">help</mat-icon>
+    </div>
+    <div>
+        <p [innerHTML]="message" style="margin-bottom: 30px"></p>
+    </div>
+</div>
+
+
+
+<div mat-dialog-actions>
+    <div aflex style="width: 100%;">
+        <div></div>
+        <div nogrow>
+            <button tabindex="-1" mat-button  (click)="dialogRef.close()">Cancel</button>
+            <button  type="button" mat-raised-button color="primary" class="small-dialog small-primary" style="margin-right: 10px;min-width: 100px;min-height: 40px;"
+                (click)="dialogRef.close(true)">OK</button>
+        </div>
+    </div>
+</div>
