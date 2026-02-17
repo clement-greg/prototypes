@@ -463,6 +463,13 @@ export const routes: RoutesWithMeta = [
         loadComponent: () => import('./mock-ups/cpoh/homeowner/cpoh-homeowner-portal/cpoh-homeowner-portal').then(r => r.CpohHomeownerPortal),
     },
     {
+        path: 'cpoh-coming-soon',
+        title: 'CPOH Coming Soon',
+        category: 'Mock-Ups',
+        icon: 'hourglass_bottom',
+        loadComponent: () => import('./mock-ups/cpoh-coming-soon/cpoh-coming-soon.component').then(r => r.CpohComingSoonComponent),
+    },
+    {
         path: 'valentines-day-2',
         category: 'Load Screens',
         title: 'Valentines Day-2',
@@ -477,6 +484,14 @@ export const routes: RoutesWithMeta = [
         category: 'Experiments',
         icon: 'location_on',
         loadComponent: () => import('./experiments/location-tracking/location-tracking.component').then(r => r.LocationTrackingComponent),  
+    },
+    {
+        path: 'cogent-pi',
+        title: 'Cogent Pi',
+        category: 'Load Screens',
+        subcategory: 'Other',
+        icon: 'functions',
+        loadComponent: () => import('./load-screens/cogent-pi/cogent-pi.component').then(r => r.CogentPiComponent),
     },
     {
         path: 'video-chat-test',

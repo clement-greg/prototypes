@@ -1,0 +1,182 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>CPOH Coming Soon</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+
+    <style>
+        @font-face {
+            font-family: 'Compass';
+            src: url('https://elevateh.blob.core.windows.net/cdn/images/cpoh/countdown/fonts/e138f040a6d6c60bda2f9218a28ff418.woff2') format('woff2');
+        }
+
+        @keyframes camera-drift {
+            0% {
+                background-position: 48% 48%;
+            }
+
+            25% {
+                background-position: 52% 60%;
+            }
+
+            50% {
+                background-position: 50% 72%;
+            }
+
+            75% {
+                background-position: 48% 60%;
+            }
+
+            100% {
+                background-position: 48% 48%;
+            }
+        }
+
+        .compass {
+            font-family: 'Compass', sans-serif;
+            color: #fff;
+            text-transform: none;
+            font-weight: normal;
+        }
+
+        .bg {
+            background-image: url('https://elevateh.blob.core.windows.net/cdn/images/cpoh/countdown/count-down.jpg');
+            background-size: 110%;
+            animation: camera-drift 30s linear infinite;
+            background-position: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        h1.compass {
+            font-size: 64px;
+            line-height: 74px;
+            margin-bottom: 0;
+        }
+
+        .info {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: calc(100vh / 2);
+            max-height: 700px;
+            z-index: 1;
+            background-color: #231F20;
+            text-align: center;
+            padding-top: 30px;
+            min-height: 550px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 20px;
+        }
+
+        .info-2 {
+            color: #fff;
+            margin-top: 0;
+        }
+
+        .grid-container {
+            display: table;
+            margin: 0 auto;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .coming-soon-badge {
+            position: absolute;
+            height: 200px;
+            top: -100px;
+            left: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg"></div>
+
+
+    <div class="info">
+
+        <img src="https://elevateh.blob.core.windows.net/cdn/images/cpoh/countdown/coming-soon-badge.svg"
+            class="coming-soon-badge">
+        <img src="https://elevateh.blob.core.windows.net/cdn/images/cpoh/countdown/compass-logo.svg"
+            style="height: 40px;">
+        <br>
+        <h1 class="compass">Pre-Listing & Certified<br> Home Program</h1>
+
+        <div class="grid-container">
+            <div class="grid">
+
+                <div>
+                    <h1 id="days" class="compass"></h1>
+                    <p class="info-2">Days</p>
+                </div>
+
+                <div>
+                    <h1 id="hours" class="compass"></h1>
+                    <p class="info-2">Hours</p>
+                </div>
+                <div>
+                    <h1 id="minutes" class="compass"></h1>
+                    <p class="info-2">Minutes</p>
+                </div>
+                <div>
+                    <h1 id="seconds" class="compass"></h1>
+                    <p class="info-2">Seconds</p>
+                </div>
+
+            </div>
+        </div>
+        <div style="color: #fff;margin-top: 30px;">Powered By</div>
+        <img src="https://elevateh.blob.core.windows.net/cdn/images/elevate-logo-2025-dark-bg.svg" style="height: 40px;">
+    </div>
+
+
+</body>
+
+<script>
+
+    setInterval(() => {
+        const tilDate = new Date(2026, 2, 2);
+
+        const now = new Date();
+        const diff = tilDate.getTime() - now.getTime();
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+
+        document.getElementById('days').textContent = `${days}`;
+        document.getElementById('hours').textContent = `${hours}`;
+        document.getElementById('minutes').textContent = `${minutes}`;
+        document.getElementById('seconds').textContent = `${seconds}`;
+    }, 1000);
+            const tilDate = new Date(2026, 2, 2);
+
+        const now = new Date();
+        const diff = tilDate.getTime() - now.getTime();
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+
+        document.getElementById('days').textContent = `${days}`;
+        document.getElementById('hours').textContent = `${hours}`;
+        document.getElementById('minutes').textContent = `${minutes}`;
+        document.getElementById('seconds').textContent = `${seconds}`;
+</script>
+
+</html>

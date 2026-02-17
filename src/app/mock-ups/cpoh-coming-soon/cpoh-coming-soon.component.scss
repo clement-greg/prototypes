@@ -1,0 +1,59 @@
+@font-face {
+    font-family: 'Compass';
+    src: url('https://elevateh.blob.core.windows.net/cdn/images/cpoh/countdown/fonts/e138f040a6d6c60bda2f9218a28ff418.woff2') format('woff2');
+}
+
+.compass {
+    font-family: 'Compass', sans-serif;
+    color: #fff;
+    text-transform: none;
+    font-weight: normal;
+}
+@keyframes camera-drift {
+    0% {
+        background-position: 48% 48%;
+    }
+    25% {
+        background-position: 52% 50%;
+    }
+    50% {
+        background-position: 50% 52%;
+    }
+    75% {
+        background-position: 48% 50%;
+    }
+    100% {
+        background-position: 48% 48%;
+    }
+}
+
+.bg {
+    background-image: url('https://elevateh.blob.core.windows.net/cdn/images/cpoh/countdown/count-down.jpg');
+    background-size: 110%;
+    background-position: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    animation: camera-drift 30s ease-in-out infinite;
+}
+
+h1.compass {
+    font-size: 64px;
+    line-height: 74px;
+}
+
+.info {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100vh / 2);
+    max-height: 600px;
+    z-index: 1;
+    background-color: #231F20;
+    text-align: center;
+    padding-top: 30px;
+}
