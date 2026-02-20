@@ -9,7 +9,6 @@ import { BottomAppAndPanelsComponent, MyTabDirective } from '../bottom-app-and-p
   selector: 'app-bottom-app-menu-demo',
   imports: [
     CommonModule,
-    BottomAppMenuComponent,
     MatButtonModule,
     BottomAppAndPanelsComponent,
     MyTabDirective,

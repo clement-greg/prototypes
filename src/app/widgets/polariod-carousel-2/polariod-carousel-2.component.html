@@ -1,0 +1,33 @@
+<div class="carousel-container">
+  <button class="nav-btn prev" (click)="prev()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polyline points="15 18 9 12 15 6"></polyline>
+    </svg>
+  </button>
+
+  <div class="carousel-stage">
+    @for (item of getVisibleItems(); track item.id; let i = $index) {
+      <div 
+        class="polaroid"
+        [class.left]="i === 0"
+        [class.center]="i === 1"
+        [class.right]="i === 2"
+        [class.animate-forward]="animating === 'forward'"
+        [class.animate-backward]="animating === 'backward'"
+      >
+        <div class="polaroid-inner">
+          <div class="photo-frame">
+            <img [src]="item.url" [alt]="item.name" />
+          </div>
+          <div class="caption">{{ item.text }}</div>
+        </div>
+      </div>
+    }
+  </div>
+
+  <button class="nav-btn next" (click)="next()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </button>
+</div>

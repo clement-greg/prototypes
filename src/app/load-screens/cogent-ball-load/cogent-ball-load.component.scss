@@ -35,7 +35,7 @@ $diff: 300px;
     height: 300px;
     position: absolute;
     left: calc(50% - $diff/ 2);
-    top: $diff / 2;
+    top: calc($diff / 2);
 }
 
 $span: 225px;

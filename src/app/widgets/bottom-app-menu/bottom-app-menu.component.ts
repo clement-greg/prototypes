@@ -21,8 +21,7 @@ import { LottiePlayerComponent } from '../../dependencies/lottie-player/lottie-p
         RouterModule,
         MatFormFieldModule,
         MatInputModule,
-        FormsModule,
-        LottiePlayerComponent],
+        FormsModule],
     templateUrl: './bottom-app-menu.component.html',
     styleUrl: './bottom-app-menu.component.scss'
 })

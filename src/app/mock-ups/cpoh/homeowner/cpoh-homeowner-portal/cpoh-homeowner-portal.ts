@@ -32,7 +32,6 @@ import { CpohWaitingOnQuoteComponent } from '../cpoh-waiting-on-quote/cpoh-waiti
     CpohViewReopen,
     RouterModule,
     CpohReceiptListComponent,
-    CpohReceiptViewerComponent,
     CommonModule,
     CpohWaitingOnQuoteComponent,
   ],

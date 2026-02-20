@@ -18,7 +18,7 @@ import { SerpapiService } from '../serpapi.service';
 
 @Component({
     selector: 'app-shopping',
-    imports: [MatButtonModule, MatFormFieldModule, FormsModule, SearchPaginationComponent, SearchLoadingComponent, SearchItemDetailComponent, SearchFilterContainerComponent, CartComponent, SearchFilterComponent, MatInputModule, MatIconModule, MatProgressSpinnerModule, SearchResultItemComponent],
+    imports: [MatButtonModule, MatFormFieldModule, FormsModule, SearchPaginationComponent, SearchLoadingComponent, SearchItemDetailComponent, SearchFilterContainerComponent, CartComponent, MatInputModule, MatIconModule, MatProgressSpinnerModule, SearchResultItemComponent],
     templateUrl: './shopping.component.html',
     styleUrl: './shopping.component.scss'
 })
