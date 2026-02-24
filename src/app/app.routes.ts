@@ -524,6 +524,14 @@ export const routes: RoutesWithMeta = [
         loadComponent: () => import('./widgets/polariod-carousel-2/polariod-carousel-2.component').then(r => r.PolariodCarousel2Component),
     },
     {
+        path: 'cogent-load-texas',
+        category: 'Load Screens',
+        title: 'Texas Load',
+        subcategory: 'Other',
+        icon: 'star',
+        loadComponent: () => import('./load-screens/cogent-load-texas/cogent-load-texas.component').then(r => r.CogentLoadTexasComponent),
+    },
+    {
         path: '',
         title: 'Main Menu',
         category: 'Navigation',
