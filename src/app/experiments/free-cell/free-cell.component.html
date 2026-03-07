@@ -1,0 +1,130 @@
+<header>
+  <h1>&#9827; FreeCell</h1>
+  <div class="header-controls">
+    <span>Moves: {{ moveCount }}</span>
+    <span class="timer">{{ timerDisplay }}</span>
+    <button (click)="onUndo()">Undo</button>
+    <button (click)="onNewGame()">New Game</button>
+    <button (click)="openStats()">📊 Stats</button>
+    <button (click)="showSettings = !showSettings">⚙</button>
+  </div>
+</header>
+
+@if (showSettings) {
+  <div class="settings-panel">
+    <div class="settings-header">
+      <span>Settings</span>
+      <button class="settings-close" (click)="showSettings = false">✕</button>
+    </div>
+    <label class="setting-row">
+      <span>Sound Effects</span>
+      <input type="checkbox" [(ngModel)]="soundEnabled" (ngModelChange)="saveSettings()">
+    </label>
+    <label class="setting-row">
+      <span>Volume</span>
+      <input type="range" min="0" max="100" step="1" [(ngModel)]="volume" (ngModelChange)="saveSettings()" [disabled]="!soundEnabled">
+      <span class="volume-value">{{ volume }}%</span>
+    </label>
+  </div>
+}
+
+<div class="game-area" (click)="onGameAreaClick($event)">
+  <div class="top-row">
+    <div>
+      <div class="cell-group-label">Free Cells</div>
+      <div class="cell-group">
+        @for (cell of freeCells; track $index) {
+          <div class="cell-slot free-cell"
+               [class.highlight]="isFreeCellHighlighted($index)"
+               (click)="onFreeCellClick($event, $index)">
+            @if (cell) {
+              <div class="card"
+                   [class.selected]="isFreeCellSelected($index)"
+                   [style.opacity]="shouldHideForDrag('freecell', $index, 0) ? 0 : 1"
+                   (mousedown)="onCardMouseDown($event, 'freecell', $index, 0)"
+                   (touchstart)="onCardTouchStart($event, 'freecell', $index, 0)">
+                <img [src]="getCardImagePath(cell)" [alt]="cell.rank + ' of ' + cell.suit" draggable="false">
+              </div>
+            }
+          </div>
+        }
+      </div>
+    </div>
+    <div>
+      <div class="cell-group-label">Foundations</div>
+      <div class="cell-group">
+        @for (pile of foundations; track $index) {
+          <div class="cell-slot foundation"
+               [class.highlight]="isFoundationHighlighted($index)"
+               (click)="onFoundationClick($event, $index)">
+            @if (pile.length > 0) {
+              <div class="card">
+                <img [src]="getCardImagePath(pile[pile.length - 1])"
+                     [alt]="pile[pile.length - 1].rank + ' of ' + pile[pile.length - 1].suit"
+                     draggable="false">
+              </div>
+            } @else {
+              <span class="foundation-label">{{ foundationLabels[$index] }}</span>
+            }
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="tableau">
+    @for (col of tableau; track $index) {
+      @let ci = $index;
+      <div class="column" [attr.data-col]="ci"
+           [class.highlight]="isColumnHighlighted(ci)"
+           (click)="onColumnClick($event, ci)">
+        @for (card of col; track $index) {
+          @let ri = $index;
+          <div class="card"
+               [class.red]="card.color === 'red'"
+               [class.black]="card.color === 'black'"
+               [class.selected]="isTableauCardSelected(ci, ri)"
+               [style.opacity]="shouldHideForDrag('tableau', ci, ri) ? 0 : 1"
+               [style.top.px]="ri * CARD_OVERLAP"
+               [style.left.px]="2"
+               [style.z-index]="ri + 1"
+               (mousedown)="onCardMouseDown($event, 'tableau', ci, ri)"
+               (touchstart)="onCardTouchStart($event, 'tableau', ci, ri)">
+            <img [src]="getCardImagePath(card)" [alt]="card.rank + ' of ' + card.suit" draggable="false">
+          </div>
+        }
+      </div>
+    }
+  </div>
+</div>
+
+@if (gameWon) {
+  <div class="win-overlay">
+    <app-lottie-player
+      class="confetti"
+      src="https://lottie.host/ffcb77ae-a125-4d1d-98ef-e497ae2b771b/q3IdiRbYeK.json"
+      [loop]="true"
+      [autoPlay]="true"
+      height="100%">
+    </app-lottie-player>
+    <h2>&#127881; You Win!</h2>
+    <p>{{ winStatsText }}</p>
+    <button (click)="newGame()">Play Again</button>
+  </div>
+}
+
+@if (dragState && dragState.moved) {
+  @for (card of getDraggedCards(); track $index) {
+    @let i = $index;
+    <div class="card drag-ghost"
+         [class.red]="card.color === 'red'"
+         [class.black]="card.color === 'black'"
+         [style.left.px]="dragState.currentX - dragState.offsetX"
+         [style.top.px]="dragState.currentY - dragState.offsetY + i * CARD_OVERLAP"
+         [style.z-index]="1000 + i">
+      <img [src]="getCardImagePath(card)" [alt]="card.rank + ' of ' + card.suit" draggable="false">
+    </div>
+  }
+}
+
+<app-free-cell-stats #statsPopup></app-free-cell-stats>

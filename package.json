@@ -25,6 +25,7 @@
     "@rive-app/canvas": "^2.27.1",
     "babylonjs": "^8.7.0",
     "babylonjs-loaders": "^8.7.0",
+    "chart.js": "^4.5.1",
     "rxjs": "~7.8.0",
     "three": "^0.176.0",
     "three-addons": "^1.2.0",

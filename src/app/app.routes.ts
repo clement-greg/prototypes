@@ -139,6 +139,13 @@ export const routes: RoutesWithMeta = [
         loadComponent: () => import('./load-screens/cogent-load-birthday/cogent-load-birthday.component').then(r => r.CogentLoadBirthdayComponent),
     },
     {
+        path: 'free-cell',
+        category: 'Experiments',
+        title: 'FreeCell',
+        icon: 'style',
+        loadComponent: () => import('./experiments/free-cell/free-cell.component').then(r => r.FreeCellComponent),
+    },
+    {
         path: 'clip-path-test',
         category: 'Experiments',
         title: 'Clip Path Test',

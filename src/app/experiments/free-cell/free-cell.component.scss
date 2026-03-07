@@ -1,0 +1,309 @@
+:host {
+  display: block;
+  background: #1a6b2a;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  user-select: none;
+  min-height: 100vh;
+  overflow-x: hidden;
+  touch-action: none;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 24px;
+  background: #145520;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+header h1 {
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+}
+
+.header-controls {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.header-controls button {
+  background: #2a8f3e;
+  color: #fff;
+  border: 1px solid #3cb556;
+  padding: 6px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+
+  &:hover {
+    background: #3cb556;
+  }
+}
+
+.header-controls span {
+  font-size: 0.95rem;
+}
+
+.timer {
+  min-width: 70px;
+  text-align: right;
+}
+
+.game-area {
+  max-width: 1152px;
+  margin: 0 auto;
+  padding: 16px 8px;
+}
+
+/* Top row: free cells + foundations */
+.top-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  gap: 8px;
+}
+
+.cell-group {
+  display: flex;
+  gap: 8px;
+}
+
+.cell-group-label {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.7rem;
+  text-align: center;
+  margin-bottom: 2px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.cell-slot {
+  width: 120px;
+  height: 168px;
+  border: 2px dashed rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: border-color 0.2s, background 0.2s;
+
+  &.highlight {
+    border-color: #ffd700;
+    background: rgba(255, 215, 0, 0.15);
+  }
+
+  .foundation-label {
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.15);
+  }
+
+  .card {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+/* Tableau columns */
+.tableau {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.column {
+  width: 120px;
+  min-height: 240px;
+  position: relative;
+  padding-top: 4px;
+
+  &.highlight {
+    background: rgba(255, 215, 0, 0.12);
+    border-radius: 10px;
+  }
+}
+
+/* Cards */
+.card {
+  width: 115px;
+  height: 163px;
+  position: absolute;
+  cursor: grab;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    pointer-events: none;
+  }
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  }
+
+  &.selected {
+    box-shadow: 0 0 0 3px #ffd700, 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Drag ghost */
+.drag-ghost {
+  position: fixed;
+  pointer-events: none;
+  opacity: 0.85;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  cursor: grabbing;
+}
+
+/* Win overlay */
+.win-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 5000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  h2 {
+    color: #ffd700;
+    font-size: 3rem;
+    margin-bottom: 12px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  }
+
+  p {
+    color: #fff;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+
+  button {
+    background: #2a8f3e;
+    color: #fff;
+    border: 2px solid #3cb556;
+    padding: 12px 32px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background 0.2s;
+
+    &:hover {
+      background: #3cb556;
+    }
+  }
+
+  .confetti {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  h2, p, button {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+/* Settings panel */
+.settings-panel {
+  background: #145520;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+
+  .settings-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .settings-close {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 2px 6px;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+
+  .setting-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.9rem;
+    cursor: pointer;
+
+    input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: #3cb556;
+      cursor: pointer;
+    }
+
+    input[type="range"] {
+      width: 120px;
+      accent-color: #3cb556;
+      cursor: pointer;
+
+      &:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+    }
+
+    .volume-value {
+      min-width: 36px;
+      text-align: right;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.6);
+    }
+  }
+}
+
+/* Responsive */
+@media (max-width: 860px) {
+  .cell-slot { width: 96px; height: 134px; }
+  .card { width: 91px; height: 130px; }
+  .column { width: 96px; }
+}
+
+@media (max-width: 680px) {
+  .cell-slot { width: 77px; height: 110px; }
+  .card { width: 72px; height: 106px; }
+  .column { width: 77px; }
+  .tableau { gap: 4px; }
+  .cell-group { gap: 4px; }
+  .top-row { gap: 4px; }
+  header h1 { font-size: 1.1rem; }
+}

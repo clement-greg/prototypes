@@ -1,0 +1,103 @@
+@if (visible) {
+  <div class="stats-overlay" (click)="onOverlayClick($event)">
+    <div class="stats-panel">
+      <div class="panel-header">
+        <h1>📊 FreeCell Statistics</h1>
+        <button class="close-btn" (click)="close()">✕</button>
+      </div>
+
+      <div class="panel-body">
+        <section class="summary-cards">
+          <div class="card total">
+            <span class="card-value">{{ totalGames }}</span>
+            <span class="card-label">Total Games</span>
+          </div>
+          <div class="card wins">
+            <span class="card-value">{{ totalWins }}</span>
+            <span class="card-label">Wins</span>
+          </div>
+          <div class="card losses">
+            <span class="card-value">{{ totalLosses }}</span>
+            <span class="card-label">Losses</span>
+          </div>
+          <div class="card rate">
+            <span class="card-value">{{ winRate }}%</span>
+            <span class="card-label">Win Rate</span>
+          </div>
+          <div class="card best-moves">
+            <span class="card-value">{{ bestMoves || '—' }}</span>
+            <span class="card-label">Best Moves (Win)</span>
+          </div>
+          <div class="card best-time">
+            <span class="card-value">{{ bestTime || '—' }}</span>
+            <span class="card-label">Best Time (Win)</span>
+          </div>
+          <div class="card streak">
+            <span class="card-value">{{ currentStreak }}</span>
+            <span class="card-label">Current Win Streak</span>
+          </div>
+          <div class="card streak-best">
+            <span class="card-value">{{ longestStreak }}</span>
+            <span class="card-label">Longest Win Streak</span>
+          </div>
+        </section>
+
+        <section class="charts-grid">
+          <div class="chart-container small">
+            <canvas #winLossChart></canvas>
+          </div>
+          <div class="chart-container small">
+            <canvas #movesHistogramChart></canvas>
+          </div>
+          <div class="chart-container wide">
+            <canvas #movesChart></canvas>
+          </div>
+          <div class="chart-container wide">
+            <canvas #durationChart></canvas>
+          </div>
+          <div class="chart-container wide">
+            <canvas #timelineChart></canvas>
+          </div>
+        </section>
+
+        <section class="game-log">
+          <h2>Game Log</h2>
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Started</th>
+                  <th>Completed</th>
+                  <th>Result</th>
+                  <th>Moves</th>
+                  <th>Duration</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (game of games; track game.id; let i = $index) {
+                  <tr [class.win]="game.result === 'win'" [class.loss]="game.result === 'loss'">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ fmtDate(game.startedAt) }}</td>
+                    <td>{{ fmtDate(game.completedAt) }}</td>
+                    <td>
+                      <span class="badge" [class.badge-win]="game.result === 'win'" [class.badge-loss]="game.result === 'loss'" [class.badge-ip]="game.result === 'in-progress'">
+                        {{ game.result === 'win' ? '🏆 Win' : game.result === 'loss' ? '❌ Loss' : '⏳ In Progress' }}
+                      </span>
+                    </td>
+                    <td>{{ game.moves }}</td>
+                    <td>{{ fmtDuration(game.durationSeconds) }}</td>
+                    <td>
+                      <button class="delete-btn" title="Remove entry" (click)="removeGame(game)">🗑</button>
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+}
