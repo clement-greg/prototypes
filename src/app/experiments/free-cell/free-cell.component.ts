@@ -170,7 +170,6 @@ export class FreeCellComponent implements OnInit, OnDestroy {
     setTimeout(() => { this.dealing = false; }, 1200);
 
     this.currentGameId = await this.stats.startGame();
-    this.startTimer();
     this.persistGameState();
   }
 
@@ -350,6 +349,9 @@ export class FreeCellComponent implements OnInit, OnDestroy {
     }
 
     this.moveCount++;
+    if (this.moveCount === 1) {
+      this.startTimer();
+    }
     this.selectedCard = null;
     this.autoMoveToFoundations();
     this.checkWin();
@@ -976,7 +978,7 @@ export class FreeCellComponent implements OnInit, OnDestroy {
       this.dragState = null;
       this.highlightedTarget = null;
 
-      if (!this.gameWon) {
+      if (!this.gameWon && this.moveCount > 0) {
         this.startTimer();
       }
       return true;
