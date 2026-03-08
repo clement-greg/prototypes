@@ -82,6 +82,7 @@ export class FreeCellComponent implements OnInit, OnDestroy {
   selectedCard: SelectedCard | null = null;
   dragState: DragState | null = null;
   highlightedTarget: { type: string; index: number } | null = null;
+  dealing = false;
 
   constructor(private el: ElementRef<HTMLElement>) {
     this.loadSettings();
@@ -164,6 +165,10 @@ export class FreeCellComponent implements OnInit, OnDestroy {
       this.tableau[i % 8].push(deck[i]);
     }
 
+    // Trigger dealing animation
+    this.dealing = true;
+    setTimeout(() => { this.dealing = false; }, 1200);
+
     this.currentGameId = await this.stats.startGame();
     this.startTimer();
     this.persistGameState();
@@ -202,6 +207,12 @@ export class FreeCellComponent implements OnInit, OnDestroy {
   }
 
   // ── Template Helpers ──
+
+  getDealDelay(colIndex: number, rowIndex: number): string {
+    // Cards are dealt round-robin: row 0 col 0, row 0 col 1, ... row 0 col 7, row 1 col 0, ...
+    const dealOrder = rowIndex * 8 + colIndex;
+    return `${dealOrder * 18}ms`;
+  }
 
   isTableauCardSelected(colIndex: number, rowIndex: number): boolean {
     return !!this.selectedCard &&
@@ -787,11 +798,12 @@ export class FreeCellComponent implements OnInit, OnDestroy {
 
     if (bestSlot) return bestSlot;
 
-    // Check tableau columns
+    // Check tableau columns — extend hit area to bottom of viewport
     const colEls = nativeEl.querySelectorAll('.column');
+    const viewportBottom = window.innerHeight;
     for (let i = 0; i < 8; i++) {
       const rect = (colEls[i] as HTMLElement).getBoundingClientRect();
-      if (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom + 200) {
+      if (x >= rect.left - PAD && x <= rect.right + PAD && y >= rect.top && y <= Math.max(rect.bottom, viewportBottom)) {
         return { type: 'tableau', index: i };
       }
     }

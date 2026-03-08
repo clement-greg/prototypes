@@ -84,10 +84,12 @@
                [class.red]="card.color === 'red'"
                [class.black]="card.color === 'black'"
                [class.selected]="isTableauCardSelected(ci, ri)"
+               [class.deal-animate]="dealing"
                [style.opacity]="shouldHideForDrag('tableau', ci, ri) ? 0 : 1"
                [style.top.px]="ri * CARD_OVERLAP"
                [style.left.px]="2"
                [style.z-index]="ri + 1"
+               [style.animation-delay]="dealing ? getDealDelay(ci, ri) : '0ms'"
                (mousedown)="onCardMouseDown($event, 'tableau', ci, ri)"
                (touchstart)="onCardTouchStart($event, 'tableau', ci, ri)">
             <img [src]="getCardImagePath(card)" [alt]="card.rank + ' of ' + card.suit" draggable="false">
