@@ -1,0 +1,58 @@
+<div class="paperboy-game-container" #gameContainer>
+  <canvas #gameCanvas></canvas>
+
+  <div class="ui-overlay" *ngIf="gameRunning">
+    <div class="top-bar">
+      <div class="score">Score: {{ score }}</div>
+      <div class="day">Day {{ day }}</div>
+      <div class="papers">Papers: {{ papers }}</div>
+    </div>
+    <div class="lives">
+      <span *ngFor="let l of livesArray">🚲</span>
+    </div>
+  </div>
+
+  <div class="gamepad-indicator" *ngIf="gamepadConnected">
+    🎮 Gamepad Connected
+  </div>
+
+  <div class="title-screen" *ngIf="showTitleScreen">
+    <h1>PAPERBOY</h1>
+    <p class="subtitle">Deliver the news. Dodge the danger.</p>
+    <div class="difficulty-selector">
+      <label>Difficulty:</label>
+      <button [class.active]="difficulty === 'easy'" (click)="difficulty = 'easy'">Easy</button>
+      <button [class.active]="difficulty === 'normal'" (click)="difficulty = 'normal'">Normal</button>
+      <button [class.active]="difficulty === 'hard'" (click)="difficulty = 'hard'">Hard</button>
+    </div>
+    <button class="start-btn" (click)="startGame()">START GAME</button>
+    <div class="controls-info">
+      <p><strong>Keyboard:</strong> Arrow Keys to steer, Space to throw, Shift to brake, Ctrl to accelerate</p>
+      <p><strong>Gamepad:</strong> D-pad/Stick to steer, A to throw, B to brake, X to accelerate</p>
+    </div>
+    <div class="high-score" *ngIf="highScore > 0">High Score: {{ highScore }}</div>
+  </div>
+
+  <div class="day-summary" *ngIf="showDaySummary">
+    <h2>Day {{ day }} Complete!</h2>
+    <div class="summary-score">Score: {{ score }}</div>
+    <div class="subscriber-list">
+      <div *ngFor="let h of summaryHouses" class="subscriber-row"
+           [class.subscribed]="h.isSubscriber" [class.lost]="h.lost">
+        <span class="house-icon">🏠</span>
+        <span class="house-name">{{ h.name }}</span>
+        <span class="status" *ngIf="h.isSubscriber && !h.lost">✅ Subscribed</span>
+        <span class="status" *ngIf="h.lost">❌ Unsubscribed</span>
+        <span class="status" *ngIf="!h.isSubscriber && !h.lost">— Non-subscriber</span>
+      </div>
+    </div>
+    <button class="start-btn" (click)="nextDay()">Next Day →</button>
+  </div>
+
+  <div class="game-over" *ngIf="showGameOver">
+    <h2>GAME OVER</h2>
+    <div class="final-score">Final Score: {{ score }}</div>
+    <div class="high-score" *ngIf="score >= highScore">🏆 NEW HIGH SCORE! 🏆</div>
+    <button class="start-btn" (click)="resetToTitle()">Play Again</button>
+  </div>
+</div>

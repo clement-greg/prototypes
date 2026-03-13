@@ -1,0 +1,222 @@
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+}
+
+.paperboy-game-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1a1a2e;
+
+  canvas {
+    display: block;
+    image-rendering: pixelated;
+  }
+}
+
+.ui-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  z-index: 10;
+
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 20px;
+    font-family: 'Courier New', monospace;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 2px 2px 0 #000;
+  }
+
+  .lives {
+    position: absolute;
+    top: 40px;
+    left: 20px;
+    font-size: 20px;
+    letter-spacing: 4px;
+  }
+}
+
+.gamepad-indicator {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: rgba(0, 200, 0, 0.8);
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  z-index: 20;
+}
+
+.title-screen,
+.day-summary,
+.game-over {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.92);
+  color: #fff;
+  font-family: 'Courier New', monospace;
+  z-index: 30;
+  text-align: center;
+  padding: 20px;
+
+  h1 {
+    font-size: 64px;
+    color: #ffcc00;
+    text-shadow: 4px 4px 0 #cc6600, 8px 8px 0 rgba(0, 0, 0, 0.5);
+    margin-bottom: 8px;
+    letter-spacing: 8px;
+  }
+
+  h2 {
+    font-size: 36px;
+    color: #ffcc00;
+    text-shadow: 3px 3px 0 #cc6600;
+    margin-bottom: 20px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+    color: #aaa;
+    margin-bottom: 30px;
+  }
+}
+
+.difficulty-selector {
+  margin-bottom: 24px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+
+  label {
+    font-size: 14px;
+    color: #aaa;
+    margin-right: 8px;
+  }
+
+  button {
+    background: #333;
+    color: #ccc;
+    border: 2px solid #555;
+    padding: 6px 16px;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+
+    &.active {
+      background: #ffcc00;
+      color: #000;
+      border-color: #ffcc00;
+    }
+
+    &:hover {
+      background: #555;
+      color: #fff;
+    }
+
+    &.active:hover {
+      background: #ffdd33;
+    }
+  }
+}
+
+.start-btn {
+  background: #ffcc00;
+  color: #000;
+  border: none;
+  padding: 14px 40px;
+  font-family: 'Courier New', monospace;
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 6px;
+  margin-top: 10px;
+  transition: transform 0.1s;
+
+  &:hover {
+    transform: scale(1.05);
+    background: #ffdd33;
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+.controls-info {
+  margin-top: 30px;
+  font-size: 12px;
+  color: #777;
+  line-height: 1.8;
+}
+
+.high-score {
+  margin-top: 16px;
+  font-size: 18px;
+  color: #ffcc00;
+}
+
+.summary-score {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #4fc3f7;
+}
+
+.final-score {
+  font-size: 28px;
+  margin-bottom: 16px;
+  color: #4fc3f7;
+}
+
+.subscriber-list {
+  max-height: 300px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 400px;
+
+  .subscriber-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 12px;
+    border-bottom: 1px solid #333;
+    font-size: 14px;
+
+    &.lost {
+      color: #f44;
+    }
+
+    &.subscribed {
+      color: #4f4;
+    }
+
+    .house-name {
+      flex: 1;
+      text-align: left;
+    }
+
+    .status {
+      font-size: 12px;
+    }
+  }
+}
