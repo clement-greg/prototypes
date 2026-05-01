@@ -1,0 +1,313 @@
+<style>
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    .scene-container {
+        width: 100vw;
+        height: 100vh;
+        background: #000;
+        overflow: hidden;
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
+
+    /* Starfield */
+    .scene-container::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        background-image:
+            radial-gradient(1px 1px at 8% 12%, #fff 100%, transparent),
+            radial-gradient(1px 1px at 22% 38%, #aaa 100%, transparent),
+            radial-gradient(1px 1px at 47% 8%, #fff 100%, transparent),
+            radial-gradient(1px 1px at 68% 58%, #ccc 100%, transparent),
+            radial-gradient(1px 1px at 83% 22%, #fff 100%, transparent),
+            radial-gradient(1px 1px at 31% 73%, #bbb 100%, transparent),
+            radial-gradient(1px 1px at 91% 79%, #fff 100%, transparent),
+            radial-gradient(1px 1px at 58% 33%, #aaa 100%, transparent),
+            radial-gradient(1px 1px at 13% 54%, #fff 100%, transparent),
+            radial-gradient(1px 1px at 43% 87%, #ccc 100%, transparent),
+            radial-gradient(1px 1px at 76% 4%, #fff 100%, transparent),
+            radial-gradient(1px 1px at 4% 91%, #bbb 100%, transparent),
+            radial-gradient(1px 1px at 94% 43%, #fff 100%, transparent),
+            radial-gradient(1px 1px at 36% 20%, #aaa 100%, transparent),
+            radial-gradient(1px 1px at 60% 68%, #fff 100%, transparent),
+            radial-gradient(1px 1px at 18% 2%, #ccc 100%, transparent),
+            radial-gradient(1px 1px at 53% 50%, #fff 100%, transparent),
+            radial-gradient(1px 1px at 80% 94%, #bbb 100%, transparent),
+            radial-gradient(1px 1px at 2% 30%, #fff 100%, transparent),
+            radial-gradient(1px 1px at 70% 15%, #aaa 100%, transparent),
+            radial-gradient(1px 1px at 88% 60%, #fff 100%, transparent),
+            radial-gradient(1px 1px at 25% 95%, #ccc 100%, transparent),
+            radial-gradient(1px 1px at 40% 45%, #fff 100%, transparent),
+            radial-gradient(1px 1px at 96% 10%, #bbb 100%, transparent),
+            radial-gradient(1px 1px at 16% 66%, #fff 100%, transparent),
+            radial-gradient(1px 1px at 64% 82%, #aaa 100%, transparent),
+            radial-gradient(1px 1px at 50% 25%, #fff 100%, transparent),
+            radial-gradient(1px 1px at 75% 48%, #ccc 100%, transparent),
+            radial-gradient(1px 1px at 35% 5%, #fff 100%, transparent),
+            radial-gradient(1px 1px at 6% 78%, #bbb 100%, transparent);
+        z-index: 0;
+    }
+
+    .scene {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 1;
+    }
+
+    /* ── Episode label ── */
+    .episode-label {
+        font-family: 'News Cycle', 'Arial Narrow', sans-serif;
+        color: #4a90d9;
+        font-size: clamp(11px, 1.4vw, 14px);
+        letter-spacing: 7px;
+        text-transform: uppercase;
+        text-align: center;
+        margin-top: clamp(30px, 5vh, 60px);
+        opacity: 0;
+        animation: fadeInOut 3.5s ease-in-out 0.4s forwards;
+    }
+
+    .episode-num {
+        font-family: 'News Cycle', 'Arial Narrow', sans-serif;
+        color: #4a90d9;
+        font-size: clamp(16px, 2.2vw, 22px);
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        text-align: center;
+        margin-top: 8px;
+        opacity: 0;
+        animation: fadeInOut 3.5s ease-in-out 0.4s forwards;
+    }
+
+    @keyframes fadeInOut {
+        0% {
+            opacity: 0;
+        }
+
+        20% {
+            opacity: 1;
+        }
+
+        75% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 0;
+        }
+    }
+
+    /* ── Big yellow title flash ── */
+    .big-title {
+        font-family: 'News Cycle', 'Arial Narrow', sans-serif;
+        color: #FFE81F;
+        font-size: clamp(36px, 7vw, 80px);
+        font-weight: 700;
+        letter-spacing: 6px;
+        text-transform: uppercase;
+        text-align: center;
+        margin-top: 20px;
+        opacity: 0;
+        animation: titleAnim 2.2s ease-out 4.2s forwards;
+        line-height: 1;
+    }
+
+    @keyframes titleAnim {
+        0% {
+            opacity: 0;
+            transform: scale(1.5);
+        }
+
+        25% {
+            opacity: 1;
+            transform: scale(1.0);
+        }
+
+        70% {
+            opacity: 1;
+            transform: scale(1.0);
+        }
+
+        100% {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+    }
+
+    /* ── Perspective crawl stage ── */
+    .crawl-stage {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 100vh;
+        perspective: 280px;
+        perspective-origin: 50% 10%;
+        overflow: hidden;
+        opacity: 1;
+        /* animation: stageReveal 10s linear 0s  forwards ; */
+        /* transform: translateY(50%); */
+    }
+
+    @keyframes stageReveal {
+        5% {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+                transform: translateY(50%);
+        }
+    }
+
+    /* ── The scrolling text block ── */
+    .crawl {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: min(640px, 80vw);
+        transform: translateX(-50%) rotateX(25deg) translateY(145%) scale(1.5);
+        transform-origin: 50% 100%;
+        animation: crawlScroll 40s linear 0s forwards;
+        animation-iteration-count: infinite;
+        padding-bottom: 20px;
+    }
+
+    @keyframes crawlScroll {
+        0% {
+            bottom: 0;
+        }
+
+        100% {
+            bottom: 220%;
+            transform: translateY(100%) translateX(-50%) rotateX(25deg) scale(.6);
+        }
+    }
+
+    .crawl p {
+        font-family: 'News Cycle', 'Arial Narrow', sans-serif;
+        color: #FFE81F;
+        font-size: clamp(14px, 2vw, 20px);
+        line-height: 1.75;
+        text-align: justify;
+        margin-bottom: 1.4em;
+    }
+
+    .crawl .intro {
+        text-align: center;
+        font-size: clamp(13px, 1.8vw, 18px);
+        font-style: italic;
+        margin-bottom: 2em;
+        color: #FFE81F;
+    }
+
+    .crawl .title-line {
+        text-align: center;
+        font-size: clamp(16px, 2.4vw, 24px);
+        font-weight: 700;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        margin: 0.4em 0 1.6em;
+    }
+
+    .crawl .sign-off {
+        text-align: center;
+        font-style: italic;
+        letter-spacing: 2px;
+        margin-top: 1.5em;
+        font-size: clamp(13px, 1.6vw, 17px);
+    }
+
+    /* ── Top & bottom vignettes ── */
+    .vignette-top {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 180px;
+        background: linear-gradient(to bottom, #000 35%, transparent);
+        z-index: 10;
+        pointer-events: none;
+    }
+
+    .vignette-bottom {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 80px;
+        background: linear-gradient(to top, #000 30%, transparent);
+        z-index: 10;
+        pointer-events: none;
+    }
+</style>
+
+<div class="scene-container">
+    <div class="scene">
+        <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" style="height: 100px;max-width: calc(100vw - 50px)" viewBox="0 0 1186.47 204.56">
+            <defs>
+                <style>
+                    .cls-1 {
+                        stroke: #edc860;
+                        stroke-miterlimit: 10;
+                        stroke-width: 8px;
+                    }
+                </style>
+            </defs>
+            <path class="cls-1"
+                d="M139.73,140.13h60.03v57.11h-85c-20.81,0-39.62-3.7-56.45-11.09-16.82-7.39-30.08-18.48-39.78-33.27-9.7-14.79-14.54-32.89-14.54-54.32,0-15.05,2.9-28.49,8.7-40.31,5.8-11.82,13.83-21.65,24.11-29.48,10.27-7.84,22.07-13.68,35.39-17.53,13.32-3.85,27.51-5.78,42.57-5.78h85v57.11h-60.03c-13.46,0-23.42.4-29.88,1.2-6.46.8-12.22,2.12-17.27,3.98s-9.52,5.09-13.41,9.7c-3.9,4.6-6.16,12.75-6.77,24.44.44,11.33,2.7,19.44,6.77,24.3,4.07,4.87,9.03,8.1,14.88,9.7s11.86,2.7,18.06,3.32c6.2.62,15.41.93,27.62.93Z" />
+            <path class="cls-1"
+                d="M425.11,102.41c0,20.98-4.38,38.87-13.15,53.66-8.77,14.79-21.45,25.9-38.05,33.34s-36.41,11.16-59.43,11.16-42.79-3.74-59.3-11.22c-16.51-7.48-29.02-18.55-37.52-33.2-8.5-14.65-12.75-32.56-12.75-53.72,0-16.02,2.43-30.13,7.3-42.3,4.87-12.17,12-22.42,21.38-30.75,9.38-8.32,20.9-14.63,34.53-18.93,13.63-4.29,29.09-6.44,46.35-6.44,22.93,0,42.72,3.79,59.37,11.36,16.65,7.57,29.35,18.73,38.12,33.47s13.15,32.61,13.15,53.59ZM273.04,102.95c0,12.31,2.77,23.02,8.3,32.14,5.53,9.12,16.45,13.68,32.74,13.68,12.57,0,21.98-2.39,28.22-7.17s10.14-10.25,11.69-16.4c1.55-6.15,2.59-13.57,3.12-22.25-.53-12.31-3.5-23.04-8.9-32.21-5.4-9.16-16.78-13.75-34.13-13.75-27.36,0-41.04,15.32-41.04,45.95Z" />
+            <path class="cls-1"
+                d="M569.19,140.13v-38.78h60.03v95.89h-85c-20.81,0-39.62-3.7-56.45-11.09-16.82-7.39-30.08-18.48-39.78-33.27-9.7-14.79-14.54-32.89-14.54-54.32,0-15.05,2.9-28.49,8.7-40.31,5.8-11.82,13.83-21.65,24.11-29.48,10.27-7.84,22.07-13.68,35.39-17.53,13.32-3.85,27.51-5.78,42.57-5.78h85v57.11h-60.03c-13.46,0-23.42.4-29.88,1.2-6.46.8-12.22,2.12-17.27,3.98s-9.52,5.09-13.41,9.7c-3.9,4.6-6.16,12.75-6.77,24.44.44,11.33,2.7,19.44,6.77,24.3,4.07,4.87,9.03,8.1,14.88,9.7s11.86,2.7,18.06,3.32c6.2.62,15.41.93,27.62.93Z" />
+            <polygon class="cls-1"
+                points="998.4 5.46 935.97 5.46 935.97 77.18 878.87 5.46 816.44 5.46 816.44 140.13 701.42 140.13 701.42 118.09 767.3 118.09 767.3 84.62 701.42 84.62 701.42 62.57 803.42 62.57 803.42 5.46 639 5.46 639 197.24 816.44 197.24 819.63 197.24 878.87 197.24 878.87 125.52 935.97 197.24 998.4 197.24 998.4 62.57 1059.22 62.57 1059.22 197.24 1121.65 197.24 1121.65 62.57 1182.47 62.57 1182.47 5.46 998.4 5.46" />
+        </svg>
+    </div>
+
+    <div class="crawl-stage">
+        <div class="crawl">
+            <p class="intro">A long time ago, in a datacenter not so far away&hellip;</p>
+
+            <p>A great darkness had fallen upon the enterprise. Across the known galaxy of home services, sales records
+                were scattered, claims left unadjudicated, and accounting ledgers lost to the void. The Rebellion of
+                manual processes had grown powerful, and no tool could withstand its chaos.</p>
+
+            <p>In the year 2018, a small but courageous band of engineers drew their first blueprints in the depths of
+                the Azure cloud. Armed with the ancient arts of Angular and TypeScript, and guided by the Force of
+                Node.js, they began construction of a system that would bring order to the galaxy.</p>
+
+            <p class="title-line">They called it Cogent.</p>
+
+            <p>For three years, the engineers labored in secrecy — forging the platform in the fires of iteration,
+                hardening it against the dark side of legacy systems, and breathing into it the power to manage sales,
+                tame accounting ledgers, and render swift justice through claims adjudication.</p>
+
+            <p>When the twin suns of 2021 rose over the horizon, COGENT emerged at last from its long incubation. The
+                noble company known as Elevate Homescriptions opened its gates, and the platform descended upon its
+                operations like the Rebel fleet over Endor — precise, powerful, and ready for battle.</p>
+
+            <p>Now, running steadfast in the Azure cloud, COGENT stands as the singular CRM of the realm — a New Hope
+                for every sales team, every accountant, every claims officer who ever dared imagine a galaxy where data
+                flows free and no adjudication is left behind.</p>
+
+            <p>The Empire of disorder has been defeated. The Force is strong with this platform.</p>
+
+            <p class="sign-off">May the code be with you. Always.</p>
+        </div>
+    </div>
+
+    <div class="vignette-top"></div>
+    <div class="vignette-bottom"></div>
+</div>

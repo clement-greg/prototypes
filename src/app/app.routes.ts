@@ -406,7 +406,7 @@ export const routes: RoutesWithMeta = [
         category: 'Load Screens',
         subcategory: 'Other',
         title: 'Dark And Shiny',
-            icon: 'nightlight_round',
+        icon: 'nightlight_round',
         loadComponent: () => import('./load-screens/cogent-load-dark-and-shiney/cogent-load-dark-and-shiney.component').then(r => r.CogentLoadDarkAndShineyComponent),
     },
     // {
@@ -497,7 +497,7 @@ export const routes: RoutesWithMeta = [
         title: 'Location Tracking',
         category: 'Experiments',
         icon: 'location_on',
-        loadComponent: () => import('./experiments/location-tracking/location-tracking.component').then(r => r.LocationTrackingComponent),  
+        loadComponent: () => import('./experiments/location-tracking/location-tracking.component').then(r => r.LocationTrackingComponent),
     },
     {
         path: 'cogent-pi',
@@ -544,6 +544,14 @@ export const routes: RoutesWithMeta = [
         subcategory: 'Other',
         icon: 'star',
         loadComponent: () => import('./load-screens/cogent-load-texas/cogent-load-texas.component').then(r => r.CogentLoadTexasComponent),
+    },
+    {
+        path: 'cogent-load-star-wars',
+        category: 'Load Screens',
+        title: 'Star Wars Load',
+        subcategory: 'Other',
+        icon: 'star',
+        loadComponent: () => import('./load-screens/cogent-load-star-wars/cogent-load-star-wars.component').then(r => r.CogentLoadStarWarsComponent),
     },
     {
         path: '',
