@@ -554,6 +554,14 @@ export const routes: RoutesWithMeta = [
         loadComponent: () => import('./load-screens/cogent-load-star-wars/cogent-load-star-wars.component').then(r => r.CogentLoadStarWarsComponent),
     },
     {
+        path: 'cogent-load-graduation',
+        category: 'Load Screens',
+        title: 'Graduation Load',
+        subcategory: 'Other',
+        icon: 'school',
+        loadComponent: () => import('./load-screens/cogent-load-graduation/cogent-load-graduation.component').then(r => r.CogentLoadGraduationComponent),
+    },
+    {
         path: '',
         title: 'Main Menu',
         category: 'Navigation',

@@ -1,0 +1,385 @@
+<style>
+    #splashScreen {
+        height: 100%;
+        position: absolute;
+        width: 100%;
+        top: 0;
+        z-index: 2000000;
+        background: #EBFFFF;
+        background: linear-gradient(0deg, #89b8d9 0%, #2f5875 100%);
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+        font-family: "Open Sans";
+    }
+
+
+
+    #splashScreen svg {
+        max-height: 500px;
+        height: 100vh;
+        width: 100vw;
+        max-width: 500px;
+        overflow: visible;
+        filter: drop-shadow(0 0 30px rgba(177, 203, 222, 0.6)) drop-shadow(0 0 60px rgba(177, 203, 222, 0.4));
+    }
+
+
+    #splashScreen {
+        display: flex;
+        justify-content: center;
+        align-items: start;
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+    }
+
+    /* ===== Confetti ===== */
+    /*
+     * Three-layer approach so CSS transforms work in SVG user-space at any scale:
+     *   1. Outer <g transform="translate(X,0)"> — SVG-native X position (always SVG user units)
+     *   2. .cf — CSS fall animation; transform-box:view-box makes % values = % of SVG viewBox size
+     *   3. .cf-spin — rotation around piece centre (transform-box:fill-box)
+     *   4. .cf-shape — scaleX flutter/ripple (transform-box:fill-box)
+     */
+    .cf {
+        transform-box: view-box;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+    }
+    .cf-spin {
+        transform-box: fill-box;
+        transform-origin: center;
+        animation-name: cf-spin-cw;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+    }
+    .cf-spin-ccw { animation-name: cf-spin-ccw; }
+    .cf-shape {
+        transform-box: fill-box;
+        transform-origin: center;
+        animation-name: cf-twist;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+    }
+    @keyframes cf-spin-cw  { from { transform: rotate(0deg);   } to { transform: rotate(360deg);  } }
+    @keyframes cf-spin-ccw { from { transform: rotate(0deg);   } to { transform: rotate(-360deg); } }
+    @keyframes cf-twist {
+        0%, 100% { transform: scaleX(1)    scaleY(1);    }
+        25%      { transform: scaleX(0.07) scaleY(1.15); }
+        50%      { transform: scaleX(-1)   scaleY(1);    }
+        75%      { transform: scaleX(0.07) scaleY(1.15); }
+    }
+    /* viewBox = 624.44 x 624.44; X set via SVG transform on outer wrapper; % is relative to viewBox */
+    /* Each keyframe has pendulum X stops at 25% and 75% for side-to-side flutter as it falls */
+    @keyframes cf1  { 0%{transform:translate(0%,-4.48%);opacity:0} 7%{opacity:1} 25%{transform:translate(-3.84%,24.0%)} 50%{transform:translate(2.88%,49.33%);opacity:1} 75%{transform:translate(-2.24%,74.5%);opacity:1} 100%{transform:translate(1.60%,104.13%);opacity:0} }
+    @keyframes cf2  { 0%{transform:translate(0%,-3.52%);opacity:0} 7%{opacity:1} 25%{transform:translate(3.52%,24.5%)} 50%{transform:translate(-2.88%,50.00%);opacity:1} 75%{transform:translate(2.24%,74.0%);opacity:1} 100%{transform:translate(-1.92%,103.77%);opacity:0} }
+    @keyframes cf3  { 0%{transform:translate(0%,-4.16%);opacity:0} 7%{opacity:1} 25%{transform:translate(-4.48%,25.0%)} 50%{transform:translate(2.56%,49.16%);opacity:1} 75%{transform:translate(-3.20%,74.0%);opacity:1} 100%{transform:translate(1.92%,104.45%);opacity:0} }
+    @keyframes cf4  { 0%{transform:translate(0%,-3.84%);opacity:0} 7%{opacity:1} 25%{transform:translate(4.48%,24.0%)} 50%{transform:translate(-3.52%,48.84%);opacity:1} 75%{transform:translate(2.56%,75.0%);opacity:1} 100%{transform:translate(-1.60%,103.93%);opacity:0} }
+    @keyframes cf5  { 0%{transform:translate(0%,-4.48%);opacity:0} 7%{opacity:1} 25%{transform:translate(-2.88%,25.5%)} 50%{transform:translate(3.84%,49.64%);opacity:1} 75%{transform:translate(-3.20%,74.5%);opacity:1} 100%{transform:translate(2.24%,104.25%);opacity:0} }
+    @keyframes cf6  { 0%{transform:translate(0%,-3.52%);opacity:0} 7%{opacity:1} 25%{transform:translate(3.84%,24.0%)} 50%{transform:translate(-3.20%,49.33%);opacity:1} 75%{transform:translate(2.56%,74.0%);opacity:1} 100%{transform:translate(-2.24%,104.13%);opacity:0} }
+    @keyframes cf7  { 0%{transform:translate(0%,-4.16%);opacity:0} 7%{opacity:1} 25%{transform:translate(-3.52%,24.5%)} 50%{transform:translate(2.88%,48.84%);opacity:1} 75%{transform:translate(-1.92%,74.5%);opacity:1} 100%{transform:translate(1.60%,103.77%);opacity:0} }
+    @keyframes cf8  { 0%{transform:translate(0%,-3.84%);opacity:0} 7%{opacity:1} 25%{transform:translate(2.88%,25.0%)} 50%{transform:translate(-3.52%,50.00%);opacity:1} 75%{transform:translate(3.20%,74.0%);opacity:1} 100%{transform:translate(-2.56%,104.45%);opacity:0} }
+    @keyframes cf9  { 0%{transform:translate(0%,-4.48%);opacity:0} 7%{opacity:1} 25%{transform:translate(-4.16%,24.0%)} 50%{transform:translate(2.24%,49.33%);opacity:1} 75%{transform:translate(-3.52%,75.0%);opacity:1} 100%{transform:translate(1.92%,103.93%);opacity:0} }
+    @keyframes cf10 { 0%{transform:translate(0%,-3.52%);opacity:0} 7%{opacity:1} 25%{transform:translate(3.20%,25.0%)} 50%{transform:translate(-2.56%,49.64%);opacity:1} 75%{transform:translate(2.24%,74.5%);opacity:1} 100%{transform:translate(-1.92%,104.25%);opacity:0} }
+    @keyframes cf11 { 0%{transform:translate(0%,-4.16%);opacity:0} 7%{opacity:1} 25%{transform:translate(-2.56%,24.5%)} 50%{transform:translate(3.84%,49.00%);opacity:1} 75%{transform:translate(-4.16%,74.0%);opacity:1} 100%{transform:translate(2.88%,104.13%);opacity:0} }
+    @keyframes cf12 { 0%{transform:translate(0%,-3.84%);opacity:0} 7%{opacity:1} 25%{transform:translate(4.48%,24.0%)} 50%{transform:translate(-3.20%,49.33%);opacity:1} 75%{transform:translate(2.24%,75.0%);opacity:1} 100%{transform:translate(-1.60%,103.77%);opacity:0} }
+    @keyframes cf13 { 0%{transform:translate(0%,-4.48%);opacity:0} 7%{opacity:1} 25%{transform:translate(-3.84%,25.5%)} 50%{transform:translate(3.52%,48.84%);opacity:1} 75%{transform:translate(-2.88%,74.5%);opacity:1} 100%{transform:translate(1.92%,104.45%);opacity:0} }
+    @keyframes cf14 { 0%{transform:translate(0%,-3.52%);opacity:0} 7%{opacity:1} 25%{transform:translate(2.88%,24.0%)} 50%{transform:translate(-3.84%,50.00%);opacity:1} 75%{transform:translate(3.52%,74.0%);opacity:1} 100%{transform:translate(-2.24%,103.93%);opacity:0} }
+    @keyframes cf15 { 0%{transform:translate(0%,-4.16%);opacity:0} 7%{opacity:1} 25%{transform:translate(-4.48%,25.0%)} 50%{transform:translate(2.56%,49.33%);opacity:1} 75%{transform:translate(-3.20%,74.5%);opacity:1} 100%{transform:translate(1.92%,104.25%);opacity:0} }
+    @keyframes cf16 { 0%{transform:translate(0%,-3.84%);opacity:0} 7%{opacity:1} 25%{transform:translate(3.52%,24.5%)} 50%{transform:translate(-2.88%,49.64%);opacity:1} 75%{transform:translate(2.56%,74.0%);opacity:1} 100%{transform:translate(-1.60%,104.13%);opacity:0} }
+    @keyframes cf17 { 0%{transform:translate(0%,-4.48%);opacity:0} 7%{opacity:1} 25%{transform:translate(-2.56%,25.0%)} 50%{transform:translate(4.16%,49.00%);opacity:1} 75%{transform:translate(-3.84%,74.5%);opacity:1} 100%{transform:translate(2.88%,103.93%);opacity:0} }
+    @keyframes cf18 { 0%{transform:translate(0%,-3.52%);opacity:0} 7%{opacity:1} 25%{transform:translate(4.16%,24.0%)} 50%{transform:translate(-2.88%,49.33%);opacity:1} 75%{transform:translate(2.24%,75.0%);opacity:1} 100%{transform:translate(-1.60%,104.45%);opacity:0} }
+    @keyframes cf19 { 0%{transform:translate(0%,-4.16%);opacity:0} 7%{opacity:1} 25%{transform:translate(-3.20%,24.5%)} 50%{transform:translate(2.56%,48.84%);opacity:1} 75%{transform:translate(-2.24%,74.5%);opacity:1} 100%{transform:translate(1.28%,103.77%);opacity:0} }
+    @keyframes cf20 { 0%{transform:translate(0%,-3.84%);opacity:0} 7%{opacity:1} 25%{transform:translate(2.56%,25.0%)} 50%{transform:translate(-3.20%,49.64%);opacity:1} 75%{transform:translate(2.88%,74.0%);opacity:1} 100%{transform:translate(-1.92%,104.25%);opacity:0} }
+    /* Per-piece fall animation */
+    #cf-p1  { animation-name:cf1;  animation-duration:3.5s; animation-delay:0.0s; }
+    #cf-p2  { animation-name:cf2;  animation-duration:3.0s; animation-delay:0.7s; }
+    #cf-p3  { animation-name:cf3;  animation-duration:4.0s; animation-delay:1.3s; }
+    #cf-p4  { animation-name:cf4;  animation-duration:3.2s; animation-delay:0.2s; }
+    #cf-p5  { animation-name:cf5;  animation-duration:3.8s; animation-delay:0.9s; }
+    #cf-p6  { animation-name:cf6;  animation-duration:3.5s; animation-delay:1.6s; }
+    #cf-p7  { animation-name:cf7;  animation-duration:3.1s; animation-delay:0.3s; }
+    #cf-p8  { animation-name:cf8;  animation-duration:4.2s; animation-delay:1.9s; }
+    #cf-p9  { animation-name:cf9;  animation-duration:3.7s; animation-delay:0.5s; }
+    #cf-p10 { animation-name:cf10; animation-duration:3.3s; animation-delay:1.1s; }
+    #cf-p11 { animation-name:cf11; animation-duration:3.9s; animation-delay:2.1s; }
+    #cf-p12 { animation-name:cf12; animation-duration:3.4s; animation-delay:0.4s; }
+    #cf-p13 { animation-name:cf13; animation-duration:4.1s; animation-delay:1.4s; }
+    #cf-p14 { animation-name:cf14; animation-duration:3.6s; animation-delay:0.8s; }
+    #cf-p15 { animation-name:cf15; animation-duration:3.2s; animation-delay:1.8s; }
+    #cf-p16 { animation-name:cf16; animation-duration:3.8s; animation-delay:0.1s; }
+    #cf-p17 { animation-name:cf17; animation-duration:3.5s; animation-delay:1.5s; }
+    #cf-p18 { animation-name:cf18; animation-duration:4.0s; animation-delay:0.6s; }
+    #cf-p19 { animation-name:cf19; animation-duration:3.3s; animation-delay:2.2s; }
+    #cf-p20 { animation-name:cf20; animation-duration:3.6s; animation-delay:1.2s; }
+    /* Per-piece spin duration */
+    #cf-r1  { animation-duration:1.40s; } #cf-r2  { animation-duration:1.10s; } #cf-r3  { animation-duration:1.70s; } #cf-r4  { animation-duration:0.90s; }
+    #cf-r5  { animation-duration:1.30s; } #cf-r6  { animation-duration:1.55s; } #cf-r7  { animation-duration:1.20s; } #cf-r8  { animation-duration:1.80s; }
+    #cf-r9  { animation-duration:1.00s; } #cf-r10 { animation-duration:1.45s; } #cf-r11 { animation-duration:1.35s; } #cf-r12 { animation-duration:1.65s; }
+    #cf-r13 { animation-duration:1.15s; } #cf-r14 { animation-duration:1.50s; } #cf-r15 { animation-duration:1.25s; } #cf-r16 { animation-duration:1.60s; }
+    #cf-r17 { animation-duration:1.40s; } #cf-r18 { animation-duration:1.10s; } #cf-r19 { animation-duration:1.75s; } #cf-r20 { animation-duration:1.30s; }
+    /* Per-piece flutter duration */
+    #cf-s1  { animation-duration:0.50s; } #cf-s2  { animation-duration:0.70s; } #cf-s3  { animation-duration:0.40s; } #cf-s4  { animation-duration:0.60s; }
+    #cf-s5  { animation-duration:0.55s; } #cf-s6  { animation-duration:0.80s; } #cf-s7  { animation-duration:0.45s; } #cf-s8  { animation-duration:0.60s; }
+    #cf-s9  { animation-duration:0.35s; } #cf-s10 { animation-duration:0.55s; } #cf-s11 { animation-duration:0.70s; } #cf-s12 { animation-duration:0.40s; }
+    #cf-s13 { animation-duration:0.65s; } #cf-s14 { animation-duration:0.50s; } #cf-s15 { animation-duration:0.45s; } #cf-s16 { animation-duration:0.60s; }
+    #cf-s17 { animation-duration:0.75s; } #cf-s18 { animation-duration:0.50s; } #cf-s19 { animation-duration:0.40s; } #cf-s20 { animation-duration:0.55s; }
+
+    /* ===== Graduation cap rock ===== */
+    #graduation-cap {
+        transform-box: fill-box;
+        transform-origin: bottom center;
+        animation: cap-rock 4s ease-in-out infinite;
+    }
+    @keyframes cap-rock {
+        0%, 100% { transform: rotate(0deg);   }
+        50%      { transform: rotate(10deg);  }
+    }
+</style>
+<div id="splashScreen">
+
+    <div style="display: table; margin: 0 auto; height: 100vh">
+        <div style="display: grid;height: 100%;align-items: center;">
+            <div>
+ 
+
+                <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 624.44 624.44">
+                    <defs>
+                        <style>
+                            .cls-1 {
+                                fill: #bfb39e;
+                            }
+
+                            .cls-2 {
+                                fill: #324052;
+                            }
+
+                            .cls-3 {
+                                fill: #aca08a;
+                            }
+
+                            .cls-4 {
+                                fill: #a27b43;
+                            }
+
+                            .cls-5 {
+                                fill: #fcfbf9;
+                            }
+
+                            .cls-6 {
+                                fill: #1e243c;
+                            }
+
+                            .cls-7 {
+                                fill: #48759b;
+                            }
+
+                            .cls-8 {
+                                fill: #ba6760;
+                            }
+
+                            .cls-9 {
+                                fill: #7986a0;
+                            }
+
+                            .cls-10 {
+                                fill: #485772;
+                            }
+
+                            .cls-11 {
+                                fill: #bf995b;
+                            }
+
+                            .cls-12 {
+                                fill: none;
+                            }
+
+                            .cls-13 {
+                                fill: #c8a365;
+                            }
+
+                            .cls-14 {
+                                fill: #e2ddd1;
+                            }
+
+                            .cls-15 {
+                                fill: #9d763b;
+                            }
+
+                            .cls-16 {
+                                fill: #485773;
+                            }
+
+                            .cls-17 {
+                                fill: #7a87a0;
+                            }
+
+                            .cls-18 {
+                                fill: #ddbe82;
+                            }
+
+                            .cls-19 {
+                                fill: #20273f;
+                            }
+
+                            .cls-20 {
+                                fill: #967037;
+                            }
+
+                            .cls-21 {
+                                fill: #ca817a;
+                            }
+
+                            .cls-22 {
+                                fill: #d3cbb9;
+                            }
+
+                            .cls-23 {
+                                fill: #dbafab;
+                            }
+
+                            .cls-24 {
+                                fill: #465670;
+                            }
+
+                            .cls-25 {
+                                fill: #734541;
+                            }
+
+                            .cls-26 {
+                                fill: #ddbe83;
+                            }
+
+                            .cls-27 {
+                                fill: url(#linear-gradient);
+                            }
+
+                            .cls-28 {
+                                clip-path: url(#clippath);
+                            }
+
+                            .cls-29 {
+                                fill: #9d5854;
+                            }
+                        </style>
+                        <clipPath id="clippath">
+                            <circle class="cls-12" cx="312.22" cy="312.22" r="312.22" />
+                        </clipPath>
+                        <linearGradient id="linear-gradient" x1="317.22" y1="10.85" x2="307.11" y2="619.54"
+                            gradientUnits="userSpaceOnUse">
+                            <stop offset="0" stop-color="#82bcb9" />
+                            <stop offset="1" stop-color="#f5f6f8" />
+                        </linearGradient>
+                    </defs>
+                    <g id="clipping-group">
+                        <g class="cls-28">
+                            <g id="scene">
+                                <circle id="bg" class="cls-27" cx="312.22" cy="312.22" r="304.39" />
+                                <path id="cogent-icon" class="cls-7"
+                                    d="M204.88,368.83l3.39,12.98c-128.11,45.86-127.18-161.58.19-119.08l-3.95,13.36c-6.21-3.01-15.05-5.27-25.58-5.27-80.73,2.78-58.16,133.18,25.96,98.01ZM245.76,371.52c-45.04.63-43.01-66.69,1.14-65.13,47.23-.05,41.05,67.75-1.14,65.13ZM246.61,314.89c-29.47-.12-26.83,48.98-.29,48.14,25.63,1.03,29.89-47.34.29-48.14ZM344.49,307.81h10.99c-.87,9.58-.53,42.39-.57,53.29,0,14.29-3.14,23.04-9.85,28.45-12.5,10.1-35.14,9.23-48.08,2.32l3.14-8.62c13.95,8.06,43.92,8.4,42.52-16.86v-6.95h-.29c-14.75,21.21-53.26,7.87-51.36-19.95-1.98-31.45,39.31-43.69,52.65-22.27h.29l.57-9.4ZM341.78,327.24c-7.74-20.69-39.79-12.98-38.1,11.58-2.02,25.91,36.91,31.64,38.81,4.76-.22-3.52.61-13.18-.71-16.35ZM431.24,341.02h-48.51c-.55,24.1,28.67,24.36,42.8,18.41l2.14,8.11c-65.01,23.96-76.79-57.84-24.54-61.14,25,.59,29.9,20.46,28.11,34.63ZM382.87,332.91h36.67c1.1-24.77-34.83-23.89-36.67,0ZM481.6,306.39c-11.41,0-19.4,5.79-22.83,11.71h-.29l-.71-10.3h-11.13c1.05,10.9.4,50.47.57,62.3h12.56v-37.46c.05-9.24,7.34-16.65,17.69-16.86,11.84,0,15.98,8.37,15.98,18.41v35.91h12.56c-.97-23.2,7.52-64.52-24.4-63.72ZM559.49,288.07v-13.59h-17.98v-28.2l-12.27,4.67v23.29c-1.78-.46-87.88,0-89.67-.16-2.27-4.51-3.67-18.08-10.46-18.36-2.67-.38-5.33.78-6.88,3l-14.13,20.23c-36-48.32-20.32-46.65-66.46-7.9h-111.45c-9.39.15-9.46,14.18,0,14.35,0,0,114.13,0,114.13,0,1.73,0,3.4-.62,4.7-1.76l27.57-23.95,25.75,35.85c1.36,1.89,3.55,3,5.87,2.99,2.33-.02,4.5-1.16,5.83-3.07l11.85-16.97c1.32,4.29,2.95,10.14,8.54,9.94,1.91-.17,92.9.31,94.79-.16v53.35c-.99,22.56,7.96,40.05,29.54,30.63l-.57-13.39c-10.99,4.12-17.31-1.39-16.69-17.85,0,0,0-52.94,0-52.94h17.98Z" />
+                                <g id="diploma">
+                                    <path class="cls-5"
+                                        d="M383.57,385.76c13.32-1.74,24.98,6.4,29.83,24.58,3.84,14.4-9.74,28.21-14.72,27.12-13.25,6.36,178.65-44.93,178.65-44.93,15.27-2.93,27.74-44.63-11.62-53.46l-182.13,46.69Z" />
+                                    <path class="cls-22"
+                                        d="M577.98,392.4c10.06-1.93,18.91-20.7,12.51-35.8l-177.59,67.66c-3.32,8.08-10.3,13.78-13.57,13.07-13.25,6.36,178.65-44.93,178.65-44.93Z" />
+                                    <ellipse class="cls-3" cx="393.58" cy="411.24" rx="20.51" ry="27.35"
+                                        transform="translate(-70.46 81.55) rotate(-10.86)" />
+                                    <path class="cls-1"
+                                        d="M413.62,420.5c-.89,2.01-21.1,5.48-21.1,5.48-12.82-10.23-8.03-22.62-4.7-24.49,1.52-.85,7.73-5.58,16.05,15.35,9.09-2.77,10.45-2.1,10.45-2.1,0,0,.19,3.74-.69,5.75Z" />
+                                    <path class="cls-14"
+                                        d="M390.31,400.48l18.71-4.83c6.36,10.06,5.3,19.09,5.3,19.09,0,0-4.25,1.09-11.36,2.45-3.35-15.33-12.64-16.71-12.64-16.71Z" />
+                                    <g>
+                                        <path class="cls-25"
+                                            d="M488.86,415.43c15.88-12.31,5.56-48.64-25.09-50.13l-4.46,1.14c30.83,1.32,41.24,37.81,25.32,50.15l26.13-6.11c.05-.07.1-.13.15-.2l-22.05,5.15Z" />
+                                        <path class="cls-29"
+                                            d="M461.35,366.04l30.06-7.68c25.57,5.33,31.43,39.28,21.39,51.72l-26.13,6.11c15.92-12.34,5.51-48.83-25.32-50.15Z" />
+                                        <path class="cls-8"
+                                            d="M491.41,358.36l-30.06,7.68c18.23.78,29.33,13.87,32.05,26.98l23.11-7.49c-2.61-12.16-10.75-24.17-25.1-27.17Z" />
+                                        <path class="cls-21"
+                                            d="M483.02,374.74l26.23-5.14c-4.23-5.43-10.14-9.63-17.84-11.24l-30.06,7.68c9.02.39,16.29,3.78,21.66,8.7Z" />
+                                        <path class="cls-23"
+                                            d="M470.53,367.59s3.23.94,5.59,2.33c0,0,25.71-4.29,29.23-4.53-1.24-1.35-4.06-3.08-4.06-3.08l-30.75,5.28Z" />
+                                    </g>
+                                </g>
+                                <g id="graduation-cap">
+                                    <g>
+                                        <path class="cls-16"
+                                            d="M98.83,212.71l2.41,40.51s8.35,7.91,79.74,31.76c42.43-38.46,55.5-53.09,59.11-57.51.79-.97,1.02-2.27.62-3.46l-13.02-38.71-128.86,27.41Z" />
+                                        <path class="cls-9"
+                                            d="M118.44,222.82s3.57,26.04,2.05,39.9c0,0,3.57,1.76,14.59,5.95,3.79.72-2.57-44.96-2.57-44.96l-14.07-.9Z" />
+                                        <path class="cls-6"
+                                            d="M98.83,212.71l.51,8.63s39.95.19,70.78,15.98l36.07-29.36,14.15,46.75c20.5-13.75,19.42-27.2,19.42-27.2,0,0,1.28-2.49.82-3.81l-12.88-38.39-60.32,37.67-68.54-10.26Z" />
+                                    </g>
+                                    <polygon class="cls-10"
+                                        points="153 137.63 41.17 200.81 168.73 219.57 278.98 151.29 153 137.63" />
+                                    <polygon class="cls-24"
+                                        points="41.17 200.81 42.17 205.76 169.72 225.17 168.73 220.06 41.17 200.81" />
+                                    <polygon class="cls-17"
+                                        points="41.52 202.62 41.19 200.88 42.45 200.08 168.67 219.47 168.79 220.12 41.52 202.62" />
+                                    <polygon class="cls-2"
+                                        points="168.64 219.59 169.72 225.17 279.83 155.69 278.96 151.15 168.64 219.59" />
+                                    <path class="cls-19"
+                                        d="M168.82,220.57l-.14-.71c55.65-37.02,109.58-68.58,109.58-68.58l.71-.14s-44.44,28.93-110.15,69.43Z" />
+                                    <path class="cls-4"
+                                        d="M159.02,169.21c-5.43,1.04-9.41,4.14-8.88,6.91l.59,3.09h.07c1.06,2.36,5.58,3.5,10.61,2.53s8.81-3.69,8.92-6.29h.07s-.59-3.1-.59-3.1c-.53-2.77-5.37-4.17-10.8-3.13Z" />
+                                    <ellipse class="cls-18" cx="159.9" cy="173.79" rx="10.02" ry="4.67"
+                                        transform="translate(-29.89 33.25) rotate(-10.86)" />
+                                    <path class="cls-18"
+                                        d="M247.91,204.49c-.46-2.62-1.66-9.09-2.98-12.65-3.58-8.72-9.37-8.18-12.76-9.32-15.11-2.71-62.22-5.9-62.22-5.9,0,0-.14.96-1.8,2.5,44.42,4.2,56.79,5.12,63.95,6.46,7.82,1.99,6.87,2.34,8.75,5.35,1.57,2.52,3.31,11.4,3.84,14.24-3.16,1.43-5.06,4.88-4.37,8.43.8,4.16,4.82,6.88,8.98,6.09s6.88-4.82,6.09-8.98c-.7-3.65-3.89-6.2-7.47-6.22Z" />
+                                    <path class="cls-13"
+                                        d="M250.25,204.88c.16.45.29.92.38,1.41.87,4.55-1.58,8.84-5.48,9.59-1.52.29-3.04,0-4.38-.74,1.37,3.27,4.89,5.25,8.52,4.56,4.16-.8,6.88-4.82,6.09-8.98-.54-2.83-2.58-4.99-5.13-5.84Z" />
+                                    <path class="cls-26"
+                                        d="M244.7,219.28s-1.85,3.08-1.84,21.57c.19,1.29-.11,1.77.15,10.33.9,10.72-6.17,16.95-6.17,16.95,0,0,1.56,1.44,4.41,1.73l2.08-2.09-1.38,2.33s.48.77,3.66,1.29c2.88-3.11,3.49-4.24,3.49-4.24l-.63,4.51s3.44-.68,4.49-.44,5.25.2,6.23-.59c1.73-5.11,2.01-8.76,2.01-8.76,0,0,1.6,3.11,2.88,6.96,2.19.39,5.47-2.02,5.47-2.02l-.67-1.9s.77,1.03,1.55,1.28,4.65-2.72,4.72-3.32c-.98-1.17-3.12-2.77-3.12-2.77,0,0,2.09.57,4.54,1.72.44-.11,2.1-3.18,2.1-3.18,0,0-3.88-.86-6.29-2.98s-4.45-3.86-7.11-12.01c-1.18-3.63-2.33-7.6-3.78-11.13s-1.69-4.02-2.56-6.33-1.83-4.14-3.71-6.01c0,0-.58-1.13-1.95-2.55-3.91,3.47-8.58,1.65-8.58,1.65Z" />
+                                    <path class="cls-20"
+                                        d="M245.51,230.57c.56,6.68.7,13.32,1.16,19.97.37,2.84.4,5.58-.04,8.42-.78,3.14-1.56,6.24-3.21,8.99.31-.72.39-1.52.55-2.28.37-2.2.86-4.76,1.11-6.92.15-2.63,0-5.44-.38-8.05-.49-6.73-.3-13.48.81-20.13h0Z" />
+                                    <path class="cls-20"
+                                        d="M249.14,227.45c.31,2.85.44,5.92.73,8.78.02.29.16.6.21.82,1.12,5.21,1.54,10.08,2.42,15.37.16,1.53-.14,3.64-.27,5.18-.37,3.51-1.65,6.69-3.07,9.76.91-4.23,1.65-8.18,1.56-12.41.14-2.54-.61-4.66-.99-7.31-.05-.35-1.17-11.02-1.27-10.94-.08-3.1.28-6.18.68-9.25h0Z" />
+                                    <path class="cls-20"
+                                        d="M251.83,230.92c.28,1.88.42,3.78.86,5.58.53,1.41.87,2.87,1.18,4.33.7,3.38,1.08,6.71,1.55,10.08.32,3.33,1.07,6.74.44,10.35-.63,3.26-.76,6.84-2.16,9.93.33-1.67.34-3.35.39-5.04-.02-3.31.58-6.61.02-9.98-.36-2.51-.99-7.55-1.26-10.07-.33-3.16-.55-6.29-1.21-9.38-.21-1.96-.02-3.9.17-5.82h0Z" />
+                                    <path class="cls-11"
+                                        d="M259.06,270.57c1.73-5.11,2.01-8.76,2.01-8.76,0,0,1.6,3.11,2.88,6.96,2.19.39,5.47-2.02,5.47-2.02l-.67-1.9s.77,1.03,1.55,1.28c.78.25,4.65-2.72,4.72-3.32-.98-1.17-3.12-2.77-3.12-2.77,0,0,2.09.57,4.54,1.72.44-.11,2.1-3.18,2.1-3.18,0,0-3.88-.86-6.29-2.98-2.4-2.12-4.45-3.86-7.11-12.01-1.18-3.63-2.33-7.6-3.78-11.13-1.46-3.53-1.69-4.02-2.56-6.33-.87-2.31-1.83-4.14-3.71-6.01,0,0-.54-1.05-1.81-2.4l-.42.07c-.87.71-1.77,1.18-2.64,1.47h.01s5.62,16.15,6.03,22.09,2.39,12.47,2.03,14.81c-.36,2.33.04,9.46-5,15.06,1.5.15,4.88.04,5.74-.66Z" />
+                                    <path class="cls-20"
+                                        d="M254.72,225.58c3.8,6.13,5.61,13.01,7.29,19.99,1.5,6.61,2.67,14.06,6.88,19.56-1.55-.92-2.5-2.59-3.48-4.06-2.93-4.52-4.21-9.91-5.37-15.11-.91-4.21-2.07-8.57-2.96-12.81-.72-2.52-1.64-5.03-2.37-7.56h0Z" />
+                                    <path class="cls-20"
+                                        d="M256.89,225.05c3.62,5.69,5.65,12.19,7.58,18.63.99,6.16,4.03,11.62,7.79,16.56-5-3.95-8.63-9.76-9.72-16.07-1.88-6.34-3.54-12.82-5.65-19.12h0Z" />
+                                    <path class="cls-20"
+                                        d="M253.07,228.66c1.28,3.01,2.35,6.13,3.58,9.05,1.74,4.58,2.64,9.57,3.61,14.29,1.34,4.8.88,9.97.12,14.76-.42-3.26-.3-6.56-.86-9.65-.38-2.35-1.2-4.7-1.65-7.07-.34-1.51-1.22-5.56-1.55-7.13-1.02-4.84-2.67-9.39-3.25-14.26h0Z" />
+                                    <path class="cls-15"
+                                        d="M244.65,219.2c-.63,1.46-.24,1.94-.24,1.94,0,0,5.5.71,10.05-1.62-.2-1.36-1.23-1.96-1.23-1.96,0,0-3.22,3.54-8.58,1.65Z" />
+                                    <path class="cls-2"
+                                        d="M180.98,284.97l-10.86-47.66,36.07-29.36,14.15,46.75c-27.47,23.46-26.77,20.4-39.36,30.28Z" />
+                                </g>
+                                <!-- Confetti -->
+                                <g transform="translate(108,0)"><g id="cf-p1"  class="cf"><g id="cf-r1"  class="cf-spin"><rect     id="cf-s1"  class="cf-shape" x="-8" y="-4" width="16" height="8" fill="#f5c842"/></g></g></g>
+                                <g transform="translate(178,0)"><g id="cf-p2"  class="cf"><g id="cf-r2"  class="cf-spin cf-spin-ccw"><rect  id="cf-s2"  class="cf-shape" x="-6" y="-4" width="12" height="8" fill="#e84c3d"/></g></g></g>
+                                <g transform="translate(248,0)"><g id="cf-p3"  class="cf"><g id="cf-r3"  class="cf-spin"><polygon  id="cf-s3"  class="cf-shape" points="0,-8 8,0 0,8 -8,0" fill="#5ba3e0"/></g></g></g>
+                                <g transform="translate(318,0)"><g id="cf-p4"  class="cf"><g id="cf-r4"  class="cf-spin cf-spin-ccw"><rect  id="cf-s4"  class="cf-shape" x="-7" y="-3" width="14" height="6" fill="#5cb85c"/></g></g></g>
+                                <g transform="translate(395,0)"><g id="cf-p5"  class="cf"><g id="cf-r5"  class="cf-spin"><rect     id="cf-s5"  class="cf-shape" x="-8" y="-4" width="16" height="8" fill="#ddbe82"/></g></g></g>
+                                <g transform="translate(468,0)"><g id="cf-p6"  class="cf"><g id="cf-r6"  class="cf-spin cf-spin-ccw"><polygon id="cf-s6"  class="cf-shape" points="0,-8 8,0 0,8 -8,0" fill="#e848d8"/></g></g></g>
+                                <g transform="translate(535,0)"><g id="cf-p7"  class="cf"><g id="cf-r7"  class="cf-spin"><rect     id="cf-s7"  class="cf-shape" x="-6" y="-4" width="12" height="8" fill="#ff8c42"/></g></g></g>
+                                <g transform="translate(132,0)"><g id="cf-p8"  class="cf"><g id="cf-r8"  class="cf-spin cf-spin-ccw"><rect  id="cf-s8"  class="cf-shape" x="-8" y="-4" width="16" height="8" fill="#ffffff"/></g></g></g>
+                                <g transform="translate(278,0)"><g id="cf-p9"  class="cf"><g id="cf-r9"  class="cf-spin"><rect     id="cf-s9"  class="cf-shape" x="-7" y="-3" width="14" height="6" fill="#f5c842"/></g></g></g>
+                                <g transform="translate(378,0)"><g id="cf-p10" class="cf"><g id="cf-r10" class="cf-spin cf-spin-ccw"><polygon id="cf-s10" class="cf-shape" points="0,-8 8,0 0,8 -8,0" fill="#e84c3d"/></g></g></g>
+                                <g transform="translate(195,0)"><g id="cf-p11" class="cf"><g id="cf-r11" class="cf-spin"><rect     id="cf-s11" class="cf-shape" x="-6" y="-4" width="12" height="8" fill="#5ba3e0"/></g></g></g>
+                                <g transform="translate(345,0)"><g id="cf-p12" class="cf"><g id="cf-r12" class="cf-spin cf-spin-ccw"><rect  id="cf-s12" class="cf-shape" x="-8" y="-4" width="16" height="8" fill="#5cb85c"/></g></g></g>
+                                <g transform="translate(448,0)"><g id="cf-p13" class="cf"><g id="cf-r13" class="cf-spin"><polygon  id="cf-s13" class="cf-shape" points="0,-10 8,0 0,10 -8,0" fill="#ddbe82"/></g></g></g>
+                                <g transform="translate(72,0)"> <g id="cf-p14" class="cf"><g id="cf-r14" class="cf-spin cf-spin-ccw"><rect  id="cf-s14" class="cf-shape" x="-7" y="-3" width="14" height="6" fill="#e848d8"/></g></g></g>
+                                <g transform="translate(558,0)"><g id="cf-p15" class="cf"><g id="cf-r15" class="cf-spin"><rect     id="cf-s15" class="cf-shape" x="-8" y="-4" width="16" height="8" fill="#ff8c42"/></g></g></g>
+                                <g transform="translate(142,0)"><g id="cf-p16" class="cf"><g id="cf-r16" class="cf-spin cf-spin-ccw"><rect  id="cf-s16" class="cf-shape" x="-6" y="-4" width="12" height="8" fill="#f5c842"/></g></g></g>
+                                <g transform="translate(308,0)"><g id="cf-p17" class="cf"><g id="cf-r17" class="cf-spin"><polygon  id="cf-s17" class="cf-shape" points="0,-8 8,0 0,8 -8,0" fill="#ba6760"/></g></g></g>
+                                <g transform="translate(488,0)"><g id="cf-p18" class="cf"><g id="cf-r18" class="cf-spin cf-spin-ccw"><rect  id="cf-s18" class="cf-shape" x="-8" y="-4" width="16" height="8" fill="#5ba3e0"/></g></g></g>
+                                <g transform="translate(215,0)"><g id="cf-p19" class="cf"><g id="cf-r19" class="cf-spin"><rect     id="cf-s19" class="cf-shape" x="-7" y="-3" width="14" height="6" fill="#5cb85c"/></g></g></g>
+                                <g transform="translate(368,0)"><g id="cf-p20" class="cf"><g id="cf-r20" class="cf-spin cf-spin-ccw"><polygon id="cf-s20" class="cf-shape" points="0,-8 8,0 0,8 -8,0" fill="#ffffff"/></g></g></g>
+                            </g>
+                        </g>
+                    </g>
+                </svg>
+            </div>
+        </div>
+    </div>
+</div>
