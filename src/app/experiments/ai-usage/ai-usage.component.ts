@@ -23,6 +23,7 @@ export class AiUsageComponent implements OnDestroy {
   @ViewChild('userChart') userCanvas!: ElementRef<HTMLCanvasElement>;
   @ViewChild('modelChart') modelCanvas!: ElementRef<HTMLCanvasElement>;
   @ViewChild('userDateChart') userDateCanvas!: ElementRef<HTMLCanvasElement>;
+  @ViewChild('userModelChart') userModelCanvas!: ElementRef<HTMLCanvasElement>;
 
   rows: AiUsageRow[] = [];
   fileName = '';
@@ -112,6 +113,7 @@ export class AiUsageComponent implements OnDestroy {
     this.renderUserChart();
     this.renderModelChart();
     this.renderUserDateChart();
+    this.renderUserModelChart();
   }
 
   private renderDateChart() {
@@ -241,6 +243,76 @@ export class AiUsageComponent implements OnDestroy {
             labels: { color: '#e0e0e0', font: { size: 12 }, padding: 14 },
           },
           title: { display: true, text: 'Usage by Model', color: '#fff', font: { size: 16 } },
+        },
+      },
+    }));
+  }
+
+  private renderUserModelChart() {
+    const ctx = this.userModelCanvas?.nativeElement?.getContext('2d');
+    if (!ctx) return;
+
+    // Users sorted by total usage descending
+    const userTotals = new Map<string, number>();
+    for (const r of this.rows) {
+      userTotals.set(r.username, (userTotals.get(r.username) || 0) + r.quantity);
+    }
+    const users = [...userTotals.keys()].sort((a, b) => userTotals.get(b)! - userTotals.get(a)!);
+
+    // Models sorted by total usage descending
+    const modelTotals = new Map<string, number>();
+    for (const r of this.rows) {
+      modelTotals.set(r.model, (modelTotals.get(r.model) || 0) + r.quantity);
+    }
+    const models = [...modelTotals.keys()].sort((a, b) => modelTotals.get(b)! - modelTotals.get(a)!);
+
+    const palette = [
+      '#42a5f5', '#66bb6a', '#ff7043', '#ab47bc', '#26c6da',
+      '#ffca28', '#ec407a', '#7e57c2', '#ffa726', '#ef5350',
+      '#26a69a', '#d4e157',
+    ];
+
+    const datasets = models.map((model, i) => {
+      const color = palette[i % palette.length];
+      return {
+        label: model,
+        data: users.map(user => {
+          return this.rows
+            .filter(r => r.username === user && r.model === model)
+            .reduce((s, r) => s + r.quantity, 0);
+        }),
+        backgroundColor: color,
+        borderColor: color + 'cc',
+        borderWidth: 1,
+        borderRadius: 2,
+      };
+    });
+
+    this.charts.push(new Chart(ctx, {
+      type: 'bar',
+      data: { labels: users, datasets },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'bottom',
+            labels: { color: '#e0e0e0', font: { size: 11 }, padding: 14, boxWidth: 16 },
+          },
+          title: { display: true, text: 'Usage by User & Model', color: '#fff', font: { size: 16 } },
+        },
+        scales: {
+          x: {
+            stacked: true,
+            ticks: { color: '#bbb' },
+            grid: { color: 'rgba(255,255,255,0.08)' },
+          },
+          y: {
+            stacked: true,
+            ticks: { color: '#bbb' },
+            grid: { color: 'rgba(255,255,255,0.08)' },
+            title: { display: true, text: 'AI Credits', color: '#ccc' },
+          },
         },
       },
     }));
