@@ -1,0 +1,151 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background: #121212;
+  color: #e0e0e0;
+  font-family: 'Roboto', sans-serif;
+}
+
+.ai-usage-container {
+  padding: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+
+  h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #fff;
+  }
+}
+
+.file-picker {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.file-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: #1976d2;
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: background 0.2s;
+  user-select: none;
+
+  &:hover {
+    background: #1565c0;
+  }
+
+  .material-icons {
+    font-size: 20px;
+  }
+}
+
+.file-name {
+  font-size: 0.85rem;
+  color: #9e9e9e;
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.card {
+  background: #1e1e1e;
+  border-radius: 12px;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  .card-value {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+    line-height: 1.2;
+  }
+
+  .small-value {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  .card-label {
+    font-size: 0.75rem;
+    color: #9e9e9e;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+  }
+}
+
+.charts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.chart-container {
+  background: #1e1e1e;
+  border-radius: 12px;
+  padding: 20px;
+  height: 380px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  &.wide {
+    grid-column: 1 / -1;
+    height: 280px;
+  }
+
+  &.wide.tall {
+    height: 420px;
+  }
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 100px 24px;
+  color: #424242;
+
+  .material-icons {
+    font-size: 80px;
+  }
+
+  p {
+    font-size: 1.1rem;
+    margin: 0;
+  }
+}

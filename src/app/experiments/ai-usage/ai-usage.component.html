@@ -1,0 +1,56 @@
+<div class="ai-usage-container">
+  <div class="header">
+    <h1>AI Usage Dashboard</h1>
+    <div class="file-picker">
+      <label class="file-btn" for="csvFile">
+        <span class="material-icons">upload_file</span>
+        Load CSV
+      </label>
+      <input id="csvFile" type="file" accept=".csv" (change)="onFileSelected($event)" hidden>
+      @if (fileName) {
+        <span class="file-name">{{ fileName }}</span>
+      }
+    </div>
+  </div>
+
+  @if (rows.length > 0) {
+    <section class="summary-cards">
+      <div class="card">
+        <span class="card-value">{{ formatNumber(totalQuantity) }}</span>
+        <span class="card-label">Total AI Credits</span>
+      </div>
+      <div class="card">
+        <span class="card-value">{{ uniqueUsers }}</span>
+        <span class="card-label">Users</span>
+      </div>
+      <div class="card">
+        <span class="card-value">{{ uniqueModels }}</span>
+        <span class="card-label">Models</span>
+      </div>
+      <div class="card wide-card">
+        <span class="card-value small-value">{{ dateRange }}</span>
+        <span class="card-label">Date Range</span>
+      </div>
+    </section>
+
+    <section class="charts-grid">
+      <div class="chart-container wide">
+        <canvas #dateChart></canvas>
+      </div>
+      <div class="chart-container">
+        <canvas #userChart></canvas>
+      </div>
+      <div class="chart-container">
+        <canvas #modelChart></canvas>
+      </div>
+      <div class="chart-container wide tall">
+        <canvas #userDateChart></canvas>
+      </div>
+    </section>
+  } @else {
+    <div class="empty-state">
+      <span class="material-icons">bar_chart</span>
+      <p>Select a CSV file to visualize AI usage data</p>
+    </div>
+  }
+</div>

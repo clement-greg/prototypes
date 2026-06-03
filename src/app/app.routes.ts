@@ -570,6 +570,13 @@ export const routes: RoutesWithMeta = [
         loadComponent: () => import('./load-screens/cogent-load-summer-2/cogent-load-summer-2.component').then(r => r.CogentLoadSummer2Component),
     },
     {
+        path: 'ai-usage',
+        title: 'AI Usage Dashboard',
+        category: 'Experiments',
+        icon: 'insights',
+        loadComponent: () => import('./experiments/ai-usage/ai-usage.component').then(r => r.AiUsageComponent),
+    },
+    {
         path: '',
         title: 'Main Menu',
         category: 'Navigation',
