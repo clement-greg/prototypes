@@ -57,7 +57,6 @@ export class AiUsageComponent implements OnDestroy {
       if (!url) return Promise.resolve();
       return new Promise<void>(resolve => {
         const img = new Image();
-        img.crossOrigin = 'anonymous';
         img.onload = () => { map.set(user, img); resolve(); };
         img.onerror = () => resolve();
         img.src = url;
@@ -79,18 +78,26 @@ export class AiUsageComponent implements OnDestroy {
         (chart.data.labels as string[])?.forEach((label, i) => {
           const img = imageMap.get(label);
           if (!img) return;
+          // Find topmost y pixel across all stacked datasets for this bar index
+          let topY = (chart as any).scales['y'].getPixelForValue(0);
+          for (let d = 0; d < chart.data.datasets.length; d++) {
+            const meta = chart.getDatasetMeta(d);
+            if (meta.hidden) continue;
+            const el = meta.data[i] as any;
+            if (el && el.y < topY) topY = el.y;
+          }
           const x = xScale.getPixelForTick(i);
-          const y = xScale.bottom + 8;
+          const cy = topY - r - 4; // avatar center sits just above bar top
           ctx.save();
           ctx.beginPath();
-          ctx.arc(x, y + r, r, 0, Math.PI * 2);
+          ctx.arc(x, cy, r, 0, Math.PI * 2);
           ctx.clip();
-          ctx.drawImage(img, x - r, y, size, size);
+          ctx.drawImage(img, x - r, cy - r, size, size);
           ctx.restore();
           ctx.save();
           ctx.beginPath();
-          ctx.arc(x, y + r, r, 0, Math.PI * 2);
-          ctx.strokeStyle = 'rgba(255,255,255,0.25)';
+          ctx.arc(x, cy, r, 0, Math.PI * 2);
+          ctx.strokeStyle = 'rgba(255,255,255,0.35)';
           ctx.lineWidth = 1.5;
           ctx.stroke();
           ctx.restore();
@@ -254,7 +261,7 @@ export class AiUsageComponent implements OnDestroy {
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        layout: { padding: { bottom: 48 } },
+        layout: { padding: { top: 44 } },
         plugins: {
           legend: { display: false },
           title: { display: true, text: 'Usage by User', color: '#fff', font: { size: 16 } },
@@ -365,7 +372,7 @@ export class AiUsageComponent implements OnDestroy {
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        layout: { padding: { bottom: 48 } },
+        layout: { padding: { top: 44 } },
         plugins: {
           legend: {
             position: 'bottom',
