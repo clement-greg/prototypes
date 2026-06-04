@@ -33,6 +33,20 @@
       </div>
     </section>
 
+    <section class="user-spend-tiles">
+      @for (u of userSpend; track u.username) {
+        <div class="spend-tile">
+          @if (getAvatarUrl(u.username); as url) {
+            <img class="tile-avatar" [src]="url" [alt]="u.username" />
+          } @else {
+            <div class="tile-avatar-placeholder">{{ u.username[0].toUpperCase() }}</div>
+          }
+          <span class="spend-amount">{{ formatCurrency(u.spend) }}</span>
+          <span class="spend-username">{{ u.username }}</span>
+        </div>
+      }
+    </section>
+
     <section class="charts-grid">
       <div class="chart-container wide">
         <canvas #dateChart></canvas>

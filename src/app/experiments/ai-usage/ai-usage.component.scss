@@ -104,6 +104,60 @@
   }
 }
 
+.user-spend-tiles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.spend-tile {
+  background: #1e1e1e;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 14px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 120px;
+
+  .tile-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .tile-avatar-placeholder {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #333;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #9e9e9e;
+  }
+
+  .spend-amount {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #66bb6a;
+  }
+
+  .spend-username {
+    font-size: 0.75rem;
+    color: #9e9e9e;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+}
+
 .charts-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;

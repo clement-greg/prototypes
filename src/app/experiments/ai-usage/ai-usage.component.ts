@@ -31,8 +31,73 @@ export class AiUsageComponent implements OnDestroy {
   uniqueUsers = 0;
   uniqueModels = 0;
   dateRange = '';
+  userSpend: { username: string; spend: number }[] = [];
 
   private charts: Chart[] = [];
+
+  private readonly USER_IDS = new Map<string, string>([
+    ['blakepow',      'd1bbf39b-c05b-4122-befb-b62ba1b9c8b4'],
+    ['scotthellewell','7e42ce01-8faf-4f80-bc03-788469a6f120'],
+    ['corey-lang',    '9ef0f30f-30ed-4feb-90ec-706c5f89f376'],
+    ['katieclement',  '92cf7d08-4f56-4b00-bcce-10f719964ef4'],
+    ['clement-greg',  '8e5c8b2f-845e-456f-a3d9-1ba9e4e75635'],
+    ['greg-clement',  '8e5c8b2f-845e-456f-a3d9-1ba9e4e75635'],
+  ]);
+
+  getAvatarUrl(username: string): string | null {
+    const id = this.USER_IDS.get(username.toLowerCase());
+    return id ? `https://customers.elevatehomescriptions.com/api/entity/thumbnail/${id}` : null;
+  }
+
+  private loadUserImages(): Promise<Map<string, HTMLImageElement>> {
+    const users = [...new Set(this.rows.map(r => r.username))];
+    const map = new Map<string, HTMLImageElement>();
+    const promises = users.map(user => {
+      const url = this.getAvatarUrl(user);
+      if (!url) return Promise.resolve();
+      return new Promise<void>(resolve => {
+        const img = new Image();
+        img.crossOrigin = 'anonymous';
+        img.onload = () => { map.set(user, img); resolve(); };
+        img.onerror = () => resolve();
+        img.src = url;
+      });
+    });
+    return Promise.all(promises).then(() => map);
+  }
+
+  private makeAvatarPlugin(imageMap: Map<string, HTMLImageElement>) {
+    return {
+      id: 'avatarLabels',
+      afterDraw(chart: Chart) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const xScale = (chart as any).scales['x'];
+        if (!xScale || !imageMap.size) return;
+        const ctx = chart.ctx;
+        const size = 32;
+        const r = size / 2;
+        (chart.data.labels as string[])?.forEach((label, i) => {
+          const img = imageMap.get(label);
+          if (!img) return;
+          const x = xScale.getPixelForTick(i);
+          const y = xScale.bottom + 8;
+          ctx.save();
+          ctx.beginPath();
+          ctx.arc(x, y + r, r, 0, Math.PI * 2);
+          ctx.clip();
+          ctx.drawImage(img, x - r, y, size, size);
+          ctx.restore();
+          ctx.save();
+          ctx.beginPath();
+          ctx.arc(x, y + r, r, 0, Math.PI * 2);
+          ctx.strokeStyle = 'rgba(255,255,255,0.25)';
+          ctx.lineWidth = 1.5;
+          ctx.stroke();
+          ctx.restore();
+        });
+      }
+    };
+  }
 
   ngOnDestroy() {
     this.destroyCharts();
@@ -105,15 +170,24 @@ export class AiUsageComponent implements OnDestroy {
     if (dates.length) {
       this.dateRange = `${dates[0]} – ${dates[dates.length - 1]}`;
     }
+
+    const spendMap = new Map<string, number>();
+    for (const r of this.rows) {
+      spendMap.set(r.username, (spendMap.get(r.username) || 0) + r.quantity * 0.01);
+    }
+    this.userSpend = [...spendMap.entries()]
+      .sort((a, b) => b[1] - a[1])
+      .map(([username, spend]) => ({ username, spend }));
   }
 
-  private renderCharts() {
+  private async renderCharts() {
     if (!this.rows.length) return;
+    const avatarImages = await this.loadUserImages();
     this.renderDateChart();
-    this.renderUserChart();
+    this.renderUserChart(avatarImages);
     this.renderModelChart();
     this.renderUserDateChart();
-    this.renderUserModelChart();
+    this.renderUserModelChart(avatarImages);
   }
 
   private renderDateChart() {
@@ -161,7 +235,7 @@ export class AiUsageComponent implements OnDestroy {
     }));
   }
 
-  private renderUserChart() {
+  private renderUserChart(avatarImages: Map<string, HTMLImageElement>) {
     const ctx = this.userCanvas?.nativeElement?.getContext('2d');
     if (!ctx) return;
 
@@ -176,32 +250,29 @@ export class AiUsageComponent implements OnDestroy {
 
     this.charts.push(new Chart(ctx, {
       type: 'bar',
-      data: {
-        labels,
-        datasets: [{
-          label: 'AI Credits',
-          data,
-          backgroundColor: colors,
-          borderRadius: 4,
-        }]
-      },
+      data: { labels, datasets: [{ label: 'AI Credits', data, backgroundColor: colors, borderRadius: 4 }] },
       options: {
-        indexAxis: 'y',
         responsive: true,
         maintainAspectRatio: false,
+        layout: { padding: { bottom: 48 } },
         plugins: {
           legend: { display: false },
           title: { display: true, text: 'Usage by User', color: '#fff', font: { size: 16 } },
         },
         scales: {
           x: {
+            ticks: { color: '#bbb', maxRotation: 30 },
+            grid: { color: 'rgba(255,255,255,0.08)' },
+          },
+          y: {
             ticks: { color: '#bbb' },
             grid: { color: 'rgba(255,255,255,0.08)' },
             title: { display: true, text: 'AI Credits', color: '#ccc' },
           },
-          y: { ticks: { color: '#bbb' }, grid: { color: 'rgba(255,255,255,0.08)' } },
         },
       },
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      plugins: [this.makeAvatarPlugin(avatarImages) as any],
     }));
   }
 
@@ -248,7 +319,7 @@ export class AiUsageComponent implements OnDestroy {
     }));
   }
 
-  private renderUserModelChart() {
+  private renderUserModelChart(avatarImages: Map<string, HTMLImageElement>) {
     const ctx = this.userModelCanvas?.nativeElement?.getContext('2d');
     if (!ctx) return;
 
@@ -294,6 +365,7 @@ export class AiUsageComponent implements OnDestroy {
       options: {
         responsive: true,
         maintainAspectRatio: false,
+        layout: { padding: { bottom: 48 } },
         plugins: {
           legend: {
             position: 'bottom',
@@ -304,7 +376,7 @@ export class AiUsageComponent implements OnDestroy {
         scales: {
           x: {
             stacked: true,
-            ticks: { color: '#bbb' },
+            ticks: { color: '#bbb', maxRotation: 30 },
             grid: { color: 'rgba(255,255,255,0.08)' },
           },
           y: {
@@ -315,6 +387,8 @@ export class AiUsageComponent implements OnDestroy {
           },
         },
       },
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      plugins: [this.makeAvatarPlugin(avatarImages) as any],
     }));
   }
 
@@ -390,5 +464,9 @@ export class AiUsageComponent implements OnDestroy {
 
   formatNumber(n: number): string {
     return n.toLocaleString('en-US', { maximumFractionDigits: 1 });
+  }
+
+  formatCurrency(n: number): string {
+    return n.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 2 });
   }
 }
