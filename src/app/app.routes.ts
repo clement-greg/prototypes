@@ -562,6 +562,14 @@ export const routes: RoutesWithMeta = [
         loadComponent: () => import('./load-screens/cogent-load-graduation/cogent-load-graduation.component').then(r => r.CogentLoadGraduationComponent),
     },
     {
+        path: 'cogent-load-250',
+        category: 'Load Screens',
+        title: 'Two Fifty',
+        subcategory: 'Other',
+        icon: 'hourglass_full',
+        loadComponent: () => import('./load-screens/two-fifty/two-fifty.component').then(r => r.TwoFiftyComponent),
+    },
+    {
         path: 'cogent-load-summer-2',
         category: 'Load Screens',
         title: 'Summer Load-2',

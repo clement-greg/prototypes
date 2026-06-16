@@ -1,0 +1,72 @@
+#main-star-1,
+#main-star-2,
+#main-star-3 {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: star-bounce 2.4s ease-in-out infinite;
+  will-change: transform;
+}
+
+#main-star-1 {
+  animation-delay: 0s;
+}
+
+#main-star-2 {
+  animation-delay: -0.8s;
+}
+
+#main-star-3 {
+  animation-delay: -1.6s;
+}
+
+@keyframes star-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+#central-badge {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: badge-throb 4s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes badge-throb {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+#left-flag {
+  transform-box: fill-box;
+  transform-origin: bottom right;
+  animation: flag-wave 3.5s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes flag-wave {
+  0%,
+  100% {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(2deg);
+  }
+}
+
+#right-flag {
+  transform-box: fill-box;
+  transform-origin: bottom left;
+  animation: flag-wave 3.5s ease-in-out infinite;
+  animation-delay: -1.75s;
+  will-change: transform;
+}
