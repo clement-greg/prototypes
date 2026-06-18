@@ -576,7 +576,7 @@ export const routes: RoutesWithMeta = [
         subcategory: 'Summer',
         icon: 'wb_sunny',
         loadComponent: () => import('./load-screens/cogent-load-summer-2/cogent-load-summer-2.component').then(r => r.CogentLoadSummer2Component),
-    },
+    }, 
     {
         path: 'ai-usage',
         title: 'AI Usage Dashboard',
