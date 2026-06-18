@@ -29,6 +29,22 @@
   }
 }
 
+#start-circle {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: start-circle-rotate 8s linear infinite;
+  will-change: transform;
+}
+
+@keyframes start-circle-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 #central-badge {
   transform-box: fill-box;
   transform-origin: center;
