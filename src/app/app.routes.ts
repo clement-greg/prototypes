@@ -585,6 +585,14 @@ export const routes: RoutesWithMeta = [
         loadComponent: () => import('./experiments/ai-usage/ai-usage.component').then(r => r.AiUsageComponent),
     },
     {
+        path: 'cogent-load-soda',
+        title: 'Soda',
+        category: 'Load Screens',
+        subcategory: 'Other',
+        icon: 'local_drink',
+        loadComponent: ()=> import('./load-screens/cogent-load-soda/cogent-load-soda.component').then(r=>r.CogentLoadSodaComponent),
+    },
+    {
         path: '',
         title: 'Main Menu',
         category: 'Navigation',

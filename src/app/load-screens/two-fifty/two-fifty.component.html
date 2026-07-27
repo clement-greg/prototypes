@@ -1,5 +1,5 @@
 <style>
-    #container {
+    #load-screen-container {
         width: 100%;
         height: 100%;
     }
@@ -10,10 +10,23 @@
     .rocket {
         animation: launch 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
     }
+
     @keyframes launch {
-        0%        { transform: translateY(0);      opacity: 1; }
-        36%       { transform: translateY(-375px); opacity: 0; }
-        37%, 100% { transform: translateY(0);      opacity: 0; }
+        0% {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        36% {
+            transform: translateY(-375px);
+            opacity: 0;
+        }
+
+        37%,
+        100% {
+            transform: translateY(0);
+            opacity: 0;
+        }
     }
 
     /* ── Burst wrapper ── */
@@ -21,10 +34,23 @@
         animation: burst-gate 3s infinite;
         opacity: 0;
     }
+
     @keyframes burst-gate {
-        0%,  36%  { opacity: 0; }
-        37%, 78%  { opacity: 1; }
-        79%, 100% { opacity: 0; }
+
+        0%,
+        36% {
+            opacity: 0;
+        }
+
+        37%,
+        78% {
+            opacity: 1;
+        }
+
+        79%,
+        100% {
+            opacity: 0;
+        }
     }
 
     /* ── Central flash ── */
@@ -33,22 +59,59 @@
         animation: flash-out 3s infinite;
         opacity: 0;
     }
+
     .flash-inner {
         transform-origin: 340px 160px;
         animation: flash-in 3s infinite;
         opacity: 0;
     }
+
     @keyframes flash-out {
-        0%,  36%  { transform: scale(0);   opacity: 0; }
-        38%       { transform: scale(1);   opacity: 0.95; }
-        48%       { transform: scale(1.4); opacity: 0; }
-        100%      { transform: scale(1.4); opacity: 0; }
+
+        0%,
+        36% {
+            transform: scale(0);
+            opacity: 0;
+        }
+
+        38% {
+            transform: scale(1);
+            opacity: 0.95;
+        }
+
+        48% {
+            transform: scale(1.4);
+            opacity: 0;
+        }
+
+        100% {
+            transform: scale(1.4);
+            opacity: 0;
+        }
     }
+
     @keyframes flash-in {
-        0%,  36%  { transform: scale(0);   opacity: 0; }
-        38%       { transform: scale(1);   opacity: 1; }
-        45%       { transform: scale(1.2); opacity: 0; }
-        100%      { transform: scale(1.2); opacity: 0; }
+
+        0%,
+        36% {
+            transform: scale(0);
+            opacity: 0;
+        }
+
+        38% {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        45% {
+            transform: scale(1.2);
+            opacity: 0;
+        }
+
+        100% {
+            transform: scale(1.2);
+            opacity: 0;
+        }
     }
 
     /* ── Spark expand: draw from center outward ── */
@@ -57,12 +120,35 @@
         stroke-dashoffset: 120;
         animation: spark-expand 3s infinite;
     }
+
     @keyframes spark-expand {
-        0%,  36%  { stroke-dashoffset: 120; opacity: 1; }
-        37%       { stroke-dashoffset: 120; opacity: 1; }
-        50%       { stroke-dashoffset: 0;   opacity: 1; }
-        78%       { stroke-dashoffset: 0;   opacity: 0; }
-        79%, 100% { stroke-dashoffset: 120; opacity: 0; }
+
+        0%,
+        36% {
+            stroke-dashoffset: 120;
+            opacity: 1;
+        }
+
+        37% {
+            stroke-dashoffset: 120;
+            opacity: 1;
+        }
+
+        50% {
+            stroke-dashoffset: 0;
+            opacity: 1;
+        }
+
+        78% {
+            stroke-dashoffset: 0;
+            opacity: 0;
+        }
+
+        79%,
+        100% {
+            stroke-dashoffset: 120;
+            opacity: 0;
+        }
     }
 
     /* ── Glimmers ── */
@@ -71,22 +157,169 @@
         animation: glimmer-fly 3s infinite;
         opacity: 0;
     }
+
     @keyframes glimmer-fly {
-        0%,  37%  { transform: scale(0); opacity: 0;    }
-        39%       { transform: scale(0); opacity: 0.85; }
-        58%       { transform: scale(1); opacity: 0.6;  }
-        68%       { transform: scale(1); opacity: 0;    }
-        100%      { transform: scale(1); opacity: 0;    }
+
+        0%,
+        37% {
+            transform: scale(0);
+            opacity: 0;
+        }
+
+        39% {
+            transform: scale(0);
+            opacity: 0.85;
+        }
+
+        58% {
+            transform: scale(1);
+            opacity: 0.6;
+        }
+
+        68% {
+            transform: scale(1);
+            opacity: 0;
+        }
+
+        100% {
+            transform: scale(1);
+            opacity: 0;
+        }
     }
-    .glimmer:nth-child(odd)  { animation-delay: 0.03s; }
-    .glimmer:nth-child(even) { animation-delay: 0.06s; }
+
+    .glimmer:nth-child(odd) {
+        animation-delay: 0.03s;
+    }
+
+    .glimmer:nth-child(even) {
+        animation-delay: 0.06s;
+    }
 
     /* ── Stagger the four fireworks evenly across the 3s cycle ──
        Every animated part of a firework must share the same delay so the
        rocket, burst, sparks and glimmers stay in sync within that firework. */
-    #firework-2 .rocket, #firework-2 .burst, #firework-2 .flash-outer, #firework-2 .flash-inner, #firework-2 .spark-draw, #firework-2 .glimmer { animation-delay: 0.75s; }
-    #firework-3 .rocket, #firework-3 .burst, #firework-3 .flash-outer, #firework-3 .flash-inner, #firework-3 .spark-draw, #firework-3 .glimmer { animation-delay: 1.5s; }
-    #firework-4 .rocket, #firework-4 .burst, #firework-4 .flash-outer, #firework-4 .flash-inner, #firework-4 .spark-draw, #firework-4 .glimmer { animation-delay: 2.25s; }
+    #firework-2 .rocket,
+    #firework-2 .burst,
+    #firework-2 .flash-outer,
+    #firework-2 .flash-inner,
+    #firework-2 .spark-draw,
+    #firework-2 .glimmer {
+        animation-delay: 0.75s;
+    }
+
+    #firework-3 .rocket,
+    #firework-3 .burst,
+    #firework-3 .flash-outer,
+    #firework-3 .flash-inner,
+    #firework-3 .spark-draw,
+    #firework-3 .glimmer {
+        animation-delay: 1.5s;
+    }
+
+    #firework-4 .rocket,
+    #firework-4 .burst,
+    #firework-4 .flash-outer,
+    #firework-4 .flash-inner,
+    #firework-4 .spark-draw,
+    #firework-4 .glimmer {
+        animation-delay: 2.25s;
+    }
+
+    #main-star-1,
+    #main-star-2,
+    #main-star-3 {
+        transform-box: fill-box;
+        transform-origin: center;
+        animation: star-bounce 2.4s ease-in-out infinite;
+        will-change: transform;
+    }
+
+    #main-star-1 {
+        animation-delay: 0s;
+    }
+
+    #main-star-2 {
+        animation-delay: -0.8s;
+    }
+
+    #main-star-3 {
+        animation-delay: -1.6s;
+    }
+
+    @keyframes star-bounce {
+
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-8px);
+        }
+    }
+
+    #start-circle {
+        transform-box: fill-box;
+        transform-origin: center;
+        animation: start-circle-rotate 8s linear infinite;
+        will-change: transform;
+    }
+
+    @keyframes start-circle-rotate {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    #central-badge {
+        transform-box: fill-box;
+        transform-origin: center;
+        animation: badge-throb 4s ease-in-out infinite;
+        will-change: transform;
+    }
+
+    @keyframes badge-throb {
+
+        0%,
+        100% {
+            transform: scale(1);
+        }
+
+        50% {
+            transform: scale(1.05);
+        }
+    }
+
+    #left-flag {
+        transform-box: fill-box;
+        transform-origin: bottom right;
+        animation: flag-wave 3.5s ease-in-out infinite;
+        will-change: transform;
+    }
+
+    @keyframes flag-wave {
+
+        0%,
+        100% {
+            transform: rotate(-2deg);
+        }
+
+        50% {
+            transform: rotate(2deg);
+        }
+    }
+
+    #right-flag {
+        transform-box: fill-box;
+        transform-origin: bottom left;
+        animation: flag-wave 3.5s ease-in-out infinite;
+        animation-delay: -1.75s;
+        will-change: transform;
+    }
 </style>
 <div style="position: fixed;
 left: 0;
@@ -98,9 +331,8 @@ text-align: center;
 display: flex;
 justify-content: center;
 align-items: center;">
-    <svg id="container" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-        viewBox="0 0 1921.04 1080" preserveAspectRatio="xMidYMid slice"
-        style="width: 100%; height: 100%;">
+    <svg id="load-screen-container" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        viewBox="0 0 1921.04 1080" preserveAspectRatio="xMidYMid slice" style="width: 100%; height: 100%;">
         <defs>
             <style>
                 .cls-1 {
@@ -1225,12 +1457,12 @@ align-items: center;">
         <g id="firework-1" transform="translate(120, 60) rotate(-15, 340, 520)">
             <!-- ── Rocket ── -->
             <g class="rocket">
-                <ellipse cx="340" cy="527" rx="2"   ry="6"   fill="#ffcc66" opacity="0.7" />
+                <ellipse cx="340" cy="527" rx="2" ry="6" fill="#ffcc66" opacity="0.7" />
                 <ellipse cx="340" cy="540" rx="1.5" ry="4.5" fill="#ff9933" opacity="0.5" />
-                <ellipse cx="340" cy="551" rx="1"   ry="3"   fill="#ff6600" opacity="0.35" />
-                <ellipse cx="340" cy="560" rx="0.7" ry="2"   fill="#cc3300" opacity="0.2" />
-                <circle  cx="340" cy="520" r="4"   fill="#ffffff" />
-                <circle  cx="340" cy="520" r="2.5" fill="#ffe066" />
+                <ellipse cx="340" cy="551" rx="1" ry="3" fill="#ff6600" opacity="0.35" />
+                <ellipse cx="340" cy="560" rx="0.7" ry="2" fill="#cc3300" opacity="0.2" />
+                <circle cx="340" cy="520" r="4" fill="#ffffff" />
+                <circle cx="340" cy="520" r="2.5" fill="#ffe066" />
             </g>
 
             <!-- ── Burst ── -->
@@ -1238,70 +1470,98 @@ align-items: center;">
 
                 <!-- Central flash -->
                 <circle class="flash-outer" cx="340" cy="160" r="14" fill="#ffffff" />
-                <circle class="flash-inner" cx="340" cy="160" r="7"  fill="#fff9cc" />
+                <circle class="flash-inner" cx="340" cy="160" r="7" fill="#fff9cc" />
 
                 <!-- 18 main sparks: each draws outward from center, then fades via opacity -->
 
                 <!-- 0° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="340" y2="58"  stroke="#ff4466" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="340" y2="58" stroke="#ff4466" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 20° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="375" y2="61"  stroke="#ff9900" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="375" y2="61" stroke="#ff9900" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 40° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="405" y2="73"  stroke="#ffee00" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="405" y2="73" stroke="#ffee00" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 60° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="427" y2="96"  stroke="#44aaff" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="427" y2="96" stroke="#44aaff" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 80° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="438" y2="125" stroke="#ff4466" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="438" y2="125" stroke="#ff4466" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 100° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="438" y2="157" stroke="#ff9900" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="438" y2="157" stroke="#ff9900" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 120° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="425" y2="187" stroke="#ffee00" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="425" y2="187" stroke="#ffee00" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 140° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="402" y2="211" stroke="#44aaff" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="402" y2="211" stroke="#44aaff" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 160° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="373" y2="226" stroke="#ff4466" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="373" y2="226" stroke="#ff4466" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 180° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="340" y2="232" stroke="#ff9900" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="340" y2="232" stroke="#ff9900" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 200° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="307" y2="226" stroke="#ffee00" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="307" y2="226" stroke="#ffee00" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 220° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="278" y2="211" stroke="#44aaff" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="278" y2="211" stroke="#44aaff" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 240° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="255" y2="187" stroke="#ff4466" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="255" y2="187" stroke="#ff4466" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 260° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="242" y2="157" stroke="#ff9900" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="242" y2="157" stroke="#ff9900" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 280° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="242" y2="125" stroke="#ffee00" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="242" y2="125" stroke="#ffee00" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 300° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="253" y2="96"  stroke="#44aaff" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="253" y2="96" stroke="#44aaff" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 320° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="275" y2="73"  stroke="#ff4466" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="275" y2="73" stroke="#ff4466" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 340° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="305" y2="61"  stroke="#ff9900" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="305" y2="61" stroke="#ff9900" stroke-width="2.5"
+                    stroke-linecap="round" />
 
                 <!-- 10 glimmer sparks -->
-                <line class="glimmer" x1="340" y1="160" x2="340" y2="100" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" />
-                <line class="glimmer" x1="340" y1="160" x2="392" y2="108" stroke="#ffeeaa" stroke-width="1.5" stroke-linecap="round" />
-                <line class="glimmer" x1="340" y1="160" x2="418" y2="142" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" />
-                <line class="glimmer" x1="340" y1="160" x2="412" y2="198" stroke="#ffeeaa" stroke-width="1.5" stroke-linecap="round" />
-                <line class="glimmer" x1="340" y1="160" x2="383" y2="222" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" />
-                <line class="glimmer" x1="340" y1="160" x2="297" y2="222" stroke="#ffeeaa" stroke-width="1.5" stroke-linecap="round" />
-                <line class="glimmer" x1="340" y1="160" x2="268" y2="198" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" />
-                <line class="glimmer" x1="340" y1="160" x2="262" y2="142" stroke="#ffeeaa" stroke-width="1.5" stroke-linecap="round" />
-                <line class="glimmer" x1="340" y1="160" x2="288" y2="108" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" />
-                <line class="glimmer" x1="340" y1="160" x2="340" y2="218" stroke="#ffeeaa" stroke-width="1.5" stroke-linecap="round" />
+                <line class="glimmer" x1="340" y1="160" x2="340" y2="100" stroke="#ffffff" stroke-width="1.5"
+                    stroke-linecap="round" />
+                <line class="glimmer" x1="340" y1="160" x2="392" y2="108" stroke="#ffeeaa" stroke-width="1.5"
+                    stroke-linecap="round" />
+                <line class="glimmer" x1="340" y1="160" x2="418" y2="142" stroke="#ffffff" stroke-width="1.5"
+                    stroke-linecap="round" />
+                <line class="glimmer" x1="340" y1="160" x2="412" y2="198" stroke="#ffeeaa" stroke-width="1.5"
+                    stroke-linecap="round" />
+                <line class="glimmer" x1="340" y1="160" x2="383" y2="222" stroke="#ffffff" stroke-width="1.5"
+                    stroke-linecap="round" />
+                <line class="glimmer" x1="340" y1="160" x2="297" y2="222" stroke="#ffeeaa" stroke-width="1.5"
+                    stroke-linecap="round" />
+                <line class="glimmer" x1="340" y1="160" x2="268" y2="198" stroke="#ffffff" stroke-width="1.5"
+                    stroke-linecap="round" />
+                <line class="glimmer" x1="340" y1="160" x2="262" y2="142" stroke="#ffeeaa" stroke-width="1.5"
+                    stroke-linecap="round" />
+                <line class="glimmer" x1="340" y1="160" x2="288" y2="108" stroke="#ffffff" stroke-width="1.5"
+                    stroke-linecap="round" />
+                <line class="glimmer" x1="340" y1="160" x2="340" y2="218" stroke="#ffeeaa" stroke-width="1.5"
+                    stroke-linecap="round" />
 
             </g>
         </g>
         <g id="firework-2" transform="translate(560, 120) rotate(-6, 340, 520)">
             <!-- ── Rocket ── -->
             <g class="rocket">
-                <ellipse cx="340" cy="527" rx="2"   ry="6"   fill="#ffcc66" opacity="0.7" />
+                <ellipse cx="340" cy="527" rx="2" ry="6" fill="#ffcc66" opacity="0.7" />
                 <ellipse cx="340" cy="540" rx="1.5" ry="4.5" fill="#ff9933" opacity="0.5" />
-                <ellipse cx="340" cy="551" rx="1"   ry="3"   fill="#ff6600" opacity="0.35" />
-                <ellipse cx="340" cy="560" rx="0.7" ry="2"   fill="#cc3300" opacity="0.2" />
-                <circle  cx="340" cy="520" r="4"   fill="#ffffff" />
-                <circle  cx="340" cy="520" r="2.5" fill="#ffe066" />
+                <ellipse cx="340" cy="551" rx="1" ry="3" fill="#ff6600" opacity="0.35" />
+                <ellipse cx="340" cy="560" rx="0.7" ry="2" fill="#cc3300" opacity="0.2" />
+                <circle cx="340" cy="520" r="4" fill="#ffffff" />
+                <circle cx="340" cy="520" r="2.5" fill="#ffe066" />
             </g>
 
             <!-- ── Burst ── -->
@@ -1309,70 +1569,98 @@ align-items: center;">
 
                 <!-- Central flash -->
                 <circle class="flash-outer" cx="340" cy="160" r="14" fill="#ffffff" />
-                <circle class="flash-inner" cx="340" cy="160" r="7"  fill="#fff9cc" />
+                <circle class="flash-inner" cx="340" cy="160" r="7" fill="#fff9cc" />
 
                 <!-- 18 main sparks: each draws outward from center, then fades via opacity -->
 
                 <!-- 0° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="340" y2="58"  stroke="#ff4466" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="340" y2="58" stroke="#ff4466" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 20° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="375" y2="61"  stroke="#ff9900" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="375" y2="61" stroke="#ff9900" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 40° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="405" y2="73"  stroke="#ffee00" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="405" y2="73" stroke="#ffee00" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 60° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="427" y2="96"  stroke="#44aaff" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="427" y2="96" stroke="#44aaff" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 80° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="438" y2="125" stroke="#ff4466" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="438" y2="125" stroke="#ff4466" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 100° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="438" y2="157" stroke="#ff9900" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="438" y2="157" stroke="#ff9900" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 120° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="425" y2="187" stroke="#ffee00" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="425" y2="187" stroke="#ffee00" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 140° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="402" y2="211" stroke="#44aaff" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="402" y2="211" stroke="#44aaff" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 160° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="373" y2="226" stroke="#ff4466" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="373" y2="226" stroke="#ff4466" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 180° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="340" y2="232" stroke="#ff9900" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="340" y2="232" stroke="#ff9900" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 200° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="307" y2="226" stroke="#ffee00" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="307" y2="226" stroke="#ffee00" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 220° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="278" y2="211" stroke="#44aaff" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="278" y2="211" stroke="#44aaff" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 240° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="255" y2="187" stroke="#ff4466" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="255" y2="187" stroke="#ff4466" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 260° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="242" y2="157" stroke="#ff9900" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="242" y2="157" stroke="#ff9900" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 280° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="242" y2="125" stroke="#ffee00" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="242" y2="125" stroke="#ffee00" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 300° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="253" y2="96"  stroke="#44aaff" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="253" y2="96" stroke="#44aaff" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 320° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="275" y2="73"  stroke="#ff4466" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="275" y2="73" stroke="#ff4466" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 340° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="305" y2="61"  stroke="#ff9900" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="305" y2="61" stroke="#ff9900" stroke-width="2.5"
+                    stroke-linecap="round" />
 
                 <!-- 10 glimmer sparks -->
-                <line class="glimmer" x1="340" y1="160" x2="340" y2="100" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" />
-                <line class="glimmer" x1="340" y1="160" x2="392" y2="108" stroke="#ffeeaa" stroke-width="1.5" stroke-linecap="round" />
-                <line class="glimmer" x1="340" y1="160" x2="418" y2="142" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" />
-                <line class="glimmer" x1="340" y1="160" x2="412" y2="198" stroke="#ffeeaa" stroke-width="1.5" stroke-linecap="round" />
-                <line class="glimmer" x1="340" y1="160" x2="383" y2="222" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" />
-                <line class="glimmer" x1="340" y1="160" x2="297" y2="222" stroke="#ffeeaa" stroke-width="1.5" stroke-linecap="round" />
-                <line class="glimmer" x1="340" y1="160" x2="268" y2="198" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" />
-                <line class="glimmer" x1="340" y1="160" x2="262" y2="142" stroke="#ffeeaa" stroke-width="1.5" stroke-linecap="round" />
-                <line class="glimmer" x1="340" y1="160" x2="288" y2="108" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" />
-                <line class="glimmer" x1="340" y1="160" x2="340" y2="218" stroke="#ffeeaa" stroke-width="1.5" stroke-linecap="round" />
+                <line class="glimmer" x1="340" y1="160" x2="340" y2="100" stroke="#ffffff" stroke-width="1.5"
+                    stroke-linecap="round" />
+                <line class="glimmer" x1="340" y1="160" x2="392" y2="108" stroke="#ffeeaa" stroke-width="1.5"
+                    stroke-linecap="round" />
+                <line class="glimmer" x1="340" y1="160" x2="418" y2="142" stroke="#ffffff" stroke-width="1.5"
+                    stroke-linecap="round" />
+                <line class="glimmer" x1="340" y1="160" x2="412" y2="198" stroke="#ffeeaa" stroke-width="1.5"
+                    stroke-linecap="round" />
+                <line class="glimmer" x1="340" y1="160" x2="383" y2="222" stroke="#ffffff" stroke-width="1.5"
+                    stroke-linecap="round" />
+                <line class="glimmer" x1="340" y1="160" x2="297" y2="222" stroke="#ffeeaa" stroke-width="1.5"
+                    stroke-linecap="round" />
+                <line class="glimmer" x1="340" y1="160" x2="268" y2="198" stroke="#ffffff" stroke-width="1.5"
+                    stroke-linecap="round" />
+                <line class="glimmer" x1="340" y1="160" x2="262" y2="142" stroke="#ffeeaa" stroke-width="1.5"
+                    stroke-linecap="round" />
+                <line class="glimmer" x1="340" y1="160" x2="288" y2="108" stroke="#ffffff" stroke-width="1.5"
+                    stroke-linecap="round" />
+                <line class="glimmer" x1="340" y1="160" x2="340" y2="218" stroke="#ffeeaa" stroke-width="1.5"
+                    stroke-linecap="round" />
 
             </g>
         </g>
         <g id="firework-3" transform="translate(980, 90) rotate(12, 340, 520)">
             <!-- ── Rocket ── -->
             <g class="rocket">
-                <ellipse cx="340" cy="527" rx="2"   ry="6"   fill="#ffcc66" opacity="0.7" />
+                <ellipse cx="340" cy="527" rx="2" ry="6" fill="#ffcc66" opacity="0.7" />
                 <ellipse cx="340" cy="540" rx="1.5" ry="4.5" fill="#ff9933" opacity="0.5" />
-                <ellipse cx="340" cy="551" rx="1"   ry="3"   fill="#ff6600" opacity="0.35" />
-                <ellipse cx="340" cy="560" rx="0.7" ry="2"   fill="#cc3300" opacity="0.2" />
-                <circle  cx="340" cy="520" r="4"   fill="#ffffff" />
-                <circle  cx="340" cy="520" r="2.5" fill="#ffe066" />
+                <ellipse cx="340" cy="551" rx="1" ry="3" fill="#ff6600" opacity="0.35" />
+                <ellipse cx="340" cy="560" rx="0.7" ry="2" fill="#cc3300" opacity="0.2" />
+                <circle cx="340" cy="520" r="4" fill="#ffffff" />
+                <circle cx="340" cy="520" r="2.5" fill="#ffe066" />
             </g>
 
             <!-- ── Burst ── -->
@@ -1380,70 +1668,98 @@ align-items: center;">
 
                 <!-- Central flash -->
                 <circle class="flash-outer" cx="340" cy="160" r="14" fill="#ffffff" />
-                <circle class="flash-inner" cx="340" cy="160" r="7"  fill="#fff9cc" />
+                <circle class="flash-inner" cx="340" cy="160" r="7" fill="#fff9cc" />
 
                 <!-- 18 main sparks: each draws outward from center, then fades via opacity -->
 
                 <!-- 0° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="340" y2="58"  stroke="#ff4466" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="340" y2="58" stroke="#ff4466" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 20° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="375" y2="61"  stroke="#ff9900" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="375" y2="61" stroke="#ff9900" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 40° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="405" y2="73"  stroke="#ffee00" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="405" y2="73" stroke="#ffee00" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 60° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="427" y2="96"  stroke="#44aaff" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="427" y2="96" stroke="#44aaff" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 80° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="438" y2="125" stroke="#ff4466" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="438" y2="125" stroke="#ff4466" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 100° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="438" y2="157" stroke="#ff9900" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="438" y2="157" stroke="#ff9900" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 120° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="425" y2="187" stroke="#ffee00" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="425" y2="187" stroke="#ffee00" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 140° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="402" y2="211" stroke="#44aaff" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="402" y2="211" stroke="#44aaff" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 160° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="373" y2="226" stroke="#ff4466" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="373" y2="226" stroke="#ff4466" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 180° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="340" y2="232" stroke="#ff9900" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="340" y2="232" stroke="#ff9900" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 200° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="307" y2="226" stroke="#ffee00" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="307" y2="226" stroke="#ffee00" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 220° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="278" y2="211" stroke="#44aaff" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="278" y2="211" stroke="#44aaff" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 240° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="255" y2="187" stroke="#ff4466" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="255" y2="187" stroke="#ff4466" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 260° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="242" y2="157" stroke="#ff9900" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="242" y2="157" stroke="#ff9900" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 280° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="242" y2="125" stroke="#ffee00" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="242" y2="125" stroke="#ffee00" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 300° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="253" y2="96"  stroke="#44aaff" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="253" y2="96" stroke="#44aaff" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 320° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="275" y2="73"  stroke="#ff4466" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="275" y2="73" stroke="#ff4466" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 340° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="305" y2="61"  stroke="#ff9900" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="305" y2="61" stroke="#ff9900" stroke-width="2.5"
+                    stroke-linecap="round" />
 
                 <!-- 10 glimmer sparks -->
-                <line class="glimmer" x1="340" y1="160" x2="340" y2="100" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" />
-                <line class="glimmer" x1="340" y1="160" x2="392" y2="108" stroke="#ffeeaa" stroke-width="1.5" stroke-linecap="round" />
-                <line class="glimmer" x1="340" y1="160" x2="418" y2="142" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" />
-                <line class="glimmer" x1="340" y1="160" x2="412" y2="198" stroke="#ffeeaa" stroke-width="1.5" stroke-linecap="round" />
-                <line class="glimmer" x1="340" y1="160" x2="383" y2="222" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" />
-                <line class="glimmer" x1="340" y1="160" x2="297" y2="222" stroke="#ffeeaa" stroke-width="1.5" stroke-linecap="round" />
-                <line class="glimmer" x1="340" y1="160" x2="268" y2="198" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" />
-                <line class="glimmer" x1="340" y1="160" x2="262" y2="142" stroke="#ffeeaa" stroke-width="1.5" stroke-linecap="round" />
-                <line class="glimmer" x1="340" y1="160" x2="288" y2="108" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" />
-                <line class="glimmer" x1="340" y1="160" x2="340" y2="218" stroke="#ffeeaa" stroke-width="1.5" stroke-linecap="round" />
+                <line class="glimmer" x1="340" y1="160" x2="340" y2="100" stroke="#ffffff" stroke-width="1.5"
+                    stroke-linecap="round" />
+                <line class="glimmer" x1="340" y1="160" x2="392" y2="108" stroke="#ffeeaa" stroke-width="1.5"
+                    stroke-linecap="round" />
+                <line class="glimmer" x1="340" y1="160" x2="418" y2="142" stroke="#ffffff" stroke-width="1.5"
+                    stroke-linecap="round" />
+                <line class="glimmer" x1="340" y1="160" x2="412" y2="198" stroke="#ffeeaa" stroke-width="1.5"
+                    stroke-linecap="round" />
+                <line class="glimmer" x1="340" y1="160" x2="383" y2="222" stroke="#ffffff" stroke-width="1.5"
+                    stroke-linecap="round" />
+                <line class="glimmer" x1="340" y1="160" x2="297" y2="222" stroke="#ffeeaa" stroke-width="1.5"
+                    stroke-linecap="round" />
+                <line class="glimmer" x1="340" y1="160" x2="268" y2="198" stroke="#ffffff" stroke-width="1.5"
+                    stroke-linecap="round" />
+                <line class="glimmer" x1="340" y1="160" x2="262" y2="142" stroke="#ffeeaa" stroke-width="1.5"
+                    stroke-linecap="round" />
+                <line class="glimmer" x1="340" y1="160" x2="288" y2="108" stroke="#ffffff" stroke-width="1.5"
+                    stroke-linecap="round" />
+                <line class="glimmer" x1="340" y1="160" x2="340" y2="218" stroke="#ffeeaa" stroke-width="1.5"
+                    stroke-linecap="round" />
 
             </g>
         </g>
         <g id="firework-4" transform="translate(1180, 40) rotate(22, 340, 520)">
             <!-- ── Rocket ── -->
             <g class="rocket">
-                <ellipse cx="340" cy="527" rx="2"   ry="6"   fill="#ffcc66" opacity="0.7" />
+                <ellipse cx="340" cy="527" rx="2" ry="6" fill="#ffcc66" opacity="0.7" />
                 <ellipse cx="340" cy="540" rx="1.5" ry="4.5" fill="#ff9933" opacity="0.5" />
-                <ellipse cx="340" cy="551" rx="1"   ry="3"   fill="#ff6600" opacity="0.35" />
-                <ellipse cx="340" cy="560" rx="0.7" ry="2"   fill="#cc3300" opacity="0.2" />
-                <circle  cx="340" cy="520" r="4"   fill="#ffffff" />
-                <circle  cx="340" cy="520" r="2.5" fill="#ffe066" />
+                <ellipse cx="340" cy="551" rx="1" ry="3" fill="#ff6600" opacity="0.35" />
+                <ellipse cx="340" cy="560" rx="0.7" ry="2" fill="#cc3300" opacity="0.2" />
+                <circle cx="340" cy="520" r="4" fill="#ffffff" />
+                <circle cx="340" cy="520" r="2.5" fill="#ffe066" />
             </g>
 
             <!-- ── Burst ── -->
@@ -1451,58 +1767,86 @@ align-items: center;">
 
                 <!-- Central flash -->
                 <circle class="flash-outer" cx="340" cy="160" r="14" fill="#ffffff" />
-                <circle class="flash-inner" cx="340" cy="160" r="7"  fill="#fff9cc" />
+                <circle class="flash-inner" cx="340" cy="160" r="7" fill="#fff9cc" />
 
                 <!-- 18 main sparks: each draws outward from center, then fades via opacity -->
 
                 <!-- 0° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="340" y2="58"  stroke="#ff4466" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="340" y2="58" stroke="#ff4466" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 20° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="375" y2="61"  stroke="#ff9900" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="375" y2="61" stroke="#ff9900" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 40° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="405" y2="73"  stroke="#ffee00" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="405" y2="73" stroke="#ffee00" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 60° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="427" y2="96"  stroke="#44aaff" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="427" y2="96" stroke="#44aaff" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 80° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="438" y2="125" stroke="#ff4466" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="438" y2="125" stroke="#ff4466" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 100° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="438" y2="157" stroke="#ff9900" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="438" y2="157" stroke="#ff9900" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 120° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="425" y2="187" stroke="#ffee00" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="425" y2="187" stroke="#ffee00" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 140° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="402" y2="211" stroke="#44aaff" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="402" y2="211" stroke="#44aaff" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 160° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="373" y2="226" stroke="#ff4466" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="373" y2="226" stroke="#ff4466" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 180° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="340" y2="232" stroke="#ff9900" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="340" y2="232" stroke="#ff9900" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 200° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="307" y2="226" stroke="#ffee00" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="307" y2="226" stroke="#ffee00" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 220° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="278" y2="211" stroke="#44aaff" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="278" y2="211" stroke="#44aaff" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 240° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="255" y2="187" stroke="#ff4466" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="255" y2="187" stroke="#ff4466" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 260° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="242" y2="157" stroke="#ff9900" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="242" y2="157" stroke="#ff9900" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 280° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="242" y2="125" stroke="#ffee00" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="242" y2="125" stroke="#ffee00" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 300° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="253" y2="96"  stroke="#44aaff" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="253" y2="96" stroke="#44aaff" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 320° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="275" y2="73"  stroke="#ff4466" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="275" y2="73" stroke="#ff4466" stroke-width="2.5"
+                    stroke-linecap="round" />
                 <!-- 340° -->
-                <line class="spark-draw"  x1="340" y1="160" x2="305" y2="61"  stroke="#ff9900" stroke-width="2.5" stroke-linecap="round" />
+                <line class="spark-draw" x1="340" y1="160" x2="305" y2="61" stroke="#ff9900" stroke-width="2.5"
+                    stroke-linecap="round" />
 
                 <!-- 10 glimmer sparks -->
-                <line class="glimmer" x1="340" y1="160" x2="340" y2="100" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" />
-                <line class="glimmer" x1="340" y1="160" x2="392" y2="108" stroke="#ffeeaa" stroke-width="1.5" stroke-linecap="round" />
-                <line class="glimmer" x1="340" y1="160" x2="418" y2="142" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" />
-                <line class="glimmer" x1="340" y1="160" x2="412" y2="198" stroke="#ffeeaa" stroke-width="1.5" stroke-linecap="round" />
-                <line class="glimmer" x1="340" y1="160" x2="383" y2="222" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" />
-                <line class="glimmer" x1="340" y1="160" x2="297" y2="222" stroke="#ffeeaa" stroke-width="1.5" stroke-linecap="round" />
-                <line class="glimmer" x1="340" y1="160" x2="268" y2="198" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" />
-                <line class="glimmer" x1="340" y1="160" x2="262" y2="142" stroke="#ffeeaa" stroke-width="1.5" stroke-linecap="round" />
-                <line class="glimmer" x1="340" y1="160" x2="288" y2="108" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" />
-                <line class="glimmer" x1="340" y1="160" x2="340" y2="218" stroke="#ffeeaa" stroke-width="1.5" stroke-linecap="round" />
+                <line class="glimmer" x1="340" y1="160" x2="340" y2="100" stroke="#ffffff" stroke-width="1.5"
+                    stroke-linecap="round" />
+                <line class="glimmer" x1="340" y1="160" x2="392" y2="108" stroke="#ffeeaa" stroke-width="1.5"
+                    stroke-linecap="round" />
+                <line class="glimmer" x1="340" y1="160" x2="418" y2="142" stroke="#ffffff" stroke-width="1.5"
+                    stroke-linecap="round" />
+                <line class="glimmer" x1="340" y1="160" x2="412" y2="198" stroke="#ffeeaa" stroke-width="1.5"
+                    stroke-linecap="round" />
+                <line class="glimmer" x1="340" y1="160" x2="383" y2="222" stroke="#ffffff" stroke-width="1.5"
+                    stroke-linecap="round" />
+                <line class="glimmer" x1="340" y1="160" x2="297" y2="222" stroke="#ffeeaa" stroke-width="1.5"
+                    stroke-linecap="round" />
+                <line class="glimmer" x1="340" y1="160" x2="268" y2="198" stroke="#ffffff" stroke-width="1.5"
+                    stroke-linecap="round" />
+                <line class="glimmer" x1="340" y1="160" x2="262" y2="142" stroke="#ffeeaa" stroke-width="1.5"
+                    stroke-linecap="round" />
+                <line class="glimmer" x1="340" y1="160" x2="288" y2="108" stroke="#ffffff" stroke-width="1.5"
+                    stroke-linecap="round" />
+                <line class="glimmer" x1="340" y1="160" x2="340" y2="218" stroke="#ffeeaa" stroke-width="1.5"
+                    stroke-linecap="round" />
 
             </g>
         </g>
