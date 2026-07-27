@@ -576,7 +576,7 @@ export const routes: RoutesWithMeta = [
         subcategory: 'Summer',
         icon: 'wb_sunny',
         loadComponent: () => import('./load-screens/cogent-load-summer-2/cogent-load-summer-2.component').then(r => r.CogentLoadSummer2Component),
-    }, 
+    },
     {
         path: 'ai-usage',
         title: 'AI Usage Dashboard',
@@ -590,7 +590,15 @@ export const routes: RoutesWithMeta = [
         category: 'Load Screens',
         subcategory: 'Other',
         icon: 'local_drink',
-        loadComponent: ()=> import('./load-screens/cogent-load-soda/cogent-load-soda.component').then(r=>r.CogentLoadSodaComponent),
+        loadComponent: () => import('./load-screens/cogent-load-soda/cogent-load-soda.component').then(r => r.CogentLoadSodaComponent),
+    },
+    {
+        path: 'cogent-load-back-to-school',
+        title: 'Back To School',
+        category: 'Load Screens',
+        subcategory: 'Fall',
+        icon: 'school',
+        loadComponent: () => import('./load-screens/cogent-load-back-to-school/cogent-load-back-to-school.component').then(r => r.CogentLoadBackToSchoolComponent),
     },
     {
         path: '',
