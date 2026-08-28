@@ -601,6 +601,22 @@ export const routes: RoutesWithMeta = [
         loadComponent: () => import('./load-screens/cogent-load-back-to-school/cogent-load-back-to-school.component').then(r => r.CogentLoadBackToSchoolComponent),
     },
     {
+        path: 'cogent-load-harvest-moon',
+        title: 'Harvest Moon',
+        category: 'Load Screens',
+        subcategory: 'Fall',
+        icon: 'bedtime',
+        loadComponent: () => import('./load-screens/cogent-load-harvest-moon/cogent-load-harvest-moon.component').then(r => r.CogentLoadHarvestMoonComponent),
+    },
+    {
+        path: 'cogent-load-football',
+        title: 'Football',
+        category: 'Load Screens',
+        subcategory: 'Fall',
+        icon: 'sports_football',
+        loadComponent: () => import('./load-screens/cogent-load-football/cogent-load-football.component').then(r => r.CogentLoadFootballComponent),
+    },
+    {
         path: '',
         title: 'Main Menu',
         category: 'Navigation',
