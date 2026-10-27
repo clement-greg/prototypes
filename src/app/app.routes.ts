@@ -617,6 +617,14 @@ export const routes: RoutesWithMeta = [
         loadComponent: () => import('./load-screens/cogent-load-football/cogent-load-football.component').then(r => r.CogentLoadFootballComponent),
     },
     {
+        path: 'cogent-load-thanksgiving-scenic',
+        title: 'Thanksgiving Scenic',
+        category: 'Load Screens',
+        subcategory: 'Fall',
+        icon: 'eco',
+        loadComponent: () => import('./load-screens/cogent-load-thanksgiving-scenic/cogent-load-thanksgiving-scenic.component').then(r => r.CogentLoadThanksgivingScenicComponent),
+    },
+    {
         path: '',
         title: 'Main Menu',
         category: 'Navigation',
