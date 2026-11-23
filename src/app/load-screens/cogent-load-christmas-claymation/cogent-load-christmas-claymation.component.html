@@ -22,6 +22,35 @@
         background: #0f3550;
     }
 
+    /* ---------- wordmark ----------
+       Candy cane fill for the Cogent letters: diagonal red and white bands
+       (the #candy-cane pattern in the SVG defs), with a thin pink edge on
+       each red band so it reads as painted sugar rather than flat tape.
+       Overrides the artwork's light blue fill; the black outline stays. */
+    #cogent-logo {
+        fill: url(#candy-cane);
+    }
+
+    /* Barber-pole scroll. The stripes group inside the pattern tile slides
+       one full stripe period (72 units) and repeats; it holds a copy of the
+       stripe one period to the left, so every tile is always fully covered
+       and the loop seam is invisible. Animating the tile's contents rather
+       than the <pattern> itself keeps it working everywhere -- CSS transform
+       on a <pattern> element is not reliably supported. */
+    #candy-cane-stripes {
+        animation: candy-cane-scroll 8s linear infinite;
+    }
+
+    @keyframes candy-cane-scroll {
+        from {
+            transform: translateX(0);
+        }
+
+        to {
+            transform: translateX(72px);
+        }
+    }
+
     /* ---------- train ----------
        The train (bbox x 1179-1892) starts fully off the right edge, runs off
        the left edge, flips and runs back. The flip happens while it is off
@@ -849,6 +878,7 @@
     @media (prefers-reduced-motion: reduce) {
         #train-and-smoke,
         #train,
+        #candy-cane-stripes,
         .wheel,
         .rod,
         #smoke-1,
@@ -873,7 +903,7 @@
 </style>
 
 <svg id="scene" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
-  <defs><clipPath id="rim-clip-d2"><path d="M1665.54 897.75 A64 64 0 0 0 1540.74 922.58 L1559.67 920.92 A45 45 0 0 1 1647.42 903.47 Z"/></clipPath><clipPath id="rod-clip-d2"><path clip-rule="evenodd" d="M-5000 -5000H7000V7000H-5000Z M1665.54 897.75 A64 64 0 0 0 1540.74 922.58 L1559.67 920.92 A45 45 0 0 1 1647.42 903.47 Z"/></clipPath><clipPath id="rim-clip-d1"><path d="M1532.76 922.58 A64 64 0 0 0 1413.30 885.48 L1429.83 894.84 A45 45 0 0 1 1513.83 920.92 Z"/></clipPath><clipPath id="rod-clip-d1"><path clip-rule="evenodd" d="M-5000 -5000H7000V7000H-5000Z M1532.76 922.58 A64 64 0 0 0 1413.30 885.48 L1429.83 894.84 A45 45 0 0 1 1513.83 920.92 Z"/></clipPath>
+  <defs><pattern id="candy-cane" patternUnits="userSpaceOnUse" width="72" height="72" patternTransform="rotate(-40)"><rect width="72" height="72" fill="#fffaf3"/><g id="candy-cane-stripes"><rect x="-72" width="32" height="72" fill="#d6262f"/><rect x="-40" width="4" height="72" fill="#f3b8b8"/><rect x="0" width="32" height="72" fill="#d6262f"/><rect x="32" width="4" height="72" fill="#f3b8b8"/></g></pattern><clipPath id="rim-clip-d2"><path d="M1665.54 897.75 A64 64 0 0 0 1540.74 922.58 L1559.67 920.92 A45 45 0 0 1 1647.42 903.47 Z"/></clipPath><clipPath id="rod-clip-d2"><path clip-rule="evenodd" d="M-5000 -5000H7000V7000H-5000Z M1665.54 897.75 A64 64 0 0 0 1540.74 922.58 L1559.67 920.92 A45 45 0 0 1 1647.42 903.47 Z"/></clipPath><clipPath id="rim-clip-d1"><path d="M1532.76 922.58 A64 64 0 0 0 1413.30 885.48 L1429.83 894.84 A45 45 0 0 1 1513.83 920.92 Z"/></clipPath><clipPath id="rod-clip-d1"><path clip-rule="evenodd" d="M-5000 -5000H7000V7000H-5000Z M1532.76 922.58 A64 64 0 0 0 1413.30 885.48 L1429.83 894.84 A45 45 0 0 1 1513.83 920.92 Z"/></clipPath>
     <style>
       .cls-1 {
         fill: #bf414f;
